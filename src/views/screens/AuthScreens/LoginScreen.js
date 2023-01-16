@@ -23,6 +23,10 @@ const LoginScreen = ({ navigation }) => {
         email: yup.string().trim().email('Invalid Email').required('Email is required'),
         password: yup.string().trim().required('Password is required'),
     })
+
+    const ForgotPassword = () => {
+        navigation.push('Forgotpassword');
+    }
  
 
     return (
@@ -70,8 +74,8 @@ const LoginScreen = ({ navigation }) => {
                                             />
                                         }
                                     />
-                                    <TouchableOpacity style={styles.forgotPassword}>
-                                        <Text color={Colors.lighter} center size={12} weight='medium'>Forgot Password?</Text>
+                                    <TouchableOpacity onPress={ForgotPassword}>
+                                        <Text style={{marginTop: 15}} color={Colors.black} center size={12} weight='medium'>Forgot Password?</Text>
                                     </TouchableOpacity>
 
                                     <Button 
@@ -83,14 +87,6 @@ const LoginScreen = ({ navigation }) => {
                                         title={'Sign In'}
                                     />
 
-                                    <Text center weight='light'>or</Text>
-                                    <Button 
-                                        style={{
-                                            marginTop: 5,
-                                            marginBottom: 10
-                                        }}
-                                        title={'Sign Up Using Google'}
-                                    />
                                     <TouchableOpacity onPress={handleSignUpPress}>
                                         <Text style={{marginTop: 15}} color={Colors.dark} center weight='medium' size={16}>Don't have an account? <Text color={Colors.primary}>Sign Up</Text></Text>
                                     </TouchableOpacity>

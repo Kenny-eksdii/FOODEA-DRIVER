@@ -2,11 +2,8 @@ import { TouchableOpacity, View, StyleSheet } from "react-native"
 import { Button, Container, SafeAreaView, Text } from '../../components/FoodeaComponents'
 import Colors from "../../../utils/Colors";
 
-function LandingPageScreen({navigation}){
+function Success({navigation}){
   const signInPress = () => {
-    navigation.push("LoginScreen");
-  }
-  const handleSignUpPress = () => {
     navigation.push("SignUpScreen");
   }
 
@@ -16,22 +13,17 @@ function LandingPageScreen({navigation}){
         <Container style={{flex: 1,backgroundColor: '#cce7e8'}} center padding={20}>
 
         <View style = {styles.midContainer}>
-            <Text color={Colors.white} size={21} center>Get Started at</Text>
-            <Text color={Colors.white} size={40} weight='bold' center>FOODEA</Text>
+            <Text color={Colors.white} size={40} weight='bold' center>CONGRATULATIONS!</Text>
             <Text center size={15} weight="light" color={Colors.dark} style={{marginBottom: 50}}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lacus tempor praesentr malesuada.
+            You are all set, you've successfully changed your password!
         </Text>
         </View>
         <View style = {styles.button}>
             <Button
                 onPress={signInPress}
-                title="Sign In" 
+                title="Go to Sign In" 
             />
         </View>
-            <TouchableOpacity onPress={handleSignUpPress}>
-                <Text style={{marginTop: 10}} color={Colors.dark} center weight='medium' size={16}>Don't have an account? <Text color={Colors.primary}>Sign Up</Text></Text>
-            </TouchableOpacity>
-
         </Container>
     </SafeAreaView>
     )
@@ -70,6 +62,7 @@ const styles = StyleSheet.create({
         padding: 15,
         borderRadius: 50,
         alignItems: 'center',
+        
   }, ButtonOutline: {
     backgroundColor: 'white',
     marginTop: 5,
@@ -80,4 +73,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default LandingPageScreen
+export default Success
