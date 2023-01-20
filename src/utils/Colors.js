@@ -8,7 +8,7 @@ const Colors = {
     black          : '#000000',
     red            : '#AB324A',
     white          : '#FFF',
-    dark           : '#000000',
+    dark           : '#000',
     grey           : '#908e8c',
     defaultBg      : '#F2F2F2',
 }

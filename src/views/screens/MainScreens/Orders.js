@@ -1,12 +1,12 @@
 import { SafeAreaView, StyleSheet, Switch, Text, View, TextInput, Button, Image} from 'react-native';
 import React, {useState} from 'react';
 
-
 export default function App() {
   const [switchValue, setswitchValue] = useState(false);
   const toggleSwitch = (value) => {
     setswitchValue(value);
   }
+
   return (
     <SafeAreaView style={{flex: 1}}>
         <View style={styles.container}>

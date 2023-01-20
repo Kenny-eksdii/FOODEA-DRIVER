@@ -1,93 +1,94 @@
 import { TouchableOpacity, StyleSheet, View } from "react-native"
-import { TextInput, Button, Container, SafeAreaView, Text } from '../../components/FoodeaComponents'
+import { Textbutton, Button, Container, SafeAreaView, Text } from '../../components/FoodeaComponents'
 import Colors from "../../../utils/Colors";
 import React, {useRef, useState} from 'react';
+import OTPInputView from "@twotalltotems/react-native-otp-input";
 
 const EnterOTP = ({ navigation }) => {    
 
     const handleOtpSubmitPress = () => {
         navigation.push('Forgotpassword');
     }
-    const firstInput = useRef();
-    const secondInput = useRef();
-    const thirdInput = useRef();
-    const fourthInput = useRef();
-    const [otp, setOtp] = useState({1: '', 2: '', 3: '', 4: ''});
-
 
     const Resetpassword = () => {
         navigation.push('Resetpassword');
     }
 
+    const [timer, setTimer] = React.useState(60)
 
     return (
     <SafeAreaView flex style={styles.topContainer} statusBarColor="rgb(0, 0, 0)">
         <Container padding={20} center style={{backgroundColor: '#cce7e8'}}>
 
             <View style = {styles.midContainer}>
-                <TouchableOpacity onPress={handleOtpSubmitPress}>
-                    <Text color={Colors.black} size={15} weight='bold' center style={{paddingRight: 80}}> Back </Text>
-                </TouchableOpacity>
-
-                    <Text color={Colors.black} size={15} weight='bold' center> Step 2/3</Text>
+              <TouchableOpacity onPress={handleOtpSubmitPress}>
+                <Text color={Colors.black} size={15} weight='bold' center style={{paddingRight: 80}}> Back </Text>
+              </TouchableOpacity>
+                <Text color={Colors.black} size={15} weight='bold' center> Step 2/3</Text>
             </View>
 
             <View style = {styles.forgot}>
-                    <Text size={35} weight='bold'>Enter OTP</Text> 
-                    </View>
-            <View> 
-                    <Text weight='semi-bold' style={{paddingLeft: 13, paddingBottom: 20}}>An 4 digit code has been sent to + </Text>
+              <Text size={35} weight='bold'>Enter OTP</Text> 
             </View>
 
-            <View style={styles.otpContainer}>
-              <View style={styles.otpBox}>
-                      <TextInput
-                        style={styles.otpText}
-                        keyboardType="number-pad"
-                        maxLength={1}
-                        ref={firstInput}
-                        onChangeText={text => {
-                          setOtp({...otp, 1: text});
-                        }}
-                      />
+            <View> 
+              <Text weight='semi-bold' style={{paddingLeft: 13, paddingBottom: 20}}>An 4 digit code has been sent to + </Text>
+            </View>
+
+            <View
+            style= {{
+              flex: 1,
+              margintop: 20
+            }}
+            >
+              <OTPInputView
+              pinCount={4}
+              style={{
+                width:"100%",
+                height: 50
+              }}
+              codeInputFieldStyle={{
+                width:65,
+                height:64,
+                borderRadius: 20,
+                backgroundColor: Colors.grey,
+                Colors: Colors.black,
+              }}
+              onCodeFilled = { (code) =>
+              console.log(code)
+            }
+              
+              >
+              </OTPInputView>
+              <View
+              style={{
+                flexDirection:'row',
+                justifyContent: 'center',
+                margintop: '20'
+              }}
+              >
+                <text
+                styles = {{
+                  color:Colors.grey
+                }}
+                >
+                  Didn't Receive Code?
+
+                </text>
+                <Textbutton>
+                  label = { `Resend (${timer}s)`}
+                  disabled = {timer == 0? false: true}
+                  buttonContainerStyle = {{
+                    marginLeft: 30,
+                    backgroundColor: null
+                  }}
+                  labelStyle={{
+                    color:Colors.primary,
+                  }}
+                </Textbutton>
+
               </View>
 
-                    <View style={styles.otpBox}>
-                      <TextInput
-                        style={styles.otpText}
-                        keyboardType="number-pad"
-                        maxLength={1}
-                        ref={secondInput}
-                        onChangeText={text => {
-                          setOtp({...otp, 2: text});
-                        
-                        }}
-                      />
-                    </View>
-
-                    <View style={styles.otpBox}>
-                      <TextInput
-                        style={styles.otpText}
-                        keyboardType="number-pad"
-                        maxLength={1}
-                        ref={thirdInput}
-                        onChangeText={text => {
-                          setOtp({...otp, 3: text});
-                        }}
-                      />
-                    </View>
-
-                    <View style={styles.otpBox}>
-                      <TextInput
-                        style={styles.otpText}
-                        keyboardType="number-pad"
-                        maxLength={1}
-                        ref={fourthInput}
-                        onChangeText={text => {
-                          setOtp({...otp, 4: text});
-                        }}
-                      />
-                    </View>
             </View>
                                                     
             <View style = {styles.button}>

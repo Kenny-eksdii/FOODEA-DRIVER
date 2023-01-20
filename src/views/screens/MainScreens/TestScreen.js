@@ -3,50 +3,61 @@ import React from 'react'
 import { Container, SafeAreaView, Button, Text } from '../../components/FoodeaComponents'
 
 
-const TestScreen = () => {
 
-    const StartEarning = () => {
+
+const TestScreen = ({ navigation }) => {
+    const handleStart = () => {
         navigation.push('Orders');
     }
 
   return (
-    <SafeAreaView flex style={styles.mainContainer} statusBarColor="rgb(0, 0, 0)">
-        <Container style={{flex: 1,backgroundColor: '#cce7e8'}} center padding={20}>
-            <View style = {styles.topContainer}>
-                <View style={styles.earningscontainer}>
-                    <Text style={{fontSize:16, fontWeight:'bold'}}>Status</Text>
-                        <Switch 
-                            onValueChange={toggleSwitch}
-                            value={switchValue}
-                            trackColor={{false: "#D9D9D9", true: "#f99293"}}
-                            thumbColor={switchValue ? "#f00d0e" : "#f99293"}
-                        />
-
-                            <View style={styles.todayStats}>
-                                <Text style={{marginTop: 10, fontSize:16, fontWeight: 'bold'}}>Todays Stats</Text>
-                            </View>
-
-                            <View style={styles.todayStatsContents}>
-                                <Text>Earnings</Text>
-                                <Text>Orders</Text>
-                            </View> 
-                        
+    <SafeAreaView flex statusBarColor="rgb(0, 0, 0)">
+        <Container style={styles.topContainer} top padding={20}>
+                <View style={styles.Status}>
+                    <Text style={{fontSize:16, fontWeight:'bold'}}>Profile</Text>
+                    <Text style={{fontSize:16, fontWeight:'bold'}}>Status on/off</Text>    
                 </View>
-                        { switchValue == false?
-                                    <View style={styles.valueSwitch}>
-                                    </View>
-                                :
-                                
-                        <View style={styles.buttonContainer}>
-                            <Button 
-                                onPress={StartEarning}
-                                title='Start Earning'
-                            />
-                        </View>
-                        }
-    
 
-            </View>
+                    <Text style={{fontSize:15, fontWeight:'bold'}}>TODAY STATUS</Text>
+
+                <View style={styles.todayStats}>
+                    <View style={styles.testing}>
+                        <Text style={{fontSize:12, fontWeight:'bold'}}>ORDERS</Text>
+                        <Text style={{fontSize:10, fontWeight:'bold'}}>...</Text>
+                        <Text style={{fontSize:10, fontWeight:'bold'}}>...</Text>
+                        <Text style={{fontSize:10, fontWeight:'bold'}}>...</Text>
+                    </View>
+                    <View style={styles.testing1}>
+                        <Text style={{fontSize:12, fontWeight:'bold'}}>EARNINGS</Text>
+                        <Text style={{fontSize:10, fontWeight:'bold'}}>...</Text>
+                        <Text style={{fontSize:10, fontWeight:'bold'}}>...</Text>
+                        <Text style={{fontSize:10, fontWeight:'bold'}}>...</Text>
+                    </View>
+                </View>
+                <Text style={{fontSize:15, fontWeight:'bold', marginTop:20}}>TOTAL EARNINGS</Text>
+                <View style={styles.earningscontainer}>
+                    <View style={styles.testing}>
+                        <Text style={{fontSize:12, fontWeight:'bold'}}>EARNNINGS</Text>
+                        <Text style={{fontSize:10, fontWeight:'bold'}}>P1234</Text>
+                    </View>
+                    <View style={styles.testing1}>
+                        <Text style={{fontSize:12, fontWeight:'bold'}}>ORDERS</Text>
+                        <Text style={{fontSize:10, fontWeight:'bold'}}>20</Text>
+                    </View>
+                </View>
+                <View style={styles.Map}>
+                    <Text> THIS IS THE MAP
+
+                    </Text>
+
+                </View>
+                                    <View style = {styles.button}>
+                                    <Button 
+                                        onPress={handleStart}
+                                        title={'START EARNING'}
+                                    />
+                                    </View>
+    
         </Container>
     </SafeAreaView>
 
@@ -55,39 +66,64 @@ const TestScreen = () => {
 }
 
 const styles = StyleSheet.create({
+    testing:{
+        marginTop:1,
+        flex:1,
+        flexDirection:'column',
+        justifyContent:'space-between',
+    },
+    testing1:{
+        marginTop:1,
+        flex:1,
+        flexDirection:'column',
+        justifyContent:'space-between',
+        marginLeft:189
+    },
+    Status:{
+        backgroundColor: '#FAFAFA',
+        flexDirection:'row',
+        justifyContent:'space-between',
+        marginTop:20,
+        marginBottom:30,
+    },
     topContainer: {
         backgroundColor: '#FAFAFA'
     },
       earningscontainer: {
+        paddingHorizontal: 15,
+        marginTop: 1,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
+        margin: 1,
+        height: 40,
         backgroundColor: '#fff',
         marginBottom: 20,
+        borderRadius: 5,
+        borderColor: '#F54748',
+        borderWidth: 1,
+        borderColor: '#F54748',
     },
-      valueSwitch: {
-        alignItems: 'center',
+    Map: {
+        paddingHorizontal: 15,
+        marginTop: 1,
+        marginBottom: 10,
+        height: 500,
         backgroundColor: '#fff',
-        marginBottom: 20,
-    },
-      valueSwitchOnline: {
-        flexDirection: 'row',
-        marginBottom:20,
-        justifyContent: 'space-around',
-        fontSize: 50,
-        alignItems: 'center',
-        backgroundColor: '#fff',
-        // borderWidth: 2,
-        elevationColor: 'red',
-        elevation: 4,
+        borderRadius: 5,
+        borderColor: '#F54748',
+        borderWidth: 1,
+        borderColor: '#F54748',
     },
       todayStats: {
         paddingHorizontal: 15,
-        margin: 15,
-        height: 130,
+        flexDirection:'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        height: 80,
         borderRadius: 10,
         borderColor: '#F54748',
-        borderWidth: 4,
+        borderWidth: 1,
         borderColor: '#F54748',
     },
       todayStatsContents: {
@@ -100,13 +136,7 @@ const styles = StyleSheet.create({
         width: "50%",
         justifyContent: 'center',
         alignItems: 'center',
-    },Button: {
-        backgroundColor:'white',
-        width: "100%",
-        padding: 15,
-        borderRadius: 50,
-        alignItems: 'center',
-        },
+    },
     });
 
 export default TestScreen

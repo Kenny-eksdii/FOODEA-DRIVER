@@ -18,5 +18,5 @@ var Colors = {
   grey: '#908e8c',
   defaultBg: '#F2F2F2'
 };
-var _default = Colors;
+var_default = Colors;
 exports["default"] = _default;
