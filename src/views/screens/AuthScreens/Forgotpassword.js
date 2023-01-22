@@ -12,7 +12,7 @@ const Forgotpassword = ({ navigation }) => {
         navigation.push('LoginScreen');
     }
 
-    const EnterOTP = () => {
+    const handleEnterOTP = () => {
         navigation.push("EnterOTP");
     }
 
@@ -63,7 +63,7 @@ return (
     </Formik>
                                     <View style = {styles.button}>
                                             <Button
-                                                onPress={EnterOTP}
+                                                onPress={handleEnterOTP}
                                                 title="Submit" 
                                             />
                                     </View>                  

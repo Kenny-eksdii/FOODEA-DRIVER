@@ -9,8 +9,8 @@ import { Formik } from 'formik'
 
 
 const LoginScreen = ({ navigation }) => {
-    const ForgotPassword = () => {
-        navigation.push('ForgetPass');
+    const handleForgotPassword = () => {
+        navigation.push('Forgotpassword');
     }
     
     const { login } = useContext(AuthContext)
@@ -77,7 +77,7 @@ const LoginScreen = ({ navigation }) => {
                                         }
                                     />
 
-                                    <TouchableOpacity onPress={ForgotPassword}>
+                                    <TouchableOpacity onPress={handleForgotPassword}>
                                         <Text style={{marginTop: 15}} color={Colors.black} center size={12} weight='medium'>Forgot Password?</Text>
                                     </TouchableOpacity>
 

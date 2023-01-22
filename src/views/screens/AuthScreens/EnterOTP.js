@@ -6,11 +6,11 @@ import OTPInputView from "@twotalltotems/react-native-otp-input";
 
 const EnterOTP = ({ navigation }) => {    
 
-    const handleOtpSubmitPress = () => {
+    const handleBackPress = () => {
         navigation.push('Forgotpassword');
     }
 
-    const Resetpassword = () => {
+    const handleResetpassword = () => {
         navigation.push('Resetpassword');
     }
 
@@ -21,7 +21,7 @@ const EnterOTP = ({ navigation }) => {
         <Container padding={20} center style={{backgroundColor: '#cce7e8'}}>
 
             <View style = {styles.midContainer}>
-              <TouchableOpacity onPress={handleOtpSubmitPress}>
+              <TouchableOpacity onPress={handleBackPress}>
                 <Text color={Colors.black} size={15} weight='bold' center style={{paddingRight: 80}}> Back </Text>
               </TouchableOpacity>
                 <Text color={Colors.black} size={15} weight='bold' center> Step 2/3</Text>
@@ -93,7 +93,7 @@ const EnterOTP = ({ navigation }) => {
                                                     
             <View style = {styles.button}>
               <Button
-              onPress={Resetpassword}
+              onPress={handleResetpassword}
               title="Submit" 
                />
             </View>

@@ -39,21 +39,21 @@ export default function App() {
           :
           <View>
             <View style={styles.valueSwitchOnline}>
-              <Image style={{width: 150, height: 150,}} source={require('./assets/rednavimage.png')} />
+              
                 <View>
                   <Text style={{marginVertical:20, fontWeight: 'bold', fontSize: 16}}>Mc Kevin Gozon</Text>
                   <Button color="#F54748" title='The Order Details'/>
                 </View>
             </View>
             <View style={styles.valueSwitchOnline}>
-              <Image style={{width: 150, height: 150,}} source={require('./assets/rednavimage.png')} />
+              
                 <View>
                   <Text style={{marginVertical:20, fontWeight: 'bold', fontSize: 16}}>Mc Kevin Gozon</Text>
                   <Button color="#F54748" title='The Order Details'/>
                 </View> 
           </View>
           <View style={styles.valueSwitchOnline}>
-              <Image style={{width: 150, height: 150,}} source={require('./assets/rednavimage.png')} />
+              
                 <View>
                   <Text style={{marginVertical:20, fontWeight: 'bold', fontSize: 16}}>Mc Kevin Gozon</Text>
                   <Button color="#F54748" title='The Order Details'/>

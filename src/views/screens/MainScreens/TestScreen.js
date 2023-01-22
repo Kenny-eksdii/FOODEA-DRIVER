@@ -9,6 +9,7 @@ const TestScreen = ({ navigation }) => {
     const handleStart = () => {
         navigation.push('Orders');
     }
+    
 
   return (
     <SafeAreaView flex statusBarColor="rgb(0, 0, 0)">
@@ -21,26 +22,32 @@ const TestScreen = ({ navigation }) => {
                     <Text style={{fontSize:15, fontWeight:'bold'}}>TODAY STATUS</Text>
 
                 <View style={styles.todayStats}>
-                    <View style={styles.testing}>
-                        <Text style={{fontSize:12, fontWeight:'bold'}}>ORDERS</Text>
-                        <Text style={{fontSize:10, fontWeight:'bold'}}>...</Text>
-                        <Text style={{fontSize:10, fontWeight:'bold'}}>...</Text>
-                        <Text style={{fontSize:10, fontWeight:'bold'}}>...</Text>
-                    </View>
                     <View style={styles.testing1}>
-                        <Text style={{fontSize:12, fontWeight:'bold'}}>EARNINGS</Text>
-                        <Text style={{fontSize:10, fontWeight:'bold'}}>...</Text>
-                        <Text style={{fontSize:10, fontWeight:'bold'}}>...</Text>
-                        <Text style={{fontSize:10, fontWeight:'bold'}}>...</Text>
+                        <Text style={{fontSize:12, fontWeight:'bold'}}>ORDERS</Text>
+                                <View style={styles.orders}>
+                                    <Text style={{fontSize:12, fontWeight:'bold'}}>1</Text>
+                                    <Text style={{fontSize:12, fontWeight:'bold'}}>2</Text>
+                                    <Text style={{fontSize:12, fontWeight:'bold'}}>3</Text>
+                                </View>
+
+                        <Text style={{fontSize:12, fontWeight:'bold'}}>                                                                    EARNINGS</Text>
+                                <View style={styles.earnigns}>
+                                    <Text style={{fontSize:12, fontWeight:'bold'}}>P1200</Text>
+                                    <Text style={{fontSize:12, fontWeight:'bold'}}>P10000</Text>
+                                    <Text style={{fontSize:12, fontWeight:'bold'}}>P1000000</Text>
+                                </View>
                     </View>
+                        
                 </View>
+                
+
                 <Text style={{fontSize:15, fontWeight:'bold', marginTop:20}}>TOTAL EARNINGS</Text>
                 <View style={styles.earningscontainer}>
                     <View style={styles.testing}>
-                        <Text style={{fontSize:12, fontWeight:'bold'}}>EARNNINGS</Text>
+                        <Text style={{fontSize:12, fontWeight:'bold'}}>EARNINGS</Text>
                         <Text style={{fontSize:10, fontWeight:'bold'}}>P1234</Text>
                     </View>
-                    <View style={styles.testing1}>
+                    <View style={styles.testing}>
                         <Text style={{fontSize:12, fontWeight:'bold'}}>ORDERS</Text>
                         <Text style={{fontSize:10, fontWeight:'bold'}}>20</Text>
                     </View>
@@ -57,6 +64,7 @@ const TestScreen = ({ navigation }) => {
                                         title={'START EARNING'}
                                     />
                                     </View>
+
     
         </Container>
     </SafeAreaView>
@@ -66,18 +74,27 @@ const TestScreen = ({ navigation }) => {
 }
 
 const styles = StyleSheet.create({
+    orders:{
+        marginTop:20,
+        flex:1,
+        flexDirection: 'column',
+        marginRight:20,
+    },
+    earnigns:{
+        marginTop:20,
+        flexDirection: 'column',
+
+    },
     testing:{
         marginTop:1,
-        flex:1,
         flexDirection:'column',
         justifyContent:'space-between',
+        
     },
     testing1:{
         marginTop:1,
+        flexDirection:'row',
         flex:1,
-        flexDirection:'column',
-        justifyContent:'space-between',
-        marginLeft:189
     },
     Status:{
         backgroundColor: '#FAFAFA',
@@ -108,7 +125,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 15,
         marginTop: 1,
         marginBottom: 10,
-        height: 500,
+        height: 400,
         backgroundColor: '#fff',
         borderRadius: 5,
         borderColor: '#F54748',
