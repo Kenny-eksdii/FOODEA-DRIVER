@@ -2,6 +2,8 @@ import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import TestScreen from '../screens/MainScreens/TestScreen';
 import Orders from '../screens/MainScreens/Orders';
+import Profile from '../screens/MainScreens/Profile';
+
 
 const Stack = createNativeStackNavigator();
 
@@ -17,6 +19,11 @@ const MainStack = () => {
             options ={{ headerShown:false }} 
             name = {"Orders"} 
             component = {Orders}
+        />
+        <Stack.Screen 
+            options ={{ headerShown:false }} 
+            name = {"Profile"} 
+            component = {Profile}
         />
         
     </Stack.Navigator>

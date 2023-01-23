@@ -4,8 +4,10 @@ import LandingPageScreen from '../screens/AuthScreens/LandingPageScreen';
 import LoginScreen from '../screens/AuthScreens/LoginScreen';
 import SignUpScreen from '../screens/AuthScreens/SignUpScreen';
 import Forgotpassword from '../screens/AuthScreens/Forgotpassword';
-import EnterOTP from '../screens/AuthScreens/EnterOTP';
 import Resetpassword from '../screens/AuthScreens/Resetpassword';
+import Otp from '../screens/AuthScreens/Otp';
+import Success from '../screens/AuthScreens/Success';
+
 
 const Stack = createNativeStackNavigator();
 
@@ -37,13 +39,18 @@ const AuthStack = () => {
         />
         <Stack.Screen 
             options={{ headerShown:false }} 
-            name="EnterOTP" 
-            component={EnterOTP}
+            name="Resetpassword" 
+            component={Resetpassword}
         />
         <Stack.Screen 
             options={{ headerShown:false }} 
-            name="Resetpassword" 
-            component={Resetpassword}
+            name="Otp" 
+            component={Otp}
+        />
+        <Stack.Screen 
+            options={{ headerShown:false }} 
+            name="Success" 
+            component={Success}
         />
     </Stack.Navigator>
   )

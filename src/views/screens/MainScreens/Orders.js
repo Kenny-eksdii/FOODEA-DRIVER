@@ -1,5 +1,6 @@
 import { SafeAreaView, StyleSheet, Switch, Text, View, TextInput, Button, Image} from 'react-native';
 import React, {useState} from 'react';
+import image from "../../../utils/image";
 
 export default function App() {
   const [switchValue, setswitchValue] = useState(false);
@@ -39,21 +40,21 @@ export default function App() {
           :
           <View>
             <View style={styles.valueSwitchOnline}>
-              
+            <Image source={image.rednav} style={styles.image} />
                 <View>
                   <Text style={{marginVertical:20, fontWeight: 'bold', fontSize: 16}}>Mc Kevin Gozon</Text>
                   <Button color="#F54748" title='The Order Details'/>
                 </View>
             </View>
             <View style={styles.valueSwitchOnline}>
-              
+            <Image source={image.rednav} style={styles.image} />
                 <View>
                   <Text style={{marginVertical:20, fontWeight: 'bold', fontSize: 16}}>Mc Kevin Gozon</Text>
                   <Button color="#F54748" title='The Order Details'/>
                 </View> 
           </View>
           <View style={styles.valueSwitchOnline}>
-              
+          <Image source={image.rednav} style={styles.image} />
                 <View>
                   <Text style={{marginVertical:20, fontWeight: 'bold', fontSize: 16}}>Mc Kevin Gozon</Text>
                   <Button color="#F54748" title='The Order Details'/>
@@ -75,6 +76,10 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
+  image: {
+    height: 50,
+    width: 50,
+  },
   container: {
     flex: 1,
     paddingVertical: 80,
@@ -115,7 +120,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     fontSize: 50,
     alignItems: 'center',
-    backgroundColor: '#fff',
+    backgroundColor: '#FAFAFA',
     // borderWidth: 2,
     elevationColor: 'red',
     elevation: 4,

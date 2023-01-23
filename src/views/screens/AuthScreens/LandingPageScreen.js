@@ -13,12 +13,12 @@ function LandingPageScreen({navigation}){
 
   return (  
     <SafeAreaView flex style={styles.topContainer} statusBarColor="rgb(91, 96, 96)">
-        <Container style={{flex: 1,backgroundColor: '#F54748'}} center padding={20}>
+        <Container style={{flex: 1,backgroundColor: '#FAFAFA'}} center padding={20}>
 
         <View style = {styles.midContainer}>
-            <Text color={Colors.white} size={21} center>Get Started at</Text>
-            <Text color={Colors.white} size={40} weight='bold' center>FOODEA</Text>
-            <Text center size={15} weight="light" color={Colors.lighter} style={{marginBottom: 50}}>
+            <Text color={Colors.black} size={21} center>Get Started at</Text>
+            <Text color={Colors.primary} size={40} weight='bold' center>FOODEA</Text>
+            <Text center size={15} weight="light" color={Colors.black} style={{marginBottom: 50}}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lacus tempor praesentr malesuada.
         </Text>
         </View>
@@ -29,7 +29,7 @@ function LandingPageScreen({navigation}){
             />
         </View>
             <TouchableOpacity onPress={handleSignUpPress}>
-                <Text style={{marginTop: 10}} color='#ffffff' center weight='bold' size={16}>Don't have an account? Sign Up</Text>
+                <Text style={{marginTop: 10}} color='#000' center weight='medium' size={16}>Don't have an account? <Text style={{marginTop: 10}} color='#EA4D4E' center weight='bold' size={16}>Sign Up</Text></Text>
             </TouchableOpacity>
 
         </Container>
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     marginTop: 2,
     paddingTop: 2,
     paddingBottom: 2,
-    backgroundColor: '#fff',
+    backgroundColor: '#000',
     borderRadius: 15,
   },
   midContainer : {

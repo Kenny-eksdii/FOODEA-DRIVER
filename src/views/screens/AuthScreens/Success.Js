@@ -2,19 +2,19 @@ import { TouchableOpacity, View, StyleSheet } from "react-native"
 import { Button, Container, SafeAreaView, Text } from '../../components/FoodeaComponents'
 import Colors from "../../../utils/Colors";
 
-function Success({navigation}){
-  const signInPress = () => {
-    navigation.push("SignUpScreen");
-  }
+const Success = ({navigation}) =>{
 
+    const signInPress = () => {
+    navigation.push("LoginScreen");
+  }
 
   return (  
     <SafeAreaView flex style={styles.topContainer} statusBarColor="rgb(0, 0, 0)">
-        <Container style={{flex: 1,backgroundColor: '#cce7e8'}} center padding={20}>
+        <Container style={{flex: 1,backgroundColor: '#FAFAFA'}} center padding={20}>
 
         <View style = {styles.midContainer}>
-            <Text color={Colors.white} size={40} weight='bold' center>CONGRATULATIONS!</Text>
-            <Text center size={15} weight="light" color={Colors.dark} style={{marginBottom: 50}}>
+            <Text color={Colors.primary} size={40} weight='bold' center>CONGRATULATIONS!</Text>
+            <Text center size={15} weight="bold" color={Colors.dark} style={{marginBottom: 50}}>
             You are all set, you've successfully changed your password!
         </Text>
         </View>
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     marginTop: 2,
     paddingTop: 2,
     paddingBottom: 2,
-    backgroundColor: '#fff',
+    backgroundColor: '#000',
     borderRadius: 15,
   },
   midContainer : {
@@ -48,29 +48,8 @@ const styles = StyleSheet.create({
   }, bottomText: {
     fontWeight: '300',
     fontSize: 16,
-  }, paragraphText: {
-    textAlign: 'center',
-    margin: 30,
-    width: "70%"
-  }, buttonContainers:{
-        width: "50%",
-        justifyContent: 'center',
-        alignItems: 'center',
-  },Button: {
-        backgroundColor:'white',
-        width: "100%",
-        padding: 15,
-        borderRadius: 50,
-        alignItems: 'center',
+  },
         
-  }, ButtonOutline: {
-    backgroundColor: 'white',
-    marginTop: 5,
-    borderColor: 'black',
-    borderWidth: 2,
-  }, buttonText: {
-    fontWeight: '600'
-  }
 });
 
 export default Success

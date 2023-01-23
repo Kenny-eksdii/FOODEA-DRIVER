@@ -33,7 +33,7 @@ const LoginScreen = ({ navigation }) => {
 
     return (
             <SafeAreaView flex statusBarColor={'rgba(0, 0, 0, 0)'}>
-                <Container style={{flex: 1,backgroundColor: '#F54748'}} backgrounpadding={20} center>
+                <Container style={{flex: 1,backgroundColor: '#FAFAFA'}} padding={25} center>
                     <Text size={26} weight='medium'>Log in to your account</Text>
                         <Formik
                             initialValues={{ email: '', password: '' }}
@@ -77,19 +77,19 @@ const LoginScreen = ({ navigation }) => {
                                         }
                                     />
 
-                                    <TouchableOpacity onPress={handleForgotPassword}>
-                                        <Text style={{marginTop: 15}} color={Colors.black} center size={12} weight='medium'>Forgot Password?</Text>
-                                    </TouchableOpacity>
-
-
-                                    <View style = {styles.button}>
+                                     <View style = {styles.button}>
                                     <Button 
                                         onPress={handleSubmit}
                                         title={'Sign In'}
                                     />
                                     </View>
+
+                                    <TouchableOpacity onPress={handleForgotPassword}>
+                                        <Text style={{marginTop: 20}} color={Colors.black} center size={12} weight='bold'>Forgot Password?</Text>
+                                    </TouchableOpacity>
+
                                     <TouchableOpacity onPress={handleSignUpPress}>
-                                        <Text style={{marginTop: 16}} color={Colors.dark} center weight='medium' size={16}>Don't have an account? <Text color={Colors.white}>Sign Up</Text></Text>
+                                        <Text style={{marginTop: 10}} color={Colors.black} center size={16} weight='bold' >Don't have an account? <Text color={Colors.primary} weight='medium'>Sign Up</Text></Text>
                                     </TouchableOpacity>
                                 </>
                             )}
@@ -108,11 +108,13 @@ const styles = StyleSheet.create({
         paddingBottom: 20,
     },
     button: {
-        marginTop: 10,
-        roundness:25,
+        position:'relative',
+        marginTop: 20,
+        roundness:30,
         paddingTop: 2,
         paddingBottom: 2,
-        backgroundColor: '#fff',
+        backgroundColor: '#000',
         borderRadius: 15,
+        marginBottom: 50
       },
 })

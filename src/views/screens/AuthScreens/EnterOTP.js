@@ -1,7 +1,7 @@
 import { TouchableOpacity, StyleSheet, View } from "react-native"
 import { Textbutton, Button, Container, SafeAreaView, Text } from '../../components/FoodeaComponents'
 import Colors from "../../../utils/Colors";
-import React, {useRef, useState} from 'react';
+import React from 'react';
 import OTPInputView from "@twotalltotems/react-native-otp-input";
 
 const EnterOTP = ({ navigation }) => {    
@@ -142,7 +142,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         paddingHorizontal: 18,
         paddingVertical: 10,
-      }
+      },
 
 })
 

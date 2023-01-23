@@ -1,7 +1,7 @@
-import { Text, View,StyleSheet,TouchableOpacity} from 'react-native'
+import { View,StyleSheet,TouchableOpacity} from 'react-native'
 import React from 'react'
 import { TextInput as TxtInput } from 'react-native-paper';
-import { SafeAreaView, Container,Button,TextInput} from '../../components/FoodeaComponents'
+import { SafeAreaView, Container,Button,TextInput, Text} from '../../components/FoodeaComponents'
 import Colors from "../../../utils/Colors";
 import { Formik } from 'formik';
 
@@ -15,14 +15,14 @@ const Resetpassword = ({ navigation }) => {
     }
 
     const HandleLogIn = () => {
-        navigation.push("LoginScreen");
+        navigation.push("Success");
     }
 
 return (
     <SafeAreaView flex style={styles.topContainer} statusBarColor="rgb(0, 0, 0)">
-        <Container padding={20} center style={{flex: 1,backgroundColor: '#cce7e8'}}>
+        <Container padding={20} center style={{flex: 1,backgroundColor: '#FAFAFA'}}>
 
-    <View style = {styles.topContainer}>
+    <View style = {styles.midContainer}>
     <TouchableOpacity onPress={handleForgotpasswordPress}>
         <Text color={Colors.black} size={15} weight='bold' center style={{paddingRight: 80}}> Back </Text>
             </TouchableOpacity>
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
     topContainer: {
         backgroundColor: '#FAFAFA'
     },
-    topContainer: {
+    midContainer: {
         paddingLeft: 13,
         paddingBottom: 170,
         flexDirection: 'row'
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
         
     }, 
     button: {
-        marginTop: 2,
+        marginTop: 20,
         paddingTop: 10,
         paddingBottom: 2,
         borderRadius: 15,
