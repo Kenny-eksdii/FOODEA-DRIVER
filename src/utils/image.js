@@ -1,4 +1,9 @@
-const image = {
-    rednav : '../../../assets/rednavimage.png',
+import rednav from '../../assets/rednavimage.png';
+import user from '../../assets/user.png';
+
+const images = {
+    rednav,
+    user,
+
 }
-export default image
+export default images

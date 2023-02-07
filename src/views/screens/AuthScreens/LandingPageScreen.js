@@ -1,6 +1,9 @@
-import { TouchableOpacity, View, StyleSheet } from "react-native"
+import { TouchableOpacity, View, StyleSheet, Alert, Linking } from "react-native"
 import { Button, Container, SafeAreaView, Text } from '../../components/FoodeaComponents'
 import Colors from "../../../utils/Colors";
+
+
+const mainURL = "https://google.com";
 
 function LandingPageScreen({navigation}){
   const signInPress = () => {
@@ -9,6 +12,15 @@ function LandingPageScreen({navigation}){
   const handleSignUpPress = () => {
     navigation.push("SignUpScreen");
   }
+
+  const openURL = async (url) => {
+    const isSupported = await Linking.canOpenURL(url);
+    if (isSupported) {
+        await Linking.openURL(url);
+    } else {
+        Alert.alert ('Dont know how to open this URL: ${url}');
+    }
+}
 
 
   return (  
@@ -28,7 +40,7 @@ function LandingPageScreen({navigation}){
                 title="Sign In" 
             />
         </View>
-            <TouchableOpacity onPress={handleSignUpPress}>
+            <TouchableOpacity onPress={() => {openURL(mainURL)}}>
                 <Text style={{marginTop: 10}} color='#000' center weight='medium' size={16}>Don't have an account? <Text style={{marginTop: 10}} color='#EA4D4E' center weight='bold' size={16}>Sign Up</Text></Text>
             </TouchableOpacity>
 

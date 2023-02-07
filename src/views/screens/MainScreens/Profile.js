@@ -4,18 +4,29 @@ import { Container, SafeAreaView, Button, Text } from '../../components/FoodeaCo
 import AuthContext from '../../../api/context/auth/AuthContext'
 
 const Profile = ({ navigation }) => {
-    const { logout, user } = useContext(AuthContext);
+    const ToLandingPage = () => {
+        navigation.push('TestScreen');
+    }
+    const { logout } = useContext(AuthContext);
 
 
 return (
     <SafeAreaView flex statusBarColor="rgb(0, 0, 0)">
         <Container style={styles.topContainer} top padding={20}>
+            <View style = {styles.backbutton}>
+                <Button
+                    onPress={ToLandingPage}
+                    title = "Back"
+                />
+            </View>
+
             <View style = {styles.button}>
                 <Button
                     onPress={logout}
                     title="Log out" 
                 />
-            </View> 
+            </View>
+            
         </Container>
     </SafeAreaView>
 
@@ -26,6 +37,16 @@ const styles = StyleSheet.create({
         marginLeft: 80,
         position:'relative',
         marginTop: 20,
+        roundness:50,
+        paddingTop: 2,
+        paddingBottom: 2,
+        backgroundColor: '#FAFAFA',
+        borderRadius: 15,
+      },
+    backbutton: {
+        width: '25%',
+        marginLeft: 1,
+        marginTop: 35,
         roundness:50,
         paddingTop: 2,
         paddingBottom: 2,

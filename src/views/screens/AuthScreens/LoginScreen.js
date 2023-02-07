@@ -1,11 +1,13 @@
-import { StyleSheet, TouchableOpacity, View} from 'react-native'
-import { useContext } from 'react';
-import { TextInput, Container, SafeAreaView, Button, Text } from '../../components/FoodeaComponents'
+import { StyleSheet, TouchableOpacity, View, Alert, Linking,} from 'react-native'
+import { useContext} from 'react';
+import { TextInput, Container, SafeAreaView, Button, Text} from '../../components/FoodeaComponents'
 import { TextInput as TxtInput } from 'react-native-paper';
 import Colors from '../../../utils/Colors';
 import AuthContext from '../../../api/context/auth/AuthContext';
 import * as yup from 'yup'
 import { Formik } from 'formik'
+
+const mainURL = "https://google.com";
 
 
 const LoginScreen = ({ navigation }) => {
@@ -18,9 +20,6 @@ const LoginScreen = ({ navigation }) => {
     const handleOnSubmit = (values) => {
         login(values.email, values.password);
     }
-    const handleSignUpPress = () => {
-        navigation.push('SignUpScreen');
-    }
     
   
     const signInSchema = yup.object({
@@ -28,13 +27,20 @@ const LoginScreen = ({ navigation }) => {
         password: yup.string().trim().required('Password is required'),
     })
 
-
+    const openURL = async (url) => {
+        const isSupported = await Linking.canOpenURL(url);
+        if (isSupported) {
+            await Linking.openURL(url);
+        } else {
+            Alert.alert ('Dont know how to open this URL: ${url}');
+        }
+    }
  
 
     return (
             <SafeAreaView flex statusBarColor={'rgba(0, 0, 0, 0)'}>
                 <Container style={{flex: 1,backgroundColor: '#FAFAFA'}} padding={25} center>
-                    <Text size={26} weight='medium'>Log in to your account</Text>
+                    <Text size={26} weight='bold'>Log in to your account</Text>
                         <Formik
                             initialValues={{ email: '', password: '' }}
                             onSubmit={handleOnSubmit}
@@ -83,14 +89,14 @@ const LoginScreen = ({ navigation }) => {
                                         title={'Sign In'}
                                     />
                                     </View>
-
-                                    <TouchableOpacity onPress={handleForgotPassword}>
-                                        <Text style={{marginTop: 20}} color={Colors.black} center size={12} weight='bold'>Forgot Password?</Text>
-                                    </TouchableOpacity>
-
-                                    <TouchableOpacity onPress={handleSignUpPress}>
+                                    <TouchableOpacity onPress={() => {openURL(mainURL)}}>
                                         <Text style={{marginTop: 10}} color={Colors.black} center size={16} weight='bold' >Don't have an account? <Text color={Colors.primary} weight='medium'>Sign Up</Text></Text>
                                     </TouchableOpacity>
+                                    <TouchableOpacity onPress={handleForgotPassword}>
+                                        <Text style={{marginTop: 20}} color={Colors.primary} center size={14} weight='bold'>Forgot Password?</Text>
+                                    </TouchableOpacity>
+
+                                    
                                 </>
                             )}
                         </Formik>
@@ -113,7 +119,7 @@ const styles = StyleSheet.create({
         roundness:30,
         paddingTop: 2,
         paddingBottom: 2,
-        backgroundColor: '#000',
+        backgroundColor: '#FAFAFA',
         borderRadius: 15,
         marginBottom: 50
       },

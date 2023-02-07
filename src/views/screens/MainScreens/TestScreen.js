@@ -1,12 +1,15 @@
-import { View, StyleSheet, TouchableOpacity, Image} from 'react-native'
-import React, { useContext } from 'react'
+import { View, StyleSheet, TouchableOpacity, Image, Switch, } from 'react-native'
+import React, { useState } from 'react'
 import { Container, SafeAreaView, Button, Text } from '../../components/FoodeaComponents'
-import AuthContext from '../../../api/context/auth/AuthContext'
+import images from '../../../utils/image'
+import Colors from '../../../utils/Colors';
 
 
 const TestScreen = ({ navigation }) => {
-    const { logout, user } = useContext(AuthContext);
-
+    const [switchValue, setswitchValue] = useState(false);
+    const toggleSwitch = (value) => {
+      setswitchValue(value);
+    }
     const handleStart = () => {
         navigation.push('Orders');
     }
@@ -21,80 +24,98 @@ const TestScreen = ({ navigation }) => {
     <SafeAreaView flex statusBarColor="rgb(0, 0, 0)">
         <Container style={styles.topContainer} top padding={20}>
                 <View style={styles.Status}>
+                    
                     <TouchableOpacity onPress={handleProfile}>
-                    <Text style={{fontSize:16, fontWeight:'bold'}}>Profile</Text>
+                        <Image source={images.user} style={styles.userprofile} onPress = {handleProfile} />
+                        <Text>MY PROFILE</Text>
                     </TouchableOpacity>
                     
-                    <Text style={{fontSize:16, fontWeight:'bold'}}>Status on/off</Text>    
+                        <Switch 
+                            onValueChange={toggleSwitch}
+                            value={switchValue}
+                            trackColor={{false: "#D9D9D9", true: "#f99293"}}
+                            thumbColor={switchValue ? "#f00d0e" : "#f99293"}
+                        />  
                 </View>
 
-                    <Text style={{fontSize:15, fontWeight:'bold'}}>TODAY STATUS</Text>
+                    <Text style={{fontSize:16, fontWeight:'bold'}}>TODAY STATUS</Text>
 
                     <View style={styles.todayStats}>
                         <View style={styles.Orders}>
-                            <Text style={{ fontSize: 12, fontWeight: "bold" }}>ORDERS</Text>
-                            <Text style={{ fontSize: 12, fontWeight: "bold" }}>1</Text>
-                            <Text style={{ fontSize: 12, fontWeight: "bold" }}>2</Text>
-                            <Text style={{ fontSize: 12, fontWeight: "bold" }}>3</Text>
+                            <Text style={{ fontSize: 16, fontWeight: "bold" }}>ORDER</Text>
+                            <Text style={{ fontSize: 14, fontWeight: "bold" }}>1</Text>
                         </View>
                         <View style={styles.Earns}>
-                            <Text style={{ fontSize: 12, fontWeight: "bold" }}>EARNINGS</Text>
-                            <Text style={{ fontSize: 12, fontWeight: "bold" }}>P1200</Text>
-                            <Text style={{ fontSize: 12, fontWeight: "bold" }}>P10000</Text>
-                            <Text style={{ fontSize: 12, fontWeight: "bold" }}>P1000000</Text>
+                            <Text style={{ fontSize: 16, fontWeight: "bold" }}>EARNINGS</Text>
+                            <Text style={{ fontSize: 14, fontWeight: "bold" }}>P1200</Text>
                         </View>
                     </View>
                 
-
-                <Text style={{fontSize:15, fontWeight:'bold', marginTop:20}}>TOTAL EARNINGS</Text>
-                <View style={styles.earningscontainer}>
-                    <View style={styles.earningscontent}>
-                        <Text style={{fontSize:12, fontWeight:'bold'}}>EARNINGS</Text>
-                        <Text style={{fontSize:10, fontWeight:'bold'}}>P1234</Text>
+                    <View style={styles.Map}>
+                        <Text>
+                            THIS IS THE MAP
+                        </Text>
                     </View>
-                    <View style={styles.earningscontent}>
-                        <Text style={{fontSize:12, fontWeight:'bold'}}>ORDERS</Text>
-                        <Text style={{fontSize:10, fontWeight:'bold'}}>20</Text>
+
+            <View>
+                { switchValue == false?
+                    <View style={styles.valueSwitch}>
+                        <Text style={{fontWeight: 'bold'}} color={Colors.primary}>"CURRENTLY OFFLINE"</Text>
+                    </View>
+          :
+                <View style={styles.valueSwitchOnline}>
+                    <View style = {styles.button}>
+                        <Button 
+                            onPress={handleStart}
+                            title={'START EARNING'}
+                        />
                     </View>
                 </View>
-                <View style={styles.Map}>
-                    <Text> THIS IS THE MAP
+                }
+            </View>  
 
-                    </Text>
 
-                </View>
-                                    <View style = {styles.button}>
-                                    <Button 
-                                        onPress={handleStart}
-                                        title={'START EARNING'}
-                                    />
-                                    </View>
-                                    <View style = {styles.button}>
-                                    <Button 
-                                        onPress={logout}
-                                        title={'Log Out'}
-                                    />
-                                    </View>
-
-    
         </Container>
     </SafeAreaView>
-
     
   )
 }
 
 const styles = StyleSheet.create({
+    topContainer: {
+        backgroundColor: '#FAFAFA'
+    },
+    Status:{
+        backgroundColor: '#FAFAFA',
+        flexDirection:'row',
+        justifyContent:'space-between',
+        marginTop:40,
+        marginBottom:20,
+    },
+    userprofile:{
+        height: 35,
+        width: 35,
+        marginLeft: 10,
+        flexDirection: "row",
+    },
     todayStats: {
         paddingHorizontal: 15,
+        marginTop: 10,
+        marginBottom: 10,
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "space-between",
         height: 80,
         borderRadius: 10,
+        backgroundColor: "#F54748",
         borderColor: "#F54748",
         borderWidth: 1,
-        borderColor: "#F54748",
+    },
+    Orders: {
+        marginTop: 5,
+        flexDirection: "column",
+        flex: 1,
+        justifyContent: "space-between",
     },
     Earns: {
         marginTop: 5,
@@ -103,47 +124,10 @@ const styles = StyleSheet.create({
         justifyContent: "space-between",
         marginLeft: 150,
     },
-    Orders: {
-        marginTop: 5,
-        flexDirection: "column",
-        flex: 1,
-        justifyContent: "space-between",
-    },
-    Status:{
-        backgroundColor: '#FAFAFA',
-        flexDirection:'row',
-        justifyContent:'space-between',
-        marginTop:20,
-        marginBottom:30,
-    },
-    topContainer: {
-        backgroundColor: '#FAFAFA'
-    },
-    earningscontainer: {
-        paddingHorizontal: 15,
-        marginTop: 1,
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        margin: 1,
-        height: 40,
-        backgroundColor: '#fff',
-        marginBottom: 20,
-        borderRadius: 5,
-        borderColor: '#F54748',
-        borderWidth: 1,
-        borderColor: '#F54748',
-    },
-    earningscontent:{
-        justifyContent: 'space-between',
-        flexDirection: 'column',
-        marginTop: 10,
-    },
     Map: {
         paddingHorizontal: 15,
-        marginTop: 1,
-        marginBottom: 10,
-        height: 400,
+        marginTop: 10,
+        height: 450,
         backgroundColor: '#fff',
         borderRadius: 5,
         borderColor: '#F54748',
@@ -151,13 +135,23 @@ const styles = StyleSheet.create({
         borderColor: '#F54748',
     },
     button: {
-        width: "50%",
-        marginTop: 10,
-        paddingTop: 2,
+        width: "40%",
+        paddingTop: 20,
         paddingBottom: 2,
         borderRadius: 20,
         borderColor:'#000',
     },
+    valueSwitch: {
+        fontSize: 50,
+        alignItems: 'center',
+        backgroundColor: '#fff',
+        marginTop: 10,
+      },
+      valueSwitchOnline: {
+        backgroundColor: '#FAFAFA',
+        alignItems: 'center',
+        
+      },
     });
 
 export default TestScreen
