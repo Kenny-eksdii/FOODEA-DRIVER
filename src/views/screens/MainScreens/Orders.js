@@ -1,76 +1,56 @@
-import { SafeAreaView, StyleSheet, Switch, Text, View, TextInput, Button, Image} from 'react-native';
+import { StyleSheet, Text, View, TextInput, Image} from 'react-native';
+import { Container, SafeAreaView, Button } from '../../components/FoodeaComponents'
 import React, {useState} from 'react';
 import image from "../../../utils/image";
 
-export default function App() {
-  const [switchValue, setswitchValue] = useState(false);
-  const toggleSwitch = (value) => {
-    setswitchValue(value);
-  }
+const Orders = ({ navigation }) => {
+
+const  Testmap= () => {
+  navigation.push('MapDirection');
+}
 
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <SafeAreaView flex statusBarColor="rgb(0, 0, 0)">
+      <Container style={styles.topContainer} center padding={20}>
         <View style={styles.container}>
-          <View style={styles.mainHeader}>
-            <View style={{width:45, height: 45, backgroundColor: 'gray', borderRadius: 22.5,}}></View>
-          </View>
-          <View style={styles.InputContainer}>
-            <TextInput 
-              style={styles.inputText} 
-              placeholder= 'Filter the Results!' 
-              onChangeText={""}/>
-          </View>
+          <View style={styles.mainHeader}></View>
+          
           <View style={styles.contentsBoooking}>
-            <Text style={{fontSize:16, fontWeight:'bold'}}>Suggestion</Text>
-              <Switch 
-                onValueChange={toggleSwitch}
-                value={switchValue}
-                trackColor={{false: "#D9D9D9", true: "#f99293"}}
-                thumbColor={switchValue ? "#f00d0e" : "#f99293"}
-              />
+            <Text style={{fontSize:16, fontWeight:'bold'}}>Available</Text>
           </View>
-          {/* <View style={styles.valueSwitch}>
-            <Text style={{fontWeight: 'bold'}}>{switchValue ? '"You are Online"' : '"You are Offline"'}</Text>
-          </View> */}
 
-          { switchValue == false?
-          <View style={styles.valueSwitch}>
-            <Text style={{fontWeight: 'bold'}}>"You're offline"</Text>
-          </View>
-          :
           <View>
             <View style={styles.valueSwitchOnline}>
-            <Image source={image.rednav} style={styles.image} />
+              <Image source={image.rednav} style={styles.image} />
                 <View>
-                  <Text style={{marginVertical:20, fontWeight: 'bold', fontSize: 16}}>Mc Kevin Gozon</Text>
-                  <Button color="#F54748" title='The Order Details'/>
+                  <Text style={{marginVertical:20, fontWeight: 'bold', fontSize: 16}}>Street Name</Text>
+                  <Button color="#F54748" title='Accept Orders'/>
                 </View>
             </View>
             <View style={styles.valueSwitchOnline}>
             <Image source={image.rednav} style={styles.image} />
                 <View>
-                  <Text style={{marginVertical:20, fontWeight: 'bold', fontSize: 16}}>Mc Kevin Gozon</Text>
-                  <Button color="#F54748" title='The Order Details'/>
+                  <Text style={{marginVertical:20, fontWeight: 'bold', fontSize: 16}}>Street Name</Text>
+                  <Button color="#F54748" title='Accept Orders'/>
                 </View> 
           </View>
           <View style={styles.valueSwitchOnline}>
           <Image source={image.rednav} style={styles.image} />
                 <View>
-                  <Text style={{marginVertical:20, fontWeight: 'bold', fontSize: 16}}>Mc Kevin Gozon</Text>
-                  <Button color="#F54748" title='The Order Details'/>
+                  <Text style={{marginVertical:20, fontWeight: 'bold', fontSize: 16}}>Street Name</Text>
+                  <Button color="#F54748" title='Accept Orders'/>
                 </View>
           </View>
         </View>
-          }
+        <View style = {styles.button}>
+                <Button
+                    onPress={Testmap}
+                    title="to Map Direction" 
+                />
+            </View>
 
         </View>
-        <View style={styles.todayStats}>
-            <Text style={{marginTop: 10, fontSize:16, fontWeight: 'bold'}}>Todays Stats</Text>
-          <View style={styles.todayStatsContents}>
-            <Text>Earnings</Text>
-            <Text>Orders</Text>
-          </View>      
-        </View>
+      </Container>
     </SafeAreaView>
   );
 }
@@ -79,6 +59,15 @@ const styles = StyleSheet.create({
   image: {
     height: 50,
     width: 50,
+    backgroundColor: 'black'
+  },
+  button: {
+    width: '100%',
+    roundness:50,
+    paddingTop: 2,
+    paddingBottom: 2,
+    backgroundColor: '#000',
+    borderRadius: 15,
   },
   container: {
     flex: 1,
@@ -90,17 +79,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     marginBottom: 40,  
   },
-  InputContainer: {
-    marginBottom: 30,
-    borderBottomColor: 'red',
-    
-  },
-  inputText: {
-    borderWidth: 2,
-    borderColor: 'gray',
-    padding: 12,
-    borderRadius: 20,
-  },
   contentsBoooking: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -108,20 +86,14 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     marginBottom: 20,
   },
-  valueSwitch: {
-    fontSize: 50,
-    alignItems: 'center',
-    backgroundColor: '#fff',
-    marginBottom: 20,
-  },
   valueSwitchOnline: {
     flexDirection: 'row',
+    height: 80,
     marginBottom:20,
     justifyContent: 'space-around',
     fontSize: 50,
     alignItems: 'center',
     backgroundColor: '#FAFAFA',
-    // borderWidth: 2,
     elevationColor: 'red',
     elevation: 4,
   },
@@ -141,3 +113,5 @@ const styles = StyleSheet.create({
     paddingVertical:10,
   },
 });
+
+export default Orders

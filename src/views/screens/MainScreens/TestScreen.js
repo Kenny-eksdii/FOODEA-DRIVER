@@ -1,8 +1,12 @@
-import { View, StyleSheet, TouchableOpacity, Image, Switch, } from 'react-native'
+import { View, StyleSheet, TouchableOpacity, Image, Switch, Dimensions, } from 'react-native'
 import React, { useState } from 'react'
 import { Container, SafeAreaView, Button, Text } from '../../components/FoodeaComponents'
 import images from '../../../utils/image'
 import Colors from '../../../utils/Colors';
+import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
+import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
+import { GOOGLE_API_KEY } from '../../../../environments';
+import { TextInput } from 'react-native-paper';
 
 
 const TestScreen = ({ navigation }) => {
@@ -16,8 +20,19 @@ const TestScreen = ({ navigation }) => {
     const handleProfile = ( ) => {
         navigation.push ('Profile');
     }
+const [orders, setOrdersNo] = useState('5');
+const [earnnings, SetEarnings] = useState ('P12000');
     
-
+const { width, height } = Dimensions.get("window");
+const ASPECT_RATIO = width / height;
+const LATITUDE_DELTA = 0.02;
+const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
+const INITIAL_POSITION = {
+    latitude: 14.599512,
+    longitude: 120.984222,
+    latitudeDelta: LATITUDE_DELTA,
+    longitudeDelta: LONGITUDE_DELTA,
+};
 
 
   return (
@@ -27,7 +42,6 @@ const TestScreen = ({ navigation }) => {
                     
                     <TouchableOpacity onPress={handleProfile}>
                         <Image source={images.user} style={styles.userprofile} onPress = {handleProfile} />
-                        <Text>MY PROFILE</Text>
                     </TouchableOpacity>
                     
                         <Switch 
@@ -42,19 +56,51 @@ const TestScreen = ({ navigation }) => {
 
                     <View style={styles.todayStats}>
                         <View style={styles.Orders}>
-                            <Text style={{ fontSize: 16, fontWeight: "bold" }}>ORDER</Text>
-                            <Text style={{ fontSize: 14, fontWeight: "bold" }}>1</Text>
+                        <Text style={{ fontSize: 16, fontWeight: "bold" }}>ORDER</Text>
+                            <TextInput
+                                style={styles.txtinput}
+                                editable={false}
+                                placeholderTextColor={'black'}
+                                onChangeText={(text) => setOrdersNo(text)}
+                                value={orders}
+                            />
                         </View>
                         <View style={styles.Earns}>
                             <Text style={{ fontSize: 16, fontWeight: "bold" }}>EARNINGS</Text>
-                            <Text style={{ fontSize: 14, fontWeight: "bold" }}>P1200</Text>
+                                <TextInput
+                                    style={styles.txtinput}
+                                    editable={false}
+                                    placeholderTextColor={'black'}
+                                    onChangeText={(text) => SetEarnings(text)}
+                                    value={earnnings}
+                                />
                         </View>
                     </View>
                 
                     <View style={styles.Map}>
-                        <Text>
-                            THIS IS THE MAP
-                        </Text>
+                        <View style={styles.mapcontainer}>
+                            <MapView style={styles.map}
+                            provider= {PROVIDER_GOOGLE}
+                            initialRegion= {INITIAL_POSITION}>
+                                <Marker coordinate={INITIAL_POSITION} />
+                            </MapView>
+                            
+
+{/*                            <View style = {styles.searchcontainer}>
+                                <GooglePlacesAutocomplete
+                                styles = {{textInput: styles.input}}
+                                placeholder="Search"
+                                onPress={(data, details = null) => {
+                                    console.log(data, details);
+                                }}
+                                query = {{
+                                    key: {GOOGLE_API_KEY},
+                                    language: 'en',
+                                }}
+                                />
+                            </View>
+*/}                          
+                        </View>
                     </View>
 
             <View>
@@ -85,6 +131,29 @@ const styles = StyleSheet.create({
     topContainer: {
         backgroundColor: '#FAFAFA'
     },
+    txtinput: {
+        height: 40,
+        width: 80,
+        alignContent:"center",
+        backgroundColor: '#FAFAFA',
+        borderColor: "#F54748",
+        borderWidth: 1,
+      },
+    searchcontainer: {
+        position: "absolute",
+        width: "90%",
+        backgroundColor: "white",
+        shadowOffset: {width: 2, height: 2},
+        shadowOpacity: 0.5,
+        shadowRadius: 4,
+        elevation: 4,
+        padding: 8,
+        borderRadius: 8,
+    },
+    input: {
+        borderColor: "#888",
+        borderWidth: 1,
+    },
     Status:{
         backgroundColor: '#FAFAFA',
         flexDirection:'row',
@@ -107,7 +176,7 @@ const styles = StyleSheet.create({
         justifyContent: "space-between",
         height: 80,
         borderRadius: 10,
-        backgroundColor: "#F54748",
+        backgroundColor: "#FAFAFA",
         borderColor: "#F54748",
         borderWidth: 1,
     },
@@ -125,14 +194,11 @@ const styles = StyleSheet.create({
         marginLeft: 150,
     },
     Map: {
-        paddingHorizontal: 15,
         marginTop: 10,
         height: 450,
         backgroundColor: '#fff',
-        borderRadius: 5,
         borderColor: '#F54748',
         borderWidth: 1,
-        borderColor: '#F54748',
     },
     button: {
         width: "40%",
@@ -145,12 +211,19 @@ const styles = StyleSheet.create({
         fontSize: 50,
         alignItems: 'center',
         backgroundColor: '#fff',
-        marginTop: 10,
+        marginTop: 30,
       },
       valueSwitchOnline: {
         backgroundColor: '#FAFAFA',
         alignItems: 'center',
         
+      },
+      mapcontainer: {
+        flex: 1,
+      },
+      map: {
+        width: '100%',
+        height: '100%',
       },
     });
 
