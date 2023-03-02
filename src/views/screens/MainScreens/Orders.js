@@ -1,117 +1,150 @@
-import { StyleSheet, Text, View, TextInput, Image} from 'react-native';
+import { StyleSheet, Text, View, TextInput, Image, FlatList, TouchableOpacity } from 'react-native';
 import { Container, SafeAreaView, Button } from '../../components/FoodeaComponents'
-import React, {useState} from 'react';
-import image from "../../../utils/image";
+import {
+  COLORS,
+  FONTS,
+  SIZES,
+  icons,
+  constants,
+  dummyData,
+  images,
+} from "../../../constants";
+import React, { useState } from 'react';
+import { Header, TextButton, FormInput, IconButton, CheckBox, FormInputCheck } from '../../components/FoodeaComponents';
 
 const Orders = ({ navigation }) => {
 
-const  Testmap= () => {
-  navigation.push('MapDirection');
-}
+  const [selectedCategoryId, setSelectedCategoryId] = React.useState(1);
+
+  const Testmap = () => {
+    navigation.push('MapDirection');
+  }
+  function renderHeader() {
+    return (
+      <Header
+        containerStyle={{
+          height: 80,
+          marginHorizontal: SIZES.padding,
+          alignItems: "center",
+        }}
+        title={"Customers"}
+        leftComponent={
+          // Open Custom Drawer
+          <TouchableOpacity
+            style={{
+              width: 40,
+              height: 40,
+              alignItems: "center",
+              justifyContent: "center",
+              borderWidth: 1,
+              borderColor: COLORS.gray2,
+              borderRadius: SIZES.radius,
+            }}
+            onPress={() => navigation.goBack()}
+          >
+            <Image source={icons.backarrow}
+              style={{
+                borderRadius: SIZES.radius,
+                color: COLORS.gray2
+              }} />
+          </TouchableOpacity>
+        }
+        rightComponent={
+          <View style={{
+            width: 40,
+          }}></View>
+        }
+      />
+    );
+  }
+
+  function renderCustomer() {
+    return (
+      <FlatList
+        data={dummyData.Details}
+        keyExtractor={(item) => `${item.id}`}
+        showsVerticalScrollIndicator={false}
+        renderItem={({ item, index }) => (
+          <TouchableOpacity
+            style={{
+              alignItems: 'center',
+              justifyContent: 'center',
+              flexDirection: "row",
+              height: 100,
+              width: 350,
+              marginTop: index == 0 ? SIZES.padding : SIZES.radius,
+              paddingHorizontal: 8,
+              borderRadius: SIZES.radius,
+              backgroundColor:
+                selectedCategoryId == item.id
+                  ? "#F54748"
+                  : COLORS.lightGray2,
+            }}
+            onPress={() => {
+              setSelectedCategoryId(item.id);
+            }}
+          >
+            <View style={{
+              flex: 1,
+              flexDirection: 'row',
+              alignItems: 'center',
+            }}>
+              <Image
+                source={images.profilepic}
+                style={{ marginTop: 5, height: 80, width: 80 }}
+              />
+              <Text
+                style={{
+                  marginLeft: SIZES.padding,
+                  color:
+                    selectedCategoryId == item.id ? COLORS.white : COLORS.gray,
+                  ...FONTS.h3,
+                }}
+              >
+                <Text style={{
+                  ...FONTS.h2
+                }}>
+                  {item.name}
+                </Text>
+                {'\n'}
+                {item.address}
+                {'\n'}
+                {item.distance} km away
+
+              </Text>
+            </View>
+          </TouchableOpacity>
+        )}
+      />
+    );
+  }
 
   return (
-    <SafeAreaView flex statusBarColor="rgb(0, 0, 0)">
-      <Container style={styles.topContainer} center padding={20}>
-        <View style={styles.container}>
-          <View style={styles.mainHeader}></View>
-          
-          <View style={styles.contentsBoooking}>
-            <Text style={{fontSize:16, fontWeight:'bold'}}>Available</Text>
-          </View>
+    <View style={{
+      flex: 1,
+      alignItems: "center",
+    }}>
 
-          <View>
-            <View style={styles.valueSwitchOnline}>
-              <Image source={image.rednav} style={styles.image} />
-                <View>
-                  <Text style={{marginVertical:20, fontWeight: 'bold', fontSize: 16}}>Street Name</Text>
-                  <Button color="#F54748" title='Accept Orders'/>
-                </View>
-            </View>
-            <View style={styles.valueSwitchOnline}>
-            <Image source={image.rednav} style={styles.image} />
-                <View>
-                  <Text style={{marginVertical:20, fontWeight: 'bold', fontSize: 16}}>Street Name</Text>
-                  <Button color="#F54748" title='Accept Orders'/>
-                </View> 
-          </View>
-          <View style={styles.valueSwitchOnline}>
-          <Image source={image.rednav} style={styles.image} />
-                <View>
-                  <Text style={{marginVertical:20, fontWeight: 'bold', fontSize: 16}}>Street Name</Text>
-                  <Button color="#F54748" title='Accept Orders'/>
-                </View>
-          </View>
+      {/* Header */}
+      {renderHeader()}
+      {/* Customer */}
+      {renderCustomer()}
+      <TouchableOpacity onPress={() => navigation.navigate("DeliveryRecord")}>
+        <View>
+          <Text style = {{
+            ...FONTS.h2
+          }}>
+            Delivery Record
+          </Text>
         </View>
-        <View style = {styles.button}>
-                <Button
-                    onPress={Testmap}
-                    title="to Map Direction" 
-                />
-            </View>
+      </TouchableOpacity>
 
-        </View>
-      </Container>
-    </SafeAreaView>
+    </View>
   );
 }
 
+
 const styles = StyleSheet.create({
-  image: {
-    height: 50,
-    width: 50,
-    backgroundColor: 'black'
-  },
-  button: {
-    width: '100%',
-    roundness:50,
-    paddingTop: 2,
-    paddingBottom: 2,
-    backgroundColor: '#000',
-    borderRadius: 15,
-  },
-  container: {
-    flex: 1,
-    paddingVertical: 80,
-    paddingHorizontal: 33,
-    backgroundColor: '#fff',
-  },
-  mainHeader: {
-    backgroundColor: '#fff',
-    marginBottom: 40,  
-  },
-  contentsBoooking: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    backgroundColor: '#fff',
-    marginBottom: 20,
-  },
-  valueSwitchOnline: {
-    flexDirection: 'row',
-    height: 80,
-    marginBottom:20,
-    justifyContent: 'space-around',
-    fontSize: 50,
-    alignItems: 'center',
-    backgroundColor: '#FAFAFA',
-    elevationColor: 'red',
-    elevation: 4,
-  },
-  todayStats: {
-    paddingHorizontal: 15,
-    margin: 15,
-    height: 130,
-    borderRadius: 10,
-    borderColor: '#F54748',
-    borderWidth: 4,
-    borderColor: '#F54748',
-  },
-  todayStatsContents: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingHorizontal: 30,
-    paddingVertical:10,
-  },
 });
 
 export default Orders
