@@ -1,4 +1,4 @@
-import user from '../../assets/user.png';
+import user from '../../assets/Assets/user.png';
 
 const DriverDetails = {
     name : 'Foodea Test Driver',
@@ -8,6 +8,8 @@ const DriverDetails = {
     latitude: '14.5999926',
     longitude: '120.983701',
     profile: user,
+    OrderNo: '1',
+    Earnings: '155',
 
 
 }

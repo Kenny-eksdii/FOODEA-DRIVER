@@ -16,6 +16,17 @@ const Orders = ({ navigation }) => {
 
   const [selectedCategoryId, setSelectedCategoryId] = React.useState(1);
 
+
+  return (
+    <SafeAreaView flex statusBarColor="rgb(0, 0, 0)">
+      <Container flex={1} center padding={20}>
+        <View style={styles.container}>
+          <View style={styles.mainHeader}></View>
+          
+          <View style={styles.contentsBoooking}>
+            <Text style={{fontSize:16, fontWeight:'bold'}}>Available</Text>
+          </View>
+
   const Testmap = () => {
     navigation.push('MapDirection');
   }
@@ -57,6 +68,7 @@ const Orders = ({ navigation }) => {
       />
     );
   }
+
 
   function renderCustomer() {
     return (
