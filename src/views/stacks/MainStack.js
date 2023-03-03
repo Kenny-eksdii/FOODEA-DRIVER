@@ -6,6 +6,9 @@ import Profile from '../screens/MainScreens/Profile';
 import MapDirection from '../screens/MainScreens/MapDirection';
 import Camera from '../screens/MainScreens/Camera';
 import Proof from '../screens/MainScreens/Proof';
+import DeliveryRecord from '../screens/EarnedScreens/DeliveryRecord';
+
+
 
 const Stack = createNativeStackNavigator();
 
@@ -42,7 +45,11 @@ const MainStack = () => {
             name = {"Proof"} 
             component = {Proof}
         />
-
+        <Stack.Screen 
+            options ={{ headerShown:false }} 
+            name = {"DeliveryRecord"} 
+            component = {DeliveryRecord}
+        />
         
     </Stack.Navigator>
   )
