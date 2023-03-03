@@ -4,6 +4,7 @@ import TestScreen from '../screens/MainScreens/TestScreen';
 import Orders from '../screens/MainScreens/Orders';
 import Profile from '../screens/MainScreens/Profile';
 import MapDirection from '../screens/MainScreens/MapDirection';
+import DeliveryRecord from '../screens/EarnedScreens/DeliveryRecord';
 
 
 const Stack = createNativeStackNavigator();
@@ -31,7 +32,11 @@ const MainStack = () => {
             name = {"MapDirection"} 
             component = {MapDirection}
         />
-
+        <Stack.Screen 
+            options ={{ headerShown:false }} 
+            name = {"DeliveryRecord"} 
+            component = {DeliveryRecord}
+        />
         
     </Stack.Navigator>
   )

@@ -1,132 +1,322 @@
-import { View, StyleSheet, Image,  TextInput, ScrollView } from 'react-native'
-import React, { useState, useContext, useEffect } from 'react'
-import { Container, SafeAreaView, Button,Text  } from '../../components/FoodeaComponents'
-import AuthContext from '../../../api/context/auth/AuthContext'
-import Colors from '../../../utils/Colors';
-import images from '../../../utils/image';
-import DriverDetails from '../../../utils/DriverDetails';
-
-
+import React from 'react';
+import { View, Text, Image, TouchableOpacity, ScrollView } from 'react-native';
+import {
+    images,
+    constants,
+    SIZES,
+    COLORS,
+    icons,
+    FONTS,
+} from "../../../constants";
+import { Header, TextButton, FormInput, IconButton, CheckBox, FormInputCheck } from '../../components/FoodeaComponents';
 
 const Profile = ({ navigation }) => {
-    const ToLandingPage = () => {
-        navigation.push('TestScreen');
+
+    function renderHeader() {
+        return (
+            <Header
+                containerStyle={{
+                    height: 80,
+                    marginHorizontal: SIZES.padding,
+                    alignItems: "center",
+                }}
+                title={"Profile"}
+                leftComponent={
+                    // Open Custom Drawer
+                    <TouchableOpacity
+                        style={{
+                            width: 40,
+                            height: 40,
+                            alignItems: "center",
+                            justifyContent: "center",
+                            borderWidth: 1,
+                            borderColor: COLORS.gray2,
+                            borderRadius: SIZES.radius,
+                        }}
+                        onPress={() => navigation.goBack()}
+                    >
+                        <Image source={icons.backarrow}
+                            style={{
+                                borderRadius: SIZES.radius,
+                                color: COLORS.gray2
+                            }} />
+                    </TouchableOpacity>
+                }
+                rightComponent={
+                    <View style={{
+                        width: 40,
+                    }}></View>
+                }
+            />
+        );
     }
-    const { logout } = useContext(AuthContext);
-    const [name, setname] = useState(DriverDetails.name);
-    const [age, setage] = useState(DriverDetails.age);
-    const [email, setemail] = useState(DriverDetails.email);
 
+    function renderLogo() {
+        return (
+            <View style={{
+                marginTop: SIZES.padding,
+                height: 50,
+                alignItems: 'center',
+                justifyContent: 'center',
+                marginBottom: SIZES.padding,
+            }}>
+                <Image
+                    source={images.profilepic}
+                    resizeMode="contain"
+                    style={{
+                        width: 200,
 
-
-return (
-    <SafeAreaView flex statusBarColor="rgb(0, 0, 0)">
-        <ScrollView style={{flex: 1,backgroundColor: '#FAFAFA'}} padding={25} center>
-            <View style = {styles.backbutton}>
-                <Button
-                    onPress={ToLandingPage}
-                    title = "Back"
+                    }}
                 />
             </View>
+        )
+    }
 
-            <View style = { styles.UserContainer}>
-                <Image source={DriverDetails.profile} style={styles.userprofile} />
-                <Text
-                    textAlign= 'center'
-                    >NAME
-                </Text>
-
-                <TextInput
-                    style={styles.txtinput}
-                    textAlign= 'center'
-                    editable={false}
-                    placeholderTextColor={'#EA4D4E'}
-                    onChangeText={(text) => setname(text)}
-                    value={name}
-                />
-
-                <Text
-                    textAlign= 'center'
-                    >AGE
-                </Text>
-                
-                <TextInput
-                    style={styles.txtinput}
-                    textAlign= 'center'
-                    editable={false}
-                    placeholderTextColor={'#EA4D4E'}
-                    onChangeText={(text) => setage(text)}
-                    value={age}
-                />
-
-                <Text
-                    textAlign= 'center'
-                    >EMAIL ADDRESS
-                </Text>
-                
-                <TextInput
-                    style={styles.txtinput}
-                    textAlign= 'center'
-                    editable={false}
-                    placeholderTextColor={'#EA4D4E'}
-                    onChangeText={(text) => setemail(text)}
-                    value={email}
-                />
-
-            </View>
-            <View style = {styles.button}>
-                <Button
-                    onPress={logout}
-                    title="Log out" 
-                />
-            </View>
+    return (
+        <View style={{
+            flex: 1,
+        }}>
+            {/* HEADER */}
+            {renderHeader()}
 
 
-           
-            
-        </ScrollView>
-    </SafeAreaView>
+            <ScrollView
+                contentContainerStyle={{
+                    paddingHorizontal: SIZES.radius,
+                    paddingBottom: SIZES.padding,
+                    justifyContent: 'center',
+                    marginTop: SIZES.radius
+                }}>
+                {/* Logo */}
+                {renderLogo()}
+                {/* First Name */}
+                <View style={{ alignItems: 'center', justifyContent: 'center', marginTop: SIZES.padding }}>
+                    <View
+                        style={{
+                            flexDirection: "row",
+                            alignItems: "center",
+                            justifyContent: 'center',
+                            height: 50,
+                            width: 300,
+                            backgroundColor: COLORS.white,
+                            borderRadius: SIZES.radius,
+                            elevation: 5,
+                        }}
+                    >
+                        <Image
+                            source={icons.Name}
+                            style={{
+                                height: 20,
+                                width: 20,
+                                tintColor: COLORS.black,
+                                position: 'absolute',
+                                left: 5,
+                                right: 0,
+                            }}
+                        />
+                        <Text style={{ ...FONTS.h3, color: COLORS.black, }}>John</Text>
+                    </View>
 
-)}
-const styles = StyleSheet.create({
-    button: {
-        width: '50%',
-        marginLeft: 90,
-        position:'relative',
-        roundness:50,
-        paddingTop: 1,
-        paddingBottom: 1,
-        backgroundColor: '#000',
-        borderRadius: 20,
-        
-      },
-    backbutton: {
-        width: '25%',
-        marginLeft: 1,
-        roundness:50,
-        paddingTop: 2,
-        paddingBottom: 2,
-        backgroundColor: '#000',
-        borderRadius: 15,
-      },
-    userprofile:{
-        height: 150,
-        width: 150,
-        marginLeft: 10,
-        marginBottom: 30,
-        alignContent: 'center',
-        justifyContent: 'center',
-    },
-    UserContainer: {
-        alignItems:'center',
-    },
-    txtinput: {
-        height: 40,
-        width: 300,
-        borderColor: '#EA4D4E',
-        borderWidth: 1,
-        marginBottom: 10,
-      },
-})
+                    {/* Middle Name */}
+                    <View
+                        style={{
+                            flexDirection: "row",
+                            alignItems: "center",
+                            justifyContent: 'center',
+                            height: 50,
+                            width: 300,
+                            backgroundColor: COLORS.white,
+                            marginTop: SIZES.base,
+                            borderRadius: SIZES.radius,
+                            elevation: 5,
+                        }}
+                    >
+                        <Image
+                            source={icons.Name}
+                            style={{
+                                height: 20,
+                                width: 20,
+                                tintColor: COLORS.black,
+                                position: 'absolute',
+                                left: 5,
+                                right: 0,
+                            }}
+                        />
+                        <Text style={{ ...FONTS.h3, color: COLORS.black, }}></Text>
+                    </View>
 
-export default Profile
+                    {/* Last Name */}
+                    <View
+                        style={{
+                            flexDirection: "row",
+                            alignItems: "center",
+                            justifyContent: 'center',
+                            height: 50,
+                            width: 300,
+                            backgroundColor: COLORS.white,
+                            borderRadius: SIZES.radius,
+                            marginTop: SIZES.base,
+                            elevation: 5,
+                        }}
+                    >
+                        <Image
+                            source={icons.Name}
+                            style={{
+                                height: 20,
+                                width: 20,
+                                tintColor: COLORS.black,
+                                position: 'absolute',
+                                left: 5,
+                                right: 0,
+                            }}
+                        />
+                        <Text style={{ ...FONTS.h3, color: COLORS.black, }}>Dough</Text>
+                    </View>
+
+                    {/* Height */}
+                    <View
+                        style={{
+                            flexDirection: "row",
+                            alignItems: "center",
+                            justifyContent: 'center',
+                            height: 50,
+                            width: 300,
+                            backgroundColor: COLORS.white,
+                            borderRadius: SIZES.radius,
+                            marginTop: SIZES.base,
+                            elevation: 5,
+                        }}
+                    >
+                        <Image
+                            source={icons.height}
+                            style={{
+                                height: 20,
+                                width: 20,
+                                tintColor: COLORS.black,
+                                position: 'absolute',
+                                left: 5,
+                                right: 0,
+                            }}
+                        />
+                        <Text style={{ ...FONTS.h3, color: COLORS.black, }}>167 cm</Text>
+                    </View>
+
+                    {/* Weight */}
+                    <View
+                        style={{
+                            flexDirection: "row",
+                            alignItems: "center",
+                            justifyContent: 'center',
+                            height: 50,
+                            width: 300,
+                            backgroundColor: COLORS.white,
+                            borderRadius: SIZES.radius,
+                            marginTop: SIZES.base,
+                            elevation: 5,
+                        }}
+                    >
+                        <Image
+                            source={icons.weight}
+                            style={{
+                                height: 20,
+                                width: 20,
+                                tintColor: COLORS.black,
+                                position: 'absolute',
+                                left: 5,
+                                right: 0,
+                            }}
+                        />
+                        <Text style={{ ...FONTS.h3, color: COLORS.black, }}>65 kg</Text>
+                    </View>
+
+                    {/* Email */}
+                    <View
+                        style={{
+                            flexDirection: "row",
+                            alignItems: "center",
+                            justifyContent: 'center',
+                            height: 50,
+                            width: 300,
+                            backgroundColor: COLORS.white,
+                            borderRadius: SIZES.radius,
+                            marginTop: SIZES.base,
+                            elevation: 5,
+                        }}
+                    >
+                        <Image
+                            source={icons.at}
+                            style={{
+                                height: 20,
+                                width: 20,
+                                tintColor: COLORS.black,
+                                position: 'absolute',
+                                left: 5,
+                                right: 0,
+                            }}
+                        />
+                        <Text style={{ ...FONTS.h3 }}>JohnDough@gmail.com</Text>
+                    </View>
+
+                    {/* Phone Number */}
+                    <View
+                        style={{
+                            flexDirection: "row",
+                            alignItems: "center",
+                            justifyContent: 'center',
+                            height: 50,
+                            width: 300,
+                            backgroundColor: COLORS.white,
+                            borderRadius: SIZES.radius,
+                            marginTop: SIZES.base,
+                            elevation: 5,
+                        }}
+                    >
+                        <Image
+                            source={icons.phone}
+                            style={{
+                                height: 25,
+                                width: 25,
+                                tintColor: COLORS.black,
+                                position: 'absolute',
+                                left: 5,
+                                right: 0,
+                            }}
+                        />
+                        <Text style={{ ...FONTS.h3 }}>09123456789</Text>
+                    </View>
+
+                    {/* Phone Number */}
+                    <View
+                        style={{
+                            flexDirection: "row",
+                            alignItems: "center",
+                            justifyContent: 'center',
+                            height: 50,
+                            width: 300,
+                            backgroundColor: COLORS.white,
+                            borderRadius: SIZES.radius,
+                            marginTop: SIZES.base,
+                            elevation: 5,
+                        }}
+                    >
+                        <Image
+                            source={icons.Lock}
+                            style={{
+                                height: 25,
+                                width: 25,
+                                tintColor: COLORS.black,
+                                position: 'absolute',
+                                left: 5,
+                                right: 0,
+                            }}
+                        />
+                        <Text style={{ ...FONTS.h3 }}>Password</Text>
+                    </View>
+                </View>
+            </ScrollView>
+
+        </View>
+    )
+}
+
+export default Profile;
