@@ -8,6 +8,9 @@ import { GOOGLE_API_KEY } from '../../../../environments';
 import MapViewDirections from 'react-native-maps-directions';
 
 const MapDirection = ({ navigation }) => {
+    const GoToMap = () => {
+        navigation.push('Camera');
+    }
 
     const { width, height } = Dimensions.get("window");
     const ASPECT_RATIO = width / height;
@@ -47,7 +50,13 @@ const MapDirection = ({ navigation }) => {
                                 <Marker coordinate={Dropoff_Location}/>
                             </MapView>
 
-                    </View>
+                        </View>
+                        <View style = {styles.button}>
+                            <Button 
+                            onPress={GoToMap}
+                            title={'go to map'}
+                            />
+                        </View>
 
                             
 {/*

@@ -11,7 +11,7 @@ const  Testmap= () => {
 
   return (
     <SafeAreaView flex statusBarColor="rgb(0, 0, 0)">
-      <Container style={styles.topContainer} center padding={20}>
+      <Container flex={1} center padding={20}>
         <View style={styles.container}>
           <View style={styles.mainHeader}></View>
           

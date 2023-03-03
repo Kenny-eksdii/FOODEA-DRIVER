@@ -83,7 +83,7 @@ const LoginScreen = ({ navigation }) => {
                                         }
                                     />
 
-                                     <View style = {styles.button}>
+                                    <View style = {styles.button}>
                                     <Button 
                                         onPress={handleSubmit}
                                         title={'Sign In'}

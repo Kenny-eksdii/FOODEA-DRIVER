@@ -1,12 +1,10 @@
-import { View, StyleSheet, TouchableOpacity, Image, Switch, Dimensions, } from 'react-native'
+import { View, StyleSheet, TouchableOpacity, Image, Switch, ScrollView} from 'react-native'
 import React, { useState } from 'react'
 import { Container, SafeAreaView, Button, Text } from '../../components/FoodeaComponents'
 import images from '../../../utils/image'
 import Colors from '../../../utils/Colors';
-import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
-import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
-import { GOOGLE_API_KEY } from '../../../../environments';
-import { TextInput } from 'react-native-paper';
+import DriverDetails from '../../../utils/DriverDetails';
+import HistoryOrders from '../../../utils/HistoryOrders';
 
 
 const TestScreen = ({ navigation }) => {
@@ -20,24 +18,12 @@ const TestScreen = ({ navigation }) => {
     const handleProfile = ( ) => {
         navigation.push ('Profile');
     }
-const [orders, setOrdersNo] = useState('5');
-const [earnnings, SetEarnings] = useState ('P12000');
-    
-const { width, height } = Dimensions.get("window");
-const ASPECT_RATIO = width / height;
-const LATITUDE_DELTA = 0.02;
-const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
-const INITIAL_POSITION = {
-    latitude: 14.599512,
-    longitude: 120.984222,
-    latitudeDelta: LATITUDE_DELTA,
-    longitudeDelta: LONGITUDE_DELTA,
-};
+
 
 
   return (
-    <SafeAreaView flex statusBarColor="rgb(0, 0, 0)">
-        <Container style={styles.topContainer} top padding={20}>
+    <SafeAreaView flex={1} center statusBarColor="rgb(0, 0, 0)">
+        <Container style={styles.topContainer} center padding={10}>
                 <View style={styles.Status}>
                     
                     <TouchableOpacity onPress={handleProfile}>
@@ -52,61 +38,53 @@ const INITIAL_POSITION = {
                         />  
                 </View>
 
-                    <Text style={{fontSize:16, fontWeight:'bold'}}>TODAY STATUS</Text>
-
-                    <View style={styles.todayStats}>
-                        <View style={styles.Orders}>
-                        <Text style={{ fontSize: 16, fontWeight: "bold" }}>ORDER</Text>
-                            <TextInput
-                                style={styles.txtinput}
-                                editable={false}
-                                placeholderTextColor={'black'}
-                                onChangeText={(text) => setOrdersNo(text)}
-                                value={orders}
-                            />
-                        </View>
-                        <View style={styles.Earns}>
-                            <Text style={{ fontSize: 16, fontWeight: "bold" }}>EARNINGS</Text>
-                                <TextInput
-                                    style={styles.txtinput}
-                                    editable={false}
-                                    placeholderTextColor={'black'}
-                                    onChangeText={(text) => SetEarnings(text)}
-                                    value={earnnings}
-                                />
-                        </View>
+                <View styles= {styles.StatusContainer}>
+                    <View>
+                        <Text style={{fontSize:20, fontWeight:'bold', paddingHorizontal: 10, paddingVertical: 10,}}>TODAY STATUS</Text>
                     </View>
-                
-                    <View style={styles.Map}>
-                        <View style={styles.mapcontainer}>
-                            <MapView style={styles.map}
-                            provider= {PROVIDER_GOOGLE}
-                            initialRegion= {INITIAL_POSITION}>
-                                <Marker coordinate={INITIAL_POSITION} />
-                            </MapView>
-                            
+                    
+                        <View style={styles.todayStats}>
+                            <View style = {{flexDirection: 'row'}}>
+                                <View style = {{paddingHorizontal:20}}>
+                                    <Image center source={images.Orders} style={styles.ImageSize}/>
+                                </View>
 
-{/*                            <View style = {styles.searchcontainer}>
-                                <GooglePlacesAutocomplete
-                                styles = {{textInput: styles.input}}
-                                placeholder="Search"
-                                onPress={(data, details = null) => {
-                                    console.log(data, details);
-                                }}
-                                query = {{
-                                    key: {GOOGLE_API_KEY},
-                                    language: 'en',
-                                }}
-                                />
+                                <View>
+                                    <Text style={{marginTop: 5}} color={Colors.black} center size={20} weight='medium'>{DriverDetails.OrderNo}</Text>
+                                </View>
                             </View>
-*/}                          
+
+                            <View style = {{flexDirection: 'row', paddingHorizontal: 20,}}>
+                                <View style = {{paddingHorizontal:20}}>
+                                    <Image center source={images.Earn} style={styles.ImageSize}/>
+                                </View>
+
+                                <View>
+                                    <Text style={{marginTop: 5}} color={Colors.black} center size={20} weight='medium'>{DriverDetails.Earnings}</Text>
+                                </View>
+                            </View>
+                        </View>
+                    <View styles={styles.HistoryContainer}> 
+                        <View styles={{flexDirection: 'row'}}>
+                            <Text style={{fontSize:20, fontWeight:'bold', paddingHorizontal: 10, paddingVertical: 10,}}>TRANSACTION HISTORY</Text>
                         </View>
                     </View>
+                    <View style={styles.TransactionHistory}>
+                            <ScrollView style={{flexDirection: 'column'}}>
+                                <View style = {{flexDirection:'row', justifyContent: 'space-between', paddingHorizontal:20}}>
+                                    <Text style={{marginTop: 5}} color={Colors.black} center size={20} weight='medium'>{HistoryOrders.User1}</Text>
+                                    <Text style={{marginTop: 5}} color={Colors.black} center size={20} weight='medium'>{HistoryOrders.Price}</Text>
+                                </View>
+                            </ScrollView>
+
+                        
+                    </View>
+                </View>
 
             <View>
                 { switchValue == false?
                     <View style={styles.valueSwitch}>
-                        <Text style={{fontWeight: 'bold'}} color={Colors.primary}>"CURRENTLY OFFLINE"</Text>
+                        <Text style={{fontWeight: 'bold'}} color={Colors.primary}>"YOU ARE CURRENTLY OFFLINE"</Text>
                     </View>
           :
                 <View style={styles.valueSwitchOnline}>
@@ -129,37 +107,32 @@ const INITIAL_POSITION = {
 
 const styles = StyleSheet.create({
     topContainer: {
-        backgroundColor: '#FAFAFA'
-    },
-    txtinput: {
-        height: 40,
-        width: 80,
-        alignContent:"center",
         backgroundColor: '#FAFAFA',
-        borderColor: "#F54748",
-        borderWidth: 1,
-      },
-    searchcontainer: {
-        position: "absolute",
-        width: "90%",
-        backgroundColor: "white",
-        shadowOffset: {width: 2, height: 2},
-        shadowOpacity: 0.5,
-        shadowRadius: 4,
-        elevation: 4,
-        padding: 8,
-        borderRadius: 8,
+        flex:1,
     },
-    input: {
-        borderColor: "#888",
-        borderWidth: 1,
+    Historyicon: {
+        height: 5,
+        width: 5,
+    },
+    ImageSize: {
+        height: 30,
+        width: 30,
     },
     Status:{
         backgroundColor: '#FAFAFA',
         flexDirection:'row',
         justifyContent:'space-between',
-        marginTop:40,
-        marginBottom:20,
+    },
+    HistoryContainer: {
+        backgroundColor: '#FAFAFA',
+    },
+    TransactionHistory: {
+        paddingHorizontal: 15,
+        paddingVertical: 25,
+        flexDirection: "row",
+        justifyContent: "space-between",
+        height: '50%',
+        elevation: 1,
     },
     userprofile:{
         height: 35,
@@ -167,41 +140,21 @@ const styles = StyleSheet.create({
         marginLeft: 10,
         flexDirection: "row",
     },
+    StatusContainer: {
+        backgroundColor: '#FAFAFA',
+    },
     todayStats: {
         paddingHorizontal: 15,
-        marginTop: 10,
-        marginBottom: 10,
+        paddingVertical: 25,
         flexDirection: "row",
-        alignItems: "center",
         justifyContent: "space-between",
-        height: 80,
+        height: '15%',
         borderRadius: 10,
         backgroundColor: "#FAFAFA",
-        borderColor: "#F54748",
-        borderWidth: 1,
-    },
-    Orders: {
-        marginTop: 5,
-        flexDirection: "column",
-        flex: 1,
-        justifyContent: "space-between",
-    },
-    Earns: {
-        marginTop: 5,
-        flexDirection: "column",
-        flex: 1,
-        justifyContent: "space-between",
-        marginLeft: 150,
-    },
-    Map: {
-        marginTop: 10,
-        height: 450,
-        backgroundColor: '#fff',
-        borderColor: '#F54748',
-        borderWidth: 1,
+        elevation: 10,
     },
     button: {
-        width: "40%",
+        width: "80%",
         paddingTop: 20,
         paddingBottom: 2,
         borderRadius: 20,
@@ -211,19 +164,11 @@ const styles = StyleSheet.create({
         fontSize: 50,
         alignItems: 'center',
         backgroundColor: '#fff',
-        marginTop: 30,
       },
       valueSwitchOnline: {
         backgroundColor: '#FAFAFA',
         alignItems: 'center',
-        
-      },
-      mapcontainer: {
-        flex: 1,
-      },
-      map: {
-        width: '100%',
-        height: '100%',
+
       },
     });
 
