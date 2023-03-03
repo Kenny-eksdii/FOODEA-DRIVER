@@ -5,7 +5,7 @@ import Orders from '../screens/MainScreens/Orders';
 import Profile from '../screens/MainScreens/Profile';
 import MapDirection from '../screens/MainScreens/MapDirection';
 import Camera from '../screens/MainScreens/Camera';
-
+import Proof from '../screens/MainScreens/Proof';
 
 const Stack = createNativeStackNavigator();
 
@@ -36,6 +36,11 @@ const MainStack = () => {
             options ={{ headerShown:false }} 
             name = {"Camera"} 
             component = {Camera}
+        />
+        <Stack.Screen 
+            options ={{ headerShown:false }} 
+            name = {"Proof"} 
+            component = {Proof}
         />
 
         

@@ -4,6 +4,9 @@ const Camera = ({ navigation }) => {
     const BackToMap = () => {
         navigation.push('MapDirection');
     }
+    const GotoProof = () => {
+        navigation.push('Proof');
+    }
 
     // const [cameraPhoto, setCameraPhoto] = useState();
 
@@ -27,13 +30,18 @@ return (
     <SafeAreaView flex={1} statusBarColor="rgb(0, 0, 0)">
         <Container padding={20} center style={{backgroundColor: '#cce7e8'}}>
             <View>
-              <Text> This is the Camera</Text>
                 <View>
-                    <Button 
+                    <Button style={{width:'40%'}}
                     onPress={BackToMap}
                     title={'Back'}
                     />
                 </View>
+              <Text center style={{fontSize:20, fontWeight:'bold', paddingHorizontal: 10, paddingVertical: 250,}}> This is the Camera</Text>
+                
+                <Button 
+                    onPress={GotoProof}
+                    title={'Send'}
+                    />
             </View>
             <View>
                 {/* <TouchableOpacity onPress={opencamera}>

@@ -5,6 +5,7 @@ import Orders from '../../assets/Assets/order.png';
 import Earn from '../../assets/Assets/earnings.png';
 import Chart from '../../assets/Assets/linechart.png';
 import historyicon from '../../assets/Assets/history.png';
+import proof from '../../assets/Assets/Proof.png';
 
 const images = {
     rednav,
@@ -14,5 +15,6 @@ const images = {
     Earn,
     Chart,
     historyicon,
+    proof,
 }
 export default images
