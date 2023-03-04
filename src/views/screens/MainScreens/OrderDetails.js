@@ -6,39 +6,39 @@ import HistoryOrders from '../../../utils/HistoryOrders';
 
 
 const OrderDetails = ({ navigation }) => {
-    const HandleMap = () => {
-        navigation.push("MapDirections");
-    }
-
+    // const HandleMap = () => {
+    //     navigation.push("MapDirections");
+    // }
+    
 
   return (
     <SafeAreaView flex={1} center statusBarColor="rgb(0, 0, 0)">
         <Container style={styles.topContainer} center padding={10}>
-
-                <View styles= {styles.StatusContainer}>
-                    <View styles={styles.HistoryContainer}> 
-                        <View styles={{flexDirection: 'row',}}>
-                            <Text style={{fontSize:20, fontWeight:'bold', paddingHorizontal: 10, paddingVertical: 10,}}>THIS IS THE ORDER DETAILS</Text>
-                        </View>
+            <View styles= {styles.StatusContainer}>
+                {/* <View styles={styles.HistoryContainer}> 
+                    <View styles={{flexDirection: 'row',}}>
+                        <Text style={{fontSize:20, fontWeight:'bold', paddingHorizontal: 10, paddingVertical: 10,}}>THIS IS THE ORDER DETAILS</Text>
                     </View>
-                    <View style={styles.TransactionHistory}>
-                        
-                            <ScrollView style={styles.scroll}>
-
-                                <View style = {{flexDirection:'COLUMN', justifyContent: 'space-between', paddingHorizontal:20}}>
-                                    <Text style={{marginTop: 5}} color={Colors.black} center size={20} weight='medium'>{HistoryOrders.User1}</Text>
-                                    <Text style={{marginTop: 5}} color={Colors.black} center size={20} weight='medium'>{HistoryOrders.Price}</Text> 
-
-                                </View>
-                            </ScrollView>
-                    </View>
-                        <View style = {styles.button}>
-                            <Button
-                                onPress={HandleMap}
-                                title="Go To Map" 
-                            />
-                        </View>
                 </View>
+
+                <View style={styles.TransactionHistory}>
+                    <ScrollView style={styles.scroll}>
+                        <View style = {{flexDirection:'COLUMN', justifyContent: 'space-between', paddingHorizontal:20}}>
+                            <Text style={{marginTop: 5}} color={Colors.black} center size={20} weight='medium'>{HistoryOrders.User1}</Text>
+                            <Text style={{marginTop: 5}} color={Colors.black} center size={20} weight='medium'>{HistoryOrders.Price}</Text> 
+                        </View>
+                    </ScrollView>
+                </View> */}
+
+                <View style = {styles.button}>
+                    <Button
+                        center
+                        onPress={() => navigation.navigate("MapDirection")}
+                        title="Go To Map" 
+                    />
+                </View>
+                
+            </View>
         </Container>
     </SafeAreaView>
     
@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
         elevation: 10,
     },
     button: {
-        width: "80%",
+        width: "100%",
         paddingTop: 20,
         paddingBottom: 2,
         borderRadius: 20,

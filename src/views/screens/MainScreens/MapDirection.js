@@ -39,7 +39,7 @@ const MapDirection = ({ navigation }) => {
 
   return (
     <SafeAreaView flex statusBarColor="rgb(0, 0, 0)">
-        <Container style={styles.topContainer} top padding={20}>
+        <Container style={styles.topContainer} top padding={3}>
                 
                     <View style={styles.Map}>
                         <View style={styles.mapcontainer}>
@@ -51,12 +51,7 @@ const MapDirection = ({ navigation }) => {
                             </MapView>
 
                         </View>
-                        <View style = {styles.button}>
-                            <Button 
-                            onPress={GoToMap}
-                            title={'go to map'}
-                            />
-                        </View>
+                        
 
                             
 {/*
@@ -78,6 +73,12 @@ const MapDirection = ({ navigation }) => {
                         
 
                     </View>
+                    <View style = {styles.button}>
+                            <Button 
+                            onPress={GoToMap}
+                            title={'Proceed To Camera'}
+                            />
+                        </View>
  
 
 
@@ -155,13 +156,14 @@ const styles = StyleSheet.create({
     },
     Map: {
         marginTop: 10,
-        height: 450,
+        height: 700,
+        width: Dimensions.get.width,
         backgroundColor: '#fff',
         borderColor: '#F54748',
         borderWidth: 1,
     },
     button: {
-        width: "40%",
+        width: "100%",
         paddingTop: 20,
         paddingBottom: 2,
         borderRadius: 20,

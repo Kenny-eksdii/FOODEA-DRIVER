@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TextInput, Image, FlatList, TouchableOpacity, Modal} from 'react-native';
+import { StyleSheet, Text, View, TextInput, Image, FlatList, TouchableOpacity, Modal,} from 'react-native';
 import { Container, SafeAreaView, Button, } from '../../components/FoodeaComponents'
 import {
   COLORS,
@@ -13,12 +13,13 @@ import React, { useState } from 'react';
 import { Header, TextButton, FormInput, IconButton, CheckBox, FormInputCheck } from '../../components/FoodeaComponents';
 
 const Orders = ({ navigation }) => {
+  const handleOrders = () => {
+    navigation.push("OrderDetails");
+  }
 
   const [selectedCategoryId, setSelectedCategoryId] = React.useState(1);
   const [isModalOpen, setisModalOpen] = useState(false);
-  const handleOrders = () => {
-    navigation.push("OrderDetails");
-}
+  
 
   function renderHeader() {
     return (
@@ -132,24 +133,26 @@ const Orders = ({ navigation }) => {
       transparent={true}
       animationType='fade'
       >
-        <SafeAreaView flex={1} center statusBarColor="rgb(0, 0, 0)">
+        <SafeAreaView center statusBarColor="rgb(0, 0, 0)">
           <Container style={styles.topContainer} center padding={10}>
             <View style={styles.Status}>
               <Text style={{
-                ...FONTS.h1
-              }}>WILL YOU ACCEPT THIS ORDER?</Text>
-                <View styles={styles.ModalContainer}>
+                ...FONTS.h2,
+                marginHorizontal: 85,
+              }}>ACCEPT THIS ORDER?</Text>
+                <View>
                   <View styles={styles.TextContainer}>
-                    <TouchableOpacity onPress={() => setisModalOpen(false)}>
-                      <Text style={{
-                        ...FONTS.h2
-                      }}>CANCEL</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={handleOrders}>
-                      <Text style={{
-                        ...FONTS.h2
-                      }}>OKAY</Text>
-                    </TouchableOpacity>
+                    <Button
+                      onPress={() => setisModalOpen(false)}
+                      title={'CANCEL'}
+                    />
+                    <View styles={styles.ModalContainer}>
+                      <Button 
+                        onPress={handleOrders}
+                        title={'ACCEPT'}
+                      />
+                    </View>
+                    
                   </View>
                     
                 </View>
@@ -181,13 +184,15 @@ const Orders = ({ navigation }) => {
 
 
 const styles = StyleSheet.create({
-  ModalContainer: {
-    flex:1,
+  topContainer: {
     backgroundColor: '#FAFAFA',
   },
+  Status: {
+    backgroundColor: '#FAFAFA'
+  },
   TextContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: 'column',
+    paddingVertical: 10,
   }
 });
 
