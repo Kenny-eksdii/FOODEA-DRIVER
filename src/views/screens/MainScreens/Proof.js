@@ -1,6 +1,9 @@
 import { TouchableOpacity, StyleSheet, View, PermissionsAndroid, Image} from "react-native"
 import { Textbutton, Button, Container, SafeAreaView, Text } from '../../components/FoodeaComponents'
 import images from '../../../utils/image'
+import {
+    FONTS,
+  } from "../../../constants";
 
 const Proof = ({ navigation }) => {
     const BackToHome = () => {
@@ -17,12 +20,15 @@ return (
                     <Image center source={images.proof} styles={styles.ProofStyl}/>
                 </View>
                 
-                <View>
-                    <Button
-                    onPress={BackToHome}
-                    title={'Proceed'}
-                    />
-                </View>
+                <TouchableOpacity onPress={() => navigation.navigate("DeliveryRecord")}>
+                    <View>
+                    <Text style = {{
+                        ...FONTS.h2
+                    }}>
+                        Delivery Record
+                    </Text>
+                    </View>
+                </TouchableOpacity>
             </View>
 
         </Container>

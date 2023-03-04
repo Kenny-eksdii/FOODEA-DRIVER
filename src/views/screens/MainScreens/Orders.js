@@ -16,6 +16,9 @@ const Orders = ({ navigation }) => {
 
   const [selectedCategoryId, setSelectedCategoryId] = React.useState(1);
   const [isModalOpen, setisModalOpen] = useState(false);
+  const handleOrders = () => {
+    navigation.push("OrderDetails");
+}
 
   function renderHeader() {
     return (
@@ -142,10 +145,10 @@ const Orders = ({ navigation }) => {
                         ...FONTS.h2
                       }}>CANCEL</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => setisModalOpen(false)}>
+                    <TouchableOpacity onPress={handleOrders}>
                       <Text style={{
                         ...FONTS.h2
-                      }}>CANCEL</Text>
+                      }}>OKAY</Text>
                     </TouchableOpacity>
                   </View>
                     

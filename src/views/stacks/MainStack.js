@@ -7,6 +7,7 @@ import MapDirection from '../screens/MainScreens/MapDirection';
 import Camera from '../screens/MainScreens/Camera';
 import Proof from '../screens/MainScreens/Proof';
 import DeliveryRecord from '../screens/EarnedScreens/DeliveryRecord';
+import OrderDetails from '../screens/MainScreens/OrderDetails';
 
 
 
@@ -49,6 +50,11 @@ const MainStack = () => {
             options ={{ headerShown:false }} 
             name = {"DeliveryRecord"} 
             component = {DeliveryRecord}
+        />
+        <Stack.Screen 
+            options ={{ headerShown:false }} 
+            name = {"OrderDetails"} 
+            component = {OrderDetails}
         />
         
     </Stack.Navigator>
