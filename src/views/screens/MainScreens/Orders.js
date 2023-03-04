@@ -1,5 +1,5 @@
-import { StyleSheet, Text, View, TextInput, Image, FlatList, TouchableOpacity } from 'react-native';
-import { Container, SafeAreaView, Button } from '../../components/FoodeaComponents'
+import { StyleSheet, Text, View, TextInput, Image, FlatList, TouchableOpacity, Modal} from 'react-native';
+import { Container, SafeAreaView, Button, } from '../../components/FoodeaComponents'
 import {
   COLORS,
   FONTS,
@@ -15,21 +15,8 @@ import { Header, TextButton, FormInput, IconButton, CheckBox, FormInputCheck } f
 const Orders = ({ navigation }) => {
 
   const [selectedCategoryId, setSelectedCategoryId] = React.useState(1);
+  const [isModalOpen, setisModalOpen] = useState(false);
 
-
-  return (
-    <SafeAreaView flex statusBarColor="rgb(0, 0, 0)">
-      <Container flex={1} center padding={20}>
-        <View style={styles.container}>
-          <View style={styles.mainHeader}></View>
-          
-          <View style={styles.contentsBoooking}>
-            <Text style={{fontSize:16, fontWeight:'bold'}}>Available</Text>
-          </View>
-
-  const Testmap = () => {
-    navigation.push('MapDirection');
-  }
   function renderHeader() {
     return (
       <Header
@@ -94,6 +81,7 @@ const Orders = ({ navigation }) => {
             }}
             onPress={() => {
               setSelectedCategoryId(item.id);
+              setisModalOpen(true);
             }}
           >
             <View style={{
@@ -136,6 +124,39 @@ const Orders = ({ navigation }) => {
       flex: 1,
       alignItems: "center",
     }}>
+      <Modal 
+      visible={isModalOpen}
+      transparent={true}
+      animationType='fade'
+      >
+        <SafeAreaView flex={1} center statusBarColor="rgb(0, 0, 0)">
+          <Container style={styles.topContainer} center padding={10}>
+            <View style={styles.Status}>
+              <Text style={{
+                ...FONTS.h1
+              }}>WILL YOU ACCEPT THIS ORDER?</Text>
+                <View styles={styles.ModalContainer}>
+                  <View styles={styles.TextContainer}>
+                    <TouchableOpacity onPress={() => setisModalOpen(false)}>
+                      <Text style={{
+                        ...FONTS.h2
+                      }}>CANCEL</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => setisModalOpen(false)}>
+                      <Text style={{
+                        ...FONTS.h2
+                      }}>CANCEL</Text>
+                    </TouchableOpacity>
+                  </View>
+                    
+                </View>
+            </View>
+          </Container>
+        </SafeAreaView>  
+        
+
+
+      </Modal>
 
       {/* Header */}
       {renderHeader()}
@@ -157,6 +178,14 @@ const Orders = ({ navigation }) => {
 
 
 const styles = StyleSheet.create({
+  ModalContainer: {
+    flex:1,
+    backgroundColor: '#FAFAFA',
+  },
+  TextContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  }
 });
 
 export default Orders

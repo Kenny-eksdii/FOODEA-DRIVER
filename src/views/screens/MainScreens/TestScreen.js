@@ -1,6 +1,14 @@
-import { View, StyleSheet, TouchableOpacity, Image, Switch, ScrollView} from 'react-native'
+import { View, StyleSheet, TouchableOpacity, Image, Switch, ScrollView, FlatList} from 'react-native'
 import React, { useState } from 'react'
 import { Container, SafeAreaView, Button, Text } from '../../components/FoodeaComponents'
+import {
+    COLORS,
+    FONTS,
+    SIZES,
+    icons,
+    constants,
+    dummyData,
+  } from "../../../constants";
 import images from '../../../utils/image'
 import Colors from '../../../utils/Colors';
 import DriverDetails from '../../../utils/DriverDetails';
@@ -9,6 +17,7 @@ import HistoryOrders from '../../../utils/HistoryOrders';
 
 const TestScreen = ({ navigation }) => {
     const [switchValue, setswitchValue] = useState(false);
+    const [selectedCategoryId, setSelectedCategoryId] = React.useState(1);
     const toggleSwitch = (value) => {
       setswitchValue(value);
     }
@@ -65,15 +74,18 @@ const TestScreen = ({ navigation }) => {
                             </View>
                         </View>
                     <View styles={styles.HistoryContainer}> 
-                        <View styles={{flexDirection: 'row'}}>
+                        <View styles={{flexDirection: 'row',}}>
                             <Text style={{fontSize:20, fontWeight:'bold', paddingHorizontal: 10, paddingVertical: 10,}}>TRANSACTION HISTORY</Text>
                         </View>
                     </View>
                     <View style={styles.TransactionHistory}>
-                            <ScrollView style={{flexDirection: 'column'}}>
+                        
+                            <ScrollView style={styles.scroll}>
+
                                 <View style = {{flexDirection:'row', justifyContent: 'space-between', paddingHorizontal:20}}>
                                     <Text style={{marginTop: 5}} color={Colors.black} center size={20} weight='medium'>{HistoryOrders.User1}</Text>
-                                    <Text style={{marginTop: 5}} color={Colors.black} center size={20} weight='medium'>{HistoryOrders.Price}</Text>
+                                    <Text style={{marginTop: 5}} color={Colors.black} center size={20} weight='medium'>{HistoryOrders.Price}</Text> 
+
                                 </View>
                             </ScrollView>
 
@@ -106,6 +118,16 @@ const TestScreen = ({ navigation }) => {
 }
 
 const styles = StyleSheet.create({
+    scroll:{
+        flexDirection: 'column',
+        paddingHorizontal: 15,
+        paddingVertical: 10,
+        height: '150%',
+        borderRadius: 1,
+        elevation: 1,
+        marginTop: -25
+
+    },
     topContainer: {
         backgroundColor: '#FAFAFA',
         flex:1,
@@ -127,11 +149,11 @@ const styles = StyleSheet.create({
         backgroundColor: '#FAFAFA',
     },
     TransactionHistory: {
-        paddingHorizontal: 15,
         paddingVertical: 25,
         flexDirection: "row",
         justifyContent: "space-between",
         height: '50%',
+        width: '100%',
         elevation: 1,
     },
     userprofile:{
