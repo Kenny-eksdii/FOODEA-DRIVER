@@ -128,18 +128,18 @@ const Orders = ({ navigation }) => {
       flex: 1,
       alignItems: "center",
     }}>
-      <Modal 
+      <Modal
       visible={isModalOpen}
       transparent={true}
       animationType='fade'
       >
-        <SafeAreaView center statusBarColor="rgb(0, 0, 0)">
           <Container style={styles.topContainer} center padding={10}>
             <View style={styles.Status}>
               <Text style={{
                 ...FONTS.h2,
                 marginHorizontal: 85,
-              }}>ACCEPT THIS ORDER?</Text>
+                }}>ACCEPT THIS ORDER?
+              </Text>
                 <View>
                   <View styles={styles.TextContainer}>
                     <Button
@@ -152,16 +152,10 @@ const Orders = ({ navigation }) => {
                         title={'ACCEPT'}
                       />
                     </View>
-                    
                   </View>
-                    
                 </View>
             </View>
-          </Container>
-        </SafeAreaView>  
-        
-
-
+          </Container>  
       </Modal>
 
       {/* Header */}
@@ -185,7 +179,8 @@ const Orders = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   topContainer: {
-    backgroundColor: '#FAFAFA',
+    position:'absolute',
+    bottom:0,
   },
   Status: {
     backgroundColor: '#FAFAFA'
