@@ -6,49 +6,31 @@ import {
   } from "../../../constants";
 
 const Proof = ({ navigation }) => {
-    const BackToHome = () => {
-        navigation.push('TestScreen');
-    }
 
 
 return (
-    <SafeAreaView flex={1} statusBarColor="rgb(0, 0, 0)">
-        <Container padding={20} center style={{backgroundColor: '#cce7e8'}}>
-            <View>
-                <View style={styles.imgContainer}>
+        <View padding={10} style={{backgroundColor: '#FAFAFA', height: '100%'}}>
+            <View style={{backgroundColor: '#FAFAFA', height: '100%', width:'100%',}}>
+                <View style={{backgroundColor: '#FAFAFA'}}>
                     <Text center style={{fontSize:20, fontWeight:'bold', paddingHorizontal: 10, paddingVertical: 10,}}> This is The Proof Of Order Received </Text>
-                    <Image center source={images.proof} styles={styles.ProofStyl}/>
                 </View>
-                
-                <TouchableOpacity onPress={() => navigation.navigate("DeliveryRecord")}>
-                    <View>
-                    <Text style = {{
-                        ...FONTS.h2
-                    }}>
-                        Delivery Record
-                    </Text>
-                    </View>
-                </TouchableOpacity>
-            </View>
+                <View style={{backgroundColor: '#FAFAFA', height: '90%', width: '100%'}}>
+                    <Image source={images.proof} style={{height: '100%', width:'100%', }}/>
+                </View>
 
-        </Container>
-    </SafeAreaView>
+                <View style={{position:'absolute', bottom: 0, width: '100%', paddingHorizontal:100,}}>
+                    <View>
+                        <Button
+                            onPress={() => navigation.navigate("DeliveryRecord")}
+                            title="SEND" 
+                        />
+                    </View>
+                </View>
+            </View>
+        </View>
 )}
 
 const styles = StyleSheet.create({
-    ProofStyl: {
-        height:10,
-        width:10,
-        paddingVertical:10,
-    },
-    imgContainer: {
-        paddingHorizontal: 1,
-        paddingVertical: 10,
-        justifyContent:'center',
-        alignItems:'center',
-        alignContent:'center',
-
-    }
 });
 
 export default Proof

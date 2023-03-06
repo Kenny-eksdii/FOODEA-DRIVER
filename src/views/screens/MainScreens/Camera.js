@@ -1,5 +1,7 @@
 import { TouchableOpacity, StyleSheet, View, PermissionsAndroid, Image} from "react-native"
 import { Textbutton, Button, Container, SafeAreaView, Text } from '../../components/FoodeaComponents'
+
+
 const Camera = ({ navigation }) => {
     const BackToMap = () => {
         navigation.push('MapDirection');
@@ -27,21 +29,23 @@ const Camera = ({ navigation }) => {
 
 
 return (
-    <SafeAreaView flex={1} statusBarColor="rgb(0, 0, 0)">
-        <Container padding={20} center style={{backgroundColor: '#cce7e8'}}>
-            <View>
-                <View>
-                    <Button style={{width:'40%'}}
+        <View padding={10} center style={{backgroundColor: '#FAFAFA'}}>
+            <View style={{height: '100%'}}>
+                <View style={{flexDirection: 'row', justifyContent:'space-between'}}>
+                    <Button style={{width:'120%'}}
                     onPress={BackToMap}
                     title={'Back'}
                     />
                 </View>
-              <Text center style={{fontSize:20, fontWeight:'bold', paddingHorizontal: 10, paddingVertical: 250,}}> This is the Camera</Text>
-                
-                <Button 
-                    onPress={GotoProof}
-                    title={'Send'}
+                    <Text center style={{fontSize:20, fontWeight:'bold'}}> This is the Camera</Text>
+                    <Text center style={{fontSize:20, fontWeight:'bold'}}> WILL OPEN CAMERA</Text>
+                <View style={{position:'absolute', bottom: 10, width: '100%', justifyContent: 'center', paddingHorizontal: 100,}}>
+                    <Button 
+                        onPress={GotoProof}
+                        title={'Send'}
                     />
+                </View>
+                
             </View>
             <View>
                 {/* <TouchableOpacity onPress={opencamera}>
@@ -53,8 +57,7 @@ return (
                 <Image source={ {uri: cameraPhoto} } />
             </View> */}
 
-        </Container>
-    </SafeAreaView>
+        </View>
 )}
 
 

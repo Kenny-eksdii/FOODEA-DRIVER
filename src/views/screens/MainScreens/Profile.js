@@ -1,5 +1,5 @@
-import React from 'react';
-import { View, Text, Image, TouchableOpacity, ScrollView } from 'react-native';
+
+import { View, Text, Image, TouchableOpacity, ScrollView, } from 'react-native';
 import {
     images,
     constants,
@@ -9,8 +9,13 @@ import {
     FONTS,
 } from "../../../constants";
 import { Header, TextButton, FormInput, IconButton, CheckBox, FormInputCheck } from '../../components/FoodeaComponents';
+import React, { useContext } from 'react'
+import AuthContext from '../../../api/context/auth/AuthContext'
+import { Button } from '../../components/FoodeaComponents';
+
 
 const Profile = ({ navigation }) => {
+const { logout} = useContext(AuthContext);
 
     function renderHeader() {
         return (
@@ -33,7 +38,7 @@ const Profile = ({ navigation }) => {
                             borderColor: COLORS.gray2,
                             borderRadius: SIZES.radius,
                         }}
-                        onPress={() => navigation.goBack()}
+                        onPress={() => navigation.navigate("TestScreen")}
                     >
                         <Image source={icons.backarrow}
                             style={{
@@ -297,6 +302,7 @@ const Profile = ({ navigation }) => {
                             borderRadius: SIZES.radius,
                             marginTop: SIZES.base,
                             elevation: 5,
+                            marginBottom: 10,
                         }}
                     >
                         <Image
@@ -310,8 +316,15 @@ const Profile = ({ navigation }) => {
                                 right: 0,
                             }}
                         />
-                        <Text style={{ ...FONTS.h3 }}>Password</Text>
+                        <Text style={{ ...FONTS.h3 }}>*********</Text>
                     </View>
+                    <View style={{bottom: 0, width: '100%', justifyContent: 'center', paddingHorizontal: 100,}}> 
+                    <Button
+                        onPress={logout}
+                        title={'Log Out'}
+                    />
+                    </View>
+                    
                 </View>
             </ScrollView>
 

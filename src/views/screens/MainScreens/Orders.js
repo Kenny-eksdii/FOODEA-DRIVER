@@ -1,5 +1,5 @@
-import { StyleSheet, Text, View, TextInput, Image, FlatList, TouchableOpacity, Modal,} from 'react-native';
-import { Container, SafeAreaView, Button, } from '../../components/FoodeaComponents'
+import { StyleSheet, Text, View, Image, FlatList, TouchableOpacity, Modal,} from 'react-native';
+import { Container, Button, } from '../../components/FoodeaComponents'
 import {
   COLORS,
   FONTS,
@@ -42,7 +42,7 @@ const Orders = ({ navigation }) => {
               borderColor: COLORS.gray2,
               borderRadius: SIZES.radius,
             }}
-            onPress={() => navigation.goBack()}
+            onPress={() => navigation.navigate("TestScreen")}
           >
             <Image source={icons.backarrow}
               style={{
@@ -128,41 +128,36 @@ const Orders = ({ navigation }) => {
       flex: 1,
       alignItems: "center",
     }}>
-      <Modal
-      visible={isModalOpen}
-      transparent={true}
-      animationType='fade'
-      >
-          <Container style={styles.topContainer} center padding={10}>
-            <View style={styles.Status}>
-              <Text style={{
-                ...FONTS.h2,
-                marginHorizontal: 85,
-                }}>ACCEPT THIS ORDER?
-              </Text>
-                <View>
-                  <View styles={styles.TextContainer}>
-                    <Button
-                      onPress={() => setisModalOpen(false)}
-                      title={'CANCEL'}
-                    />
-                    <View styles={styles.ModalContainer}>
-                      <Button 
-                        onPress={handleOrders}
-                        title={'ACCEPT'}
-                      />
-                    </View>
-                  </View>
-                </View>
-            </View>
-          </Container>  
-      </Modal>
+<Modal
+  visible={isModalOpen}
+  transparent={true}
+  animationType='fade'
+>
+    <Container style={styles.topContainer} center padding={10}>
+      <Text style={{
+        ...FONTS.h2,
+        marginHorizontal: 85,
+        paddingVertical: 20,
+        }}>ACCEPT THIS ORDER?
+      </Text>
+        <View style={{flexDirection: 'row', justifyContent: 'space-evenly',}}>
+          <Button 
+            onPress={handleOrders}
+            title={'ACCEPT'}
+          />
+          <Button
+            onPress={() => setisModalOpen(false)}
+            title={'CANCEL'}
+          />
+        </View>
+    </Container>  
+</Modal>
 
       {/* Header */}
       {renderHeader()}
       {/* Customer */}
       {renderCustomer()}
-      <TouchableOpacity onPress={() => navigation.navigate("DeliveryRecord")}>
+      {/* <TouchableOpacity onPress={() => navigation.navigate("DeliveryRecord")}>
         <View>
           <Text style = {{
             ...FONTS.h2
@@ -170,7 +165,7 @@ const Orders = ({ navigation }) => {
             Delivery Record
           </Text>
         </View>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
 
     </View>
   );
@@ -180,15 +175,8 @@ const Orders = ({ navigation }) => {
 const styles = StyleSheet.create({
   topContainer: {
     position:'absolute',
-    bottom:0,
+    bottom:20,
   },
-  Status: {
-    backgroundColor: '#FAFAFA'
-  },
-  TextContainer: {
-    flexDirection: 'column',
-    paddingVertical: 10,
-  }
 });
 
 export default Orders

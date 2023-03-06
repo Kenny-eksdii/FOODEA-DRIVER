@@ -17,6 +17,8 @@ const FOODEA_LOGO = require("../../assets/img/images/FOODEA_LOGO.png");
 const jollibee_logo = require("../../assets/img/images/jollibee_logo.png");
 const Foodea_new_logo = require("../../assets/img/images/Foodea_new_logo.png");
 const Map = require("../../assets/img/images/Map.png");
+const Chowking = require("../../assets/img/images/chowking.png");
+const mcdo = require("../../assets/img/images/mcdonalds-png-logo-simple-m-1.png")
 
 export default {
   profile,
@@ -37,5 +39,7 @@ export default {
   FOODEA_LOGO,
   jollibee_logo,
   Foodea_new_logo,
-  Map
+  Map,
+  Chowking,
+  mcdo,
 };

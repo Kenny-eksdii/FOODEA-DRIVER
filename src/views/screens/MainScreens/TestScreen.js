@@ -1,14 +1,6 @@
-import { View, StyleSheet, TouchableOpacity, Image, Switch, ScrollView, FlatList} from 'react-native'
+import { View, StyleSheet, TouchableOpacity, Image, Switch, ScrollView,} from 'react-native'
 import React, { useState } from 'react'
 import { Container, SafeAreaView, Button, Text } from '../../components/FoodeaComponents'
-import {
-    COLORS,
-    FONTS,
-    SIZES,
-    icons,
-    constants,
-    dummyData,
-  } from "../../../constants";
 import images from '../../../utils/image'
 import Colors from '../../../utils/Colors';
 import DriverDetails from '../../../utils/DriverDetails';
@@ -17,7 +9,6 @@ import HistoryOrders from '../../../utils/HistoryOrders';
 
 const TestScreen = ({ navigation }) => {
     const [switchValue, setswitchValue] = useState(false);
-    const [selectedCategoryId, setSelectedCategoryId] = React.useState(1);
     const toggleSwitch = (value) => {
       setswitchValue(value);
     }
@@ -30,107 +21,86 @@ const TestScreen = ({ navigation }) => {
 
 
 
-  return (
-    <SafeAreaView flex={1} center statusBarColor="rgb(0, 0, 0)">
-        <Container style={styles.topContainer} center padding={10}>
-                <View style={styles.Status}>
+return (
+    <View style={styles.topContainer} center padding={10}>
+        <View style={styles.Status}>
+            <TouchableOpacity onPress={handleProfile}>
+                <Image source={images.user} style={styles.userprofile} onPress = {handleProfile} />
+            </TouchableOpacity>
                     
-                    <TouchableOpacity onPress={handleProfile}>
-                        <Image source={images.user} style={styles.userprofile} onPress = {handleProfile} />
-                    </TouchableOpacity>
-                    
-                        <Switch 
-                            onValueChange={toggleSwitch}
-                            value={switchValue}
-                            trackColor={{false: "#D9D9D9", true: "#f99293"}}
-                            thumbColor={switchValue ? "#f00d0e" : "#f99293"}
-                        />  
-                </View>
+            <Switch 
+                onValueChange={toggleSwitch}
+                value={switchValue}
+                trackColor={{false: "#D9D9D9", true: "#f99293"}}
+                thumbColor={switchValue ? "#f00d0e" : "#f99293"}
+            />  
+        </View>
 
-                <View styles= {styles.StatusContainer}>
-                    <View>
-                        <Text style={{fontSize:20, fontWeight:'bold', paddingHorizontal: 10, paddingVertical: 10,}}>TODAY STATUS</Text>
-                    </View>
-                    
-                        <View style={styles.todayStats}>
-                            <View style = {{flexDirection: 'row'}}>
-                                <View style = {{paddingHorizontal:20}}>
-                                    <Image center source={images.Orders} style={styles.ImageSize}/>
-                                </View>
-
-                                <View>
-                                    <Text style={{marginTop: 5}} color={Colors.black} center size={20} weight='medium'>{DriverDetails.OrderNo}</Text>
-                                </View>
-                            </View>
-
-                            <View style = {{flexDirection: 'row', paddingHorizontal: 20,}}>
-                                <View style = {{paddingHorizontal:20}}>
-                                    <Image center source={images.Earn} style={styles.ImageSize}/>
-                                </View>
-
-                                <View>
-                                    <Text style={{marginTop: 5}} color={Colors.black} center size={20} weight='medium'>{DriverDetails.Earnings}</Text>
-                                </View>
-                            </View>
-                        </View>
-                    <View styles={styles.HistoryContainer}> 
-                        <View styles={{flexDirection: 'row',}}>
-                            <Text style={{fontSize:20, fontWeight:'bold', paddingHorizontal: 10, paddingVertical: 10,}}>TRANSACTION HISTORY</Text>
-                        </View>
-                    </View>
-                    <View style={styles.TransactionHistory}>
-                        
-                            <ScrollView style={styles.scroll}>
-
-                                <View style = {{flexDirection:'row', justifyContent: 'space-between', paddingHorizontal:20}}>
-                                    <Text style={{marginTop: 5}} color={Colors.black} center size={20} weight='medium'>{HistoryOrders.User1}</Text>
-                                    <Text style={{marginTop: 5}} color={Colors.black} center size={20} weight='medium'>{HistoryOrders.Price}</Text> 
-
-                                </View>
-                            </ScrollView>
-
-                        
-                    </View>
-                </View>
-
+        <View style={{backgroundColor: '#FAFAFA'}}>
             <View>
-                { switchValue == false?
-                    <View style={styles.valueSwitch}>
-                        <Text style={{fontWeight: 'bold'}} color={Colors.primary}>"YOU ARE CURRENTLY OFFLINE"</Text>
+                <Text style={{fontSize:20, fontWeight:'bold', paddingHorizontal: 10, paddingVertical: 20,}}>TODAY STATUS</Text>
+            </View>
+                    
+            <View style={styles.todayStats}>
+                <View style = {{flexDirection: 'row'}}>
+                    <View style = {{paddingHorizontal:20}}>
+                        <Image center source={images.Orders} style={styles.ImageSize}/>
                     </View>
-          :
-                <View style={styles.valueSwitchOnline}>
-                    <View style = {styles.button}>
-                        <Button 
-                            onPress={handleStart}
-                            title={'START EARNING'}
-                        />
+
+                    <View>
+                        <Text style={{marginTop: 5}} color={Colors.black} center size={20} weight='medium'>{DriverDetails.OrderNo}</Text>
                     </View>
                 </View>
-                }
-            </View>  
 
+                <View style = {{flexDirection: 'row', paddingHorizontal: 20,}}>
+                    <View style = {{paddingHorizontal:20}}>
+                        <Image center source={images.Earn} style={styles.ImageSize}/>
+                    </View>
 
-        </Container>
-    </SafeAreaView>
+                    <View>
+                        <Text style={{marginTop: 5}} color={Colors.black} center size={20} weight='medium'>{DriverDetails.Earnings}</Text>
+                    </View>
+                </View>
+            </View>
+
+                <Text style={{fontSize:20, fontWeight:'bold', paddingHorizontal: 10, paddingVertical: 10, marginTop: 15, }}>TRANSACTION HISTORY</Text>
+            <View style={styles.TransactionHistory}>       
+                <ScrollView>
+                    <View style = {{flexDirection:'row', justifyContent: 'space-between', paddingVertical: 10, paddingHorizontal: 5,}}>
+                        <Text style={{marginTop: 5}} color={Colors.black} center size={20} weight='medium'>{HistoryOrders.User1}</Text>
+                        <Text style={{marginTop: 5}} color={Colors.black} center size={20} weight='medium'>{HistoryOrders.Price}</Text>
+                    </View>
+                </ScrollView>    
+            </View>
+        </View>
+
+            <View style={{position:'absolute', bottom: 0, width: '100%', justifyContent: 'center'}}>
+                <View styles={styles.SwitchContainer}>
+                    { switchValue == false?
+                        <View style={styles.valueSwitch}>
+                            <Text style={{fontWeight: 'bold'}} color={Colors.primary}>"YOU ARE CURRENTLY OFFLINE"</Text>
+                        </View>
+                    :
+                        <View style={styles.valueSwitchOnline}>
+                            <View style = {styles.button}>
+                                <Button 
+                                    onPress={handleStart}
+                                    title={'START EARNING'}
+                                />
+                            </View>
+                        </View>
+                    }
+                </View> 
+            </View>
+    </View>
     
   )
 }
 
 const styles = StyleSheet.create({
-    scroll:{
-        flexDirection: 'column',
-        paddingHorizontal: 15,
-        paddingVertical: 10,
-        height: '150%',
-        borderRadius: 1,
-        elevation: 1,
-        marginTop: -25
-
-    },
     topContainer: {
         backgroundColor: '#FAFAFA',
-        flex:1,
+        flex: 1,
     },
     Historyicon: {
         height: 5,
@@ -141,39 +111,37 @@ const styles = StyleSheet.create({
         width: 30,
     },
     Status:{
-        backgroundColor: '#FAFAFA',
         flexDirection:'row',
         justifyContent:'space-between',
-    },
-    HistoryContainer: {
-        backgroundColor: '#FAFAFA',
+        paddingVertical: 10,
+
     },
     TransactionHistory: {
-        paddingVertical: 25,
         flexDirection: "row",
+        height: '65%',
+        paddingHorizontal: 15,
         justifyContent: "space-between",
-        height: '50%',
-        width: '100%',
+        backgroundColor: "#",
         elevation: 1,
+        marginBottom: 10,
     },
     userprofile:{
         height: 35,
         width: 35,
         marginLeft: 10,
-        flexDirection: "row",
     },
     StatusContainer: {
-        backgroundColor: '#FAFAFA',
+        backgroundColor: '#000',
     },
     todayStats: {
         paddingHorizontal: 15,
         paddingVertical: 25,
         flexDirection: "row",
         justifyContent: "space-between",
-        height: '15%',
-        borderRadius: 10,
+        borderRadius: 2,
         backgroundColor: "#FAFAFA",
         elevation: 10,
+        marginBottom: 10,
     },
     button: {
         width: "80%",
@@ -181,14 +149,12 @@ const styles = StyleSheet.create({
         borderColor:'#000',
     },
     valueSwitch: {
-        fontSize: 50,
         alignItems: 'center',
-        backgroundColor: '#fff',
       },
       valueSwitchOnline: {
-        backgroundColor: '#FAFAFA',
         alignItems: 'center',
-
+        width: '100%',
+        paddingHorizontal: 100,
       },
     });
 

@@ -3,7 +3,7 @@ import { Button, Container, SafeAreaView, Text } from '../../components/FoodeaCo
 import Colors from "../../../utils/Colors";
 
 
-const mainURL = "https://google.com";
+const mainURL = "https://foodea-website.herokuapp.com/rider_landing";
 
 function LandingPageScreen({navigation}){
   const signInPress = () => {

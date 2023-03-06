@@ -3,9 +3,6 @@ import React, { useState } from 'react'
 import { TextInput } from 'react-native-paper';
 import { Container, SafeAreaView, Button, Text } from '../../components/FoodeaComponents'
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
-import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
-import { GOOGLE_API_KEY } from '../../../../environments';
-import MapViewDirections from 'react-native-maps-directions';
 
 const MapDirection = ({ navigation }) => {
     const GoToMap = () => {
@@ -38,7 +35,6 @@ const MapDirection = ({ navigation }) => {
 
 
   return (
-    <SafeAreaView flex statusBarColor="rgb(0, 0, 0)">
         <Container style={styles.topContainer} top padding={3}>
                 
                     <View style={styles.Map}>
@@ -83,7 +79,6 @@ const MapDirection = ({ navigation }) => {
 
 
         </Container>
-    </SafeAreaView>
     
   )
 }
@@ -91,68 +86,6 @@ const MapDirection = ({ navigation }) => {
 const styles = StyleSheet.create({
     topContainer: {
         backgroundColor: '#FAFAFA'
-    },
-    txtinput: {
-        height: 40,
-        width: 80,
-        alignContent:"center",
-        backgroundColor: '#FAFAFA',
-        borderColor: "#F54748",
-        borderWidth: 1,
-      },
-    searchcontainer: {
-        position: "absolute",
-        width: "100%",
-        backgroundColor: "white",
-        shadowOffset: {width: 2, height: 2},
-        shadowOpacity: 0.5,
-        shadowRadius: 4,
-        elevation: 4,
-        padding: 8,
-        borderRadius: 8,
-    },
-    input: {
-        borderColor: "#888",
-        borderWidth: 1,
-    },
-    Status:{
-        backgroundColor: '#FAFAFA',
-        flexDirection:'row',
-        justifyContent:'space-between',
-        marginTop:40,
-        marginBottom:20,
-    },
-    userprofile:{
-        height: 35,
-        width: 35,
-        marginLeft: 10,
-        flexDirection: "row",
-    },
-    todayStats: {
-        paddingHorizontal: 15,
-        marginTop: 10,
-        marginBottom: 10,
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "space-between",
-        height: 80,
-        borderRadius: 10,
-        backgroundColor: "#FAFAFA",
-        borderColor: "#F54748",
-        borderWidth: 1,
-    },
-    Orders: {
-        marginTop: 5,
-        flexDirection: "column",
-        flex: 1,
-        justifyContent: "space-between",
-    },
-    Earns: {
-        marginTop: 5,
-        flexDirection: "column",
-        flex: 1,
-        justifyContent: "space-between",
-        marginLeft: 150,
     },
     Map: {
         marginTop: 10,
@@ -169,22 +102,11 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         borderColor:'#000',
     },
-    valueSwitch: {
-        fontSize: 50,
-        alignItems: 'center',
-        backgroundColor: '#fff',
-        marginTop: 30,
-      },
-      valueSwitchOnline: {
-        backgroundColor: '#FAFAFA',
-        alignItems: 'center',
-        
-      },
       mapcontainer: {
         flex: 1,
       },
       map: {
-        width: '100%',
+        width: Dimensions.get.width,
         height: '100%',
       },
     });

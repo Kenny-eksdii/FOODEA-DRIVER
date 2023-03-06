@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, TextInput, Image, FlatList, TouchableOpacity } from 'react-native';
+import { Button } from '../../components/FoodeaComponents';
 import {
     COLORS,
     FONTS,
@@ -22,32 +23,32 @@ const DeliveryRecord = ({ navigation }) => {
                     alignItems: "center",
                 }}
                 title={"Delivery Records"}
-                leftComponent={
-                    // Open Custom Drawer
-                    <TouchableOpacity
-                        style={{
-                            width: 40,
-                            height: 40,
-                            alignItems: "center",
-                            justifyContent: "center",
-                            borderWidth: 1,
-                            borderColor: COLORS.gray2,
-                            borderRadius: SIZES.radius,
-                        }}
-                        onPress={() => navigation.goBack()}
-                    >
-                        <Image source={icons.backarrow}
-                            style={{
-                                borderRadius: SIZES.radius,
-                                color: COLORS.gray2
-                            }} />
-                    </TouchableOpacity>
-                }
-                rightComponent={
-                    <View style={{
-                        width: 40,
-                    }}></View>
-                }
+                // leftComponent={
+                //     // Open Custom Drawer
+                //     <TouchableOpacity
+                //         style={{
+                //             width: 40,
+                //             height: 40,
+                //             alignItems: "center",
+                //             justifyContent: "center",
+                //             borderWidth: 1,
+                //             borderColor: COLORS.gray2,
+                //             borderRadius: SIZES.radius,
+                //         }}
+                //         onPress={() => navigation.goBack()}
+                //     >
+                //         <Image source={icons.backarrow}
+                //             style={{
+                //                 borderRadius: SIZES.radius,
+                //                 color: COLORS.gray2
+                //             }} />
+                //     </TouchableOpacity>
+                // }
+                // rightComponent={
+                //     <View style={{
+                //         width: 40,
+                //     }}></View>
+                // }
             />
         );
     }
@@ -281,6 +282,12 @@ const DeliveryRecord = ({ navigation }) => {
 
             {/* TODAY STATS */}
             {renderTodayStats()}
+            <View>
+                    <Button 
+                        onPress={() => navigation.navigate("TestScreen")}
+                        title={'BACK TO MAIN MENU'}
+                    />
+            </View>
 
         </View>
     )
