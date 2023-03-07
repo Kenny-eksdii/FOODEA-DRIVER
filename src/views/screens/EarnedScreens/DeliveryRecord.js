@@ -284,7 +284,7 @@ const DeliveryRecord = ({ navigation }) => {
             {renderTodayStats()}
             <View>
                     <Button 
-                        onPress={() => navigation.navigate("TestScreen")}
+                        onPress={() => navigation.navigate("DeliveryRecord")}
                         title={'BACK TO MAIN MENU'}
                     />
             </View>

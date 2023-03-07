@@ -1,5 +1,5 @@
-import { StyleSheet, TouchableOpacity, View, Alert, Linking,} from 'react-native'
-import { useContext} from 'react';
+import { StyleSheet, TouchableOpacity, View, Alert, Linking, Switch} from 'react-native'
+import { useContext, useState} from 'react';
 import { TextInput, Container, SafeAreaView, Button, Text} from '../../components/FoodeaComponents'
 import { TextInput as TxtInput } from 'react-native-paper';
 import Colors from '../../../utils/Colors';
@@ -11,6 +11,10 @@ const mainURL = "https://google.com";
 
 
 const LoginScreen = ({ navigation }) => {
+    const [switchValue, setswitchValue] = useState(false);
+    const toggleSwitch = (value) => {
+        setswitchValue(value);
+      }
     const handleForgotPassword = () => {
         navigation.push('Forgotpassword');
     }
@@ -82,6 +86,22 @@ const LoginScreen = ({ navigation }) => {
                                             />
                                         }
                                     />
+                                    <View style={{flexDirection:'row', justifyContent:'flex-start', alignItems: 'flex-start', alignContent:'flex-start'}}>
+                                        <View style={{backgroundColor:'#FAFAFA'}}>
+                                            <Switch 
+                                                onValueChange={toggleSwitch}
+                                                value={switchValue}
+                                                trackColor={{false: "#D9D9D9", true: "#f99293"}}
+                                                thumbColor={switchValue ? "#f00d0e" : "#f99293"}
+                                            />
+                                        </View>
+                                        
+                                        <View style={{justifyContent:'flex-start', backgroundColor:'#FAFAFA'}}>
+                                            <Text style={{fontSize:15, fontWeight:'light', paddingVertical: 15,}}> Remember Me </Text>
+                                        </View>
+                                        
+
+                                    </View>
 
                                     <View style = {styles.button}>
                                     <Button 

@@ -15,7 +15,7 @@ const Resetpassword = ({ navigation }) => {
     }
 
     const HandleLogIn = () => {
-        navigation.push("Success");
+        navigation.push("SuccScreen");
     }
 
 return (

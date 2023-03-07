@@ -6,6 +6,8 @@ import SignUpScreen from '../screens/AuthScreens/SignUpScreen';
 import Forgotpassword from '../screens/AuthScreens/Forgotpassword';
 import Resetpassword from '../screens/AuthScreens/Resetpassword';
 import Otp from '../screens/AuthScreens/Otp';
+// import SuccessScreen from '../screens/AuthScreens/SuccessScreen';
+import SuccScreen from '../screens/AuthScreens/SuccScreen';
 
 
 const Stack = createNativeStackNavigator();
@@ -47,11 +49,11 @@ const AuthStack = () => {
                 component={Otp}
             />
 
-            {/* <Stack.Screen 
+            <Stack.Screen 
             options={{ headerShown:false }} 
-            name="Success" 
-            component={Success}
-        /> */}
+            name="SuccScreen"
+            component={SuccScreen}
+            />
 
         </Stack.Navigator>
     )

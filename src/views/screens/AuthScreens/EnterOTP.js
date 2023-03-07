@@ -67,14 +67,14 @@ const EnterOTP = ({ navigation }) => {
                 margintop: '20'
               }}
               >
-                <text
+                <Text
                 styles = {{
                   color:Colors.grey
                 }}
                 >
-                  Didn't Receive Code?
+                  Didn't Receive Code? <Text color={Colors.primary} weight='medium'>Resend</Text>
 
-                </text>
+                </Text>
                 <Textbutton>
                   label = { `Resend (${timer}s)`}
                   disabled = {timer == 0? false: true}
