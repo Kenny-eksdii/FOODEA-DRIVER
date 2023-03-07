@@ -42,7 +42,7 @@ return (
                 <View style={{position:'absolute', bottom: 10, width: '100%', justifyContent: 'center', paddingHorizontal: 100,}}>
                     <Button 
                         onPress={GotoProof}
-                        title={'Send'}
+                        title={'Continue'}
                     />
                 </View>
                 
