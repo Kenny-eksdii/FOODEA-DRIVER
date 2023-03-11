@@ -7,7 +7,7 @@ import AuthContext from '../../../api/context/auth/AuthContext';
 import * as yup from 'yup'
 import { Formik } from 'formik'
 
-const mainURL = "https://google.com";
+const mainURL = "https://foodea-website.herokuapp.com/rider_landing";
 
 
 const LoginScreen = ({ navigation }) => {

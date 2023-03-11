@@ -13,9 +13,7 @@ import React, { useState } from 'react';
 import { Header, TextButton, FormInput, IconButton, CheckBox, FormInputCheck } from '../../components/FoodeaComponents';
 
 const Orders = ({ navigation }) => {
-  const handleOrders = () => {
-    navigation.push("OrderDetails");
-  }
+
 
   const [selectedCategoryId, setSelectedCategoryId] = React.useState(1);
   const [isModalOpen, setisModalOpen] = useState(false);
@@ -120,6 +118,7 @@ const Orders = ({ navigation }) => {
           </TouchableOpacity>
         )}
       />
+      
     );
   }
 
@@ -128,31 +127,33 @@ const Orders = ({ navigation }) => {
       flex: 1,
       alignItems: "center",
     }}>
-<Modal
-  visible={isModalOpen}
-  transparent={true}
-  animationType='fade'
->
-    <Container style={styles.topContainer} center padding={10}>
-      <Text style={{
-        ...FONTS.h2,
-        marginHorizontal: 85,
-        paddingVertical: 20,
-        }}>ACCEPT THIS ORDER?
-      </Text>
-        <View style={{flexDirection: 'row', justifyContent: 'space-evenly',}}>
-          <Button 
-            onPress={handleOrders}
-            title={'ACCEPT'}
-          />
-          <Button
-            onPress={() => setisModalOpen(false)}
-            title={'CANCEL'}
-          />
-        </View>
-    </Container>  
-</Modal>
-
+        <Modal
+          visible={isModalOpen}
+          transparent={true}
+          animationType='fade'
+        >
+            <Container style={styles.topContainer} center padding={10}>
+              <Text style={{
+                ...FONTS.h2,
+                marginHorizontal: 85,
+                paddingVertical: 20,
+                }}>ACCEPT THIS ORDER?
+              </Text>
+                <View style={{flexDirection: 'row', justifyContent: 'space-evenly', bottom:10, flex:1, paddingHorizontal:10}}>
+                  <Button
+                    onPress={() => {
+                      navigation.navigate("PickUpMap")
+                      setisModalOpen(false);
+                    }}
+                    title={'ACCEPT'}
+                  />
+                  <Button
+                    onPress={() => setisModalOpen(false)}
+                    title={'CANCEL'}
+                  />
+                </View>
+            </Container>  
+        </Modal>
       {/* Header */}
       {renderHeader()}
       {/* Customer */}
@@ -175,7 +176,7 @@ const Orders = ({ navigation }) => {
 const styles = StyleSheet.create({
   topContainer: {
     position:'absolute',
-    bottom:20,
+    bottom:10,
   },
 });
 

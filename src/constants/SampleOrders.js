@@ -11,7 +11,7 @@ const OrderDetails = [
       name: "Chicken Ala-King",
       price: 99,
       quantity: 1,
-      image: require("../../assets/img/images/alaking.png"),
+      image: require("../../assets/img/images/mcdonalds-png-logo-simple-m-1.png"),
     },
     {
       id: 3,
@@ -32,7 +32,7 @@ const OrderDetails = [
       name: "Chicken Ala-King",
       price: 99,
       quantity: 1,
-      image: require("../../assets/img/images/alaking.png"),
+      image: require("../../assets/img/images/mcdonalds-png-logo-simple-m-1.png"),
     },
     {
       id: 6,
@@ -53,7 +53,7 @@ const OrderDetails = [
       name: "Chicken Ala-King",
       price: 99,
       quantity: 1,
-      image: require("../../assets/img/images/alaking.png"),
+      image: require("../../assets/img/images/mcdonalds-png-logo-simple-m-1.png"),
     },
     {
       id: 9,

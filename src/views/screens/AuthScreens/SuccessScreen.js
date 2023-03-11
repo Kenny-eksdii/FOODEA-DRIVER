@@ -12,10 +12,10 @@ const SuccessScreen = ({navigation}) =>{
   return (  
     <Container style={{flex: 1,backgroundColor: '#FAFAFA'}} center padding={20}>
       <View styles={styles.midContainer}>
-        <Text style={{marginTop: 10}} color={Colors.black} center size={40} weight='bold'>
+        <Text style={{marginTop: 10}} color={Colors.black} center size={30} weight='bold'>
           CONGRATULATIONS!
         </Text>
-        <Text style={{marginTop: 10}} color={Colors.black} center size={40} weight='bold'>You are all set, you've successfully changed your password!</Text>
+        <Text style={{marginTop: 10}} color={Colors.black} center size={20} weight='bold'>You are all set, you've successfully changed your password!</Text>
       </View>
       <View styles={styles.button}>
         <Button

@@ -5,9 +5,9 @@ import { Container, SafeAreaView, Button, Text } from '../../components/FoodeaCo
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import Colors from '../../../utils/Colors';
 
-const MapDirection = ({ navigation }) => {
-    const GoToMap = () => {
-        navigation.push('Camera');
+const PickUpMap = ({ navigation }) => {
+    const GoToOrderDetails = () => {
+        navigation.push('OrderDetails');
     }
 
     const { width, height } = Dimensions.get("window");
@@ -52,8 +52,7 @@ const MapDirection = ({ navigation }) => {
                             <MapView style={styles.map}
                             provider= {PROVIDER_GOOGLE}
                             initialRegion= {My_Location}>
-                                {/* <Marker coordinate={My_Location} /> */}
-                                <Marker coordinate={Dropoff_Location}/>
+                                <Marker coordinate={My_Location} />
                                 {/* <Marker coordinate={Dropoff_Location}/> */}
                                 
                             </MapView>
@@ -63,8 +62,8 @@ const MapDirection = ({ navigation }) => {
                         
 
                             
-{/*
-                            <View style = {styles.searchcontainer}>
+
+                            {/* <View style = {styles.searchcontainer}>
                                 <Text>Drop Off Details</Text>
                                 <GooglePlacesAutocomplete
                                 styles = {{textInput: styles.input}}
@@ -76,18 +75,24 @@ const MapDirection = ({ navigation }) => {
                                     language: 'en',
                                 }}
                                 />
-                            </View>
+                            </View> */}
 
-*/}
+
                         
 
                     </View>
                     <View style = {styles.button}>
-                            <Button 
+                        <Button 
+                            onPress={GoToOrderDetails}
+                            title={'View Order Details'}
+                        />
+                    </View>
+                    {/* <View style = {styles.button}>
+                        <Button 
                             onPress={GoToMap}
-                            title={'Proceed To Capture Proof'}
-                            />
-                        </View>
+                            title={'Proceed To Camera'}
+                        />
+                    </View> */}
  
 
 
@@ -124,4 +129,4 @@ const styles = StyleSheet.create({
       },
     });
 
-export default MapDirection
+export default PickUpMap

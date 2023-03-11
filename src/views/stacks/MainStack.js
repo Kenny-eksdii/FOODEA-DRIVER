@@ -8,6 +8,7 @@ import Camera from '../screens/MainScreens/Camera';
 import Proof from '../screens/MainScreens/Proof';
 import DeliveryRecord from '../screens/EarnedScreens/DeliveryRecord';
 import OrderDetails from '../screens/MainScreens/OrderDetails';
+import PickUpMap from '../screens/MainScreens/PickUpMap';
 
 
 
@@ -55,6 +56,11 @@ const MainStack = () => {
             options ={{ headerShown:false }} 
             name = {"OrderDetails"} 
             component = {OrderDetails}
+        />
+        <Stack.Screen 
+        options ={{ headerShown:false }} 
+        name = {"PickUpMap"} 
+        component = {PickUpMap}
         />
         
     </Stack.Navigator>

@@ -38,7 +38,7 @@ function renderHeader() {
                         borderColor: COLORS.gray2,
                         borderRadius: SIZES.radius,
                         }}
-                        onPress={() => navigation.navigate("Orders")}
+                        onPress={() => navigation.navigate("PickUpMap")}
                     >
                         <Image source={icons.backarrow}
                             style={{
@@ -108,11 +108,11 @@ function renderCustomer() {
           <View>
             <View>
               <View style={styles.topContainer} padding={10}>
-                <View style={{position:'absolute', bottom: 10, width: '100%', justifyContent: 'center', paddingHorizontal: 100,}}>
+                <View style={{ bottom: 0, width: '100%', justifyContent: 'center',}}>
                     <View>
                         <Button
                             onPress={() => navigation.navigate("MapDirection")}
-                            title="OPEN MAP" 
+                            title="View Drop Off Location" 
                         />
                     </View>
                 </View>

@@ -22,7 +22,7 @@ const TestScreen = ({ navigation }) => {
 
 
 return (
-    <View style={styles.topContainer} center padding={10}>
+    <Container style={styles.topContainer} center padding={10}>
         <View style={styles.Status}>
             <TouchableOpacity onPress={handleProfile}>
                 <Image source={images.user} style={styles.userprofile} onPress = {handleProfile} />
@@ -72,10 +72,9 @@ return (
                     </View>
                 </ScrollView>    
             </View>
+            
         </View>
-
-            <View style={{position:'absolute', bottom: 0, width: '100%', justifyContent: 'center'}}>
-                <View styles={styles.SwitchContainer}>
+            <View style={{position:'absolute', bottom: 10, width: '100%', alignSelf:'center',}}>
                     { switchValue == false?
                         <View style={styles.valueSwitch}>
                             <Text style={{fontWeight: 'bold'}} color={Colors.primary}>"YOU ARE CURRENTLY OFFLINE"</Text>
@@ -90,21 +89,15 @@ return (
                             </View>
                         </View>
                     }
-                </View> 
-            </View>
-    </View>
+            </View>       
+    </Container>
     
   )
 }
 
 const styles = StyleSheet.create({
     topContainer: {
-        backgroundColor: '#FAFAFA',
         flex: 1,
-    },
-    Historyicon: {
-        height: 5,
-        width: 5,
     },
     ImageSize: {
         height: 30,
@@ -118,12 +111,12 @@ const styles = StyleSheet.create({
     },
     TransactionHistory: {
         flexDirection: "row",
-        height: '65%',
+        height: '60%',
         paddingHorizontal: 15,
         justifyContent: "space-between",
         backgroundColor: "#",
         elevation: 1,
-        marginBottom: 10,
+        bottom: 1,
     },
     userprofile:{
         height: 35,
@@ -152,9 +145,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
       },
       valueSwitchOnline: {
-        alignItems: 'center',
+        alignItems:'center',
         width: '100%',
-        paddingHorizontal: 100,
+        paddingHorizontal: 90,
       },
     });
 
