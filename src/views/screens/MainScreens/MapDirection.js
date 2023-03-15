@@ -6,8 +6,8 @@ import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import Colors from '../../../utils/Colors';
 
 const MapDirection = ({ navigation }) => {
-    const GoToMap = () => {
-        navigation.push('Camera');
+    const GoToCam = () => {
+        navigation.push('CaptureProcess');
     }
 
     const { width, height } = Dimensions.get("window");
@@ -43,48 +43,22 @@ const MapDirection = ({ navigation }) => {
 
   return (
         <Container style={styles.topContainer} top padding={3}>
-                
-                    <View style={styles.Map}>
-                        <View style={{alignSelf:'center', alignItems:'center', elevation:5, borderRadius:5, backgroundColor:'#FAFAFA', width:'100%'}}>
-                            <Text style={{fontSize:20, fontWeight: 'bold', paddingVertical: 5,}} color={Colors.primary}> CLICK MARKER TO NAVIGATE </Text>
+                <View style={{alignSelf:'center', alignItems:'center', backgroundColor:'#FAFAFA', width:'100%'}}>
+                            <Text style={{fontSize:20, fontWeight: 'bold', paddingVertical: 5, marginTop: 5,}} color={Colors.primary}> DROP OFF LOCATION </Text>
                         </View>
+                    <View style={styles.Map}>
+                        
                         <View style={styles.mapcontainer}>
                             <MapView style={styles.map}
                             provider= {PROVIDER_GOOGLE}
                             initialRegion= {My_Location}>
-                                {/* <Marker coordinate={My_Location} /> */}
                                 <Marker coordinate={Dropoff_Location}/>
-                                {/* <Marker coordinate={Dropoff_Location}/> */}
-                                
                             </MapView>
-                            
-
                         </View>
-                        
-
-                            
-{/*
-                            <View style = {styles.searchcontainer}>
-                                <Text>Drop Off Details</Text>
-                                <GooglePlacesAutocomplete
-                                styles = {{textInput: styles.input}}
-                                onPress={(data, details = null) => {
-                                    console.log(data, details);
-                                }}
-                                query = {{
-                                    key: GOOGLE_API_KEY,
-                                    language: 'en',
-                                }}
-                                />
-                            </View>
-
-*/}
-                        
-
                     </View>
                     <View style = {styles.button}>
                             <Button 
-                            onPress={GoToMap}
+                            onPress={GoToCam}
                             title={'Proceed To Capture Proof'}
                             />
                         </View>
@@ -102,7 +76,7 @@ const styles = StyleSheet.create({
     },
     Map: {
         marginTop: 10,
-        height: 700,
+        height: '85%',
         width: Dimensions.get.width,
         backgroundColor: '#fff',
         borderColor: '#F54748',

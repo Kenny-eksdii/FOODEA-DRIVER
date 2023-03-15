@@ -18,14 +18,16 @@
     "@types/react-native": "~0.69.1",
     "expo": "~46.0.16",
     "expo-app-loading": "~2.1.0",
+    "expo-camera": "^12.5.0",
     "expo-constants": "~13.2.4",
     "expo-linear-gradient": "~11.4.0",
+    "expo-location": "~14.3.0",
     "expo-secure-store": "~11.3.0",
     "expo-splash-screen": "~0.16.2",
     "expo-status-bar": "~1.4.0",
     "formik": "^2.2.9",
     "react": "18.0.0",
-    "react-native": "^0.69.6",
+    "react-native": "0.69.6",
     "react-native-gesture-handler": "~2.5.0",
     "react-native-google-places-autocomplete": "^2.5.1",
     "react-native-image-slider-banner": "^1.0.3",
@@ -43,7 +45,8 @@
     "yup": "^0.32.11"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.9"
+    "@babel/core": "^7.12.9",
+    "react-native-dotenv": "^3.4.8"
   },
   "private": true
 }

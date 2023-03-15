@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "navigation",
-    "slug": "navigation",
+    "name": "Foodea Delivery",
+    "slug": "Foodea Delivery",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -11,6 +11,15 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
+    "plugins": [
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow $(PRODUCT_NAME) to access your camera.",
+          "microphonePermission": "Allow $(PRODUCT_NAME) to access your microphone"
+        }
+      ]
+    ],
     "updates": {
       "fallbackToCacheTimeout": 0
     },
@@ -25,7 +34,12 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.foodea.driver"
+      "package": "com.foodea.driver",
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyCDGVzWYONTdVf_gqd68kXDFroA4eXr2eU"
+        }
+      }
     },
     "web": {
       "favicon": "./assets/favicon.png"

@@ -12,7 +12,6 @@ import {
   } from "../../../constants";
 import { Header } from '../../components/FoodeaComponents';
 import SampleOrders from '../../../constants/SampleOrders';
-import { ScrollView } from 'react-native-gesture-handler';
 
 
 const OrderDetails = ({ navigation }) => {
@@ -21,7 +20,7 @@ function renderHeader() {
     return (
         <Header
             containerStyle={{
-            height: 80,
+            height: 60,
             marginHorizontal:10,
             alignItems: "center",
             }}
@@ -64,7 +63,8 @@ function renderCustomer() {
                   flex: 1,
                   flexDirection: 'row',
                   alignItems: 'center',
-                  paddingHorizontal: 20,
+                  paddingHorizontal: 10,
+                  paddingVertical: 5,
                 }}>
                   <Image
                     source={images.mcdo}

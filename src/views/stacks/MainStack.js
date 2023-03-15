@@ -4,12 +4,11 @@ import TestScreen from '../screens/MainScreens/TestScreen';
 import Orders from '../screens/MainScreens/Orders';
 import Profile from '../screens/MainScreens/Profile';
 import MapDirection from '../screens/MainScreens/MapDirection';
-import Camera from '../screens/MainScreens/Camera';
+import CaptureProcess from '../screens/MainScreens/CaptureProcess';
 import Proof from '../screens/MainScreens/Proof';
-import DeliveryRecord from '../screens/EarnedScreens/DeliveryRecord';
 import OrderDetails from '../screens/MainScreens/OrderDetails';
 import PickUpMap from '../screens/MainScreens/PickUpMap';
-
+import DeliveryRecord from '../screens/MainScreens/DeliveryRecord';
 
 
 const Stack = createNativeStackNavigator();
@@ -39,8 +38,8 @@ const MainStack = () => {
         />
         <Stack.Screen 
             options ={{ headerShown:false }} 
-            name = {"Camera"} 
-            component = {Camera}
+            name = {"CaptureProcess"} 
+            component = {CaptureProcess}
         />
         <Stack.Screen 
             options ={{ headerShown:false }} 
@@ -49,18 +48,18 @@ const MainStack = () => {
         />
         <Stack.Screen 
             options ={{ headerShown:false }} 
-            name = {"DeliveryRecord"} 
-            component = {DeliveryRecord}
-        />
-        <Stack.Screen 
-            options ={{ headerShown:false }} 
             name = {"OrderDetails"} 
             component = {OrderDetails}
         />
         <Stack.Screen 
-        options ={{ headerShown:false }} 
-        name = {"PickUpMap"} 
-        component = {PickUpMap}
+            options ={{ headerShown:false }} 
+            name = {"PickUpMap"} 
+            component = {PickUpMap}
+        />
+        <Stack.Screen 
+            options ={{ headerShown:false }} 
+            name = {"DeliveryRecord"} 
+            component = {DeliveryRecord}
         />
         
     </Stack.Navigator>

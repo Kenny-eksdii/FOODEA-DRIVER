@@ -39,6 +39,7 @@ const LoginScreen = ({ navigation }) => {
             Alert.alert ('Dont know how to open this URL: ${url}');
         }
     }
+    
  
 
     return (
@@ -86,17 +87,14 @@ const LoginScreen = ({ navigation }) => {
                                             />
                                         }
                                     />
-                                    <View style={{flexDirection:'row', justifyContent:'flex-start', alignItems: 'flex-start', alignContent:'flex-start'}}>
-                                        <View style={{backgroundColor:'#FAFAFA'}}>
+                                    <View style={{justifyContent:'flex-start', alignItems: 'flex-start', alignContent:'flex-start'}}>
+                                        <View style={{backgroundColor:'#FAFAFA', flexDirection:'row'}}>
                                             <Switch 
                                                 onValueChange={toggleSwitch}
                                                 value={switchValue}
                                                 trackColor={{false: "#D9D9D9", true: "#f99293"}}
                                                 thumbColor={switchValue ? "#f00d0e" : "#f99293"}
                                             />
-                                        </View>
-                                        
-                                        <View style={{justifyContent:'flex-start', backgroundColor:'#FAFAFA'}}>
                                             <Text style={{fontSize:15, fontWeight:'light', paddingVertical: 15,}}> Remember Me </Text>
                                         </View>
                                         

@@ -23,7 +23,7 @@ const Orders = ({ navigation }) => {
     return (
       <Header
         containerStyle={{
-          height: 80,
+          height: 60,
           marginHorizontal: SIZES.padding,
           alignItems: "center",
         }}

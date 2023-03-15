@@ -1,4 +1,4 @@
-import { View, StyleSheet, TouchableOpacity, Image, Switch, ScrollView,} from 'react-native'
+import { View, StyleSheet, TouchableOpacity, Image, Switch, ScrollView, Dimensions} from 'react-native'
 import React, { useState } from 'react'
 import { Container, SafeAreaView, Button, Text } from '../../components/FoodeaComponents'
 import images from '../../../utils/image'
@@ -18,7 +18,7 @@ const TestScreen = ({ navigation }) => {
     const handleProfile = ( ) => {
         navigation.push ('Profile');
     }
-
+    const window = Dimensions.get('screen');
 
 
 return (
@@ -98,6 +98,8 @@ return (
 const styles = StyleSheet.create({
     topContainer: {
         flex: 1,
+        height: window.height,
+        backgroundColor: '#FAFAFA'
     },
     ImageSize: {
         height: 30,
@@ -111,10 +113,9 @@ const styles = StyleSheet.create({
     },
     TransactionHistory: {
         flexDirection: "row",
-        height: '60%',
+        height: '50%',
         paddingHorizontal: 15,
         justifyContent: "space-between",
-        backgroundColor: "#",
         elevation: 1,
         bottom: 1,
     },
