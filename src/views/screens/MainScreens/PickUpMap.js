@@ -2,15 +2,15 @@ import { View, StyleSheet, TouchableOpacity, Image, Switch, Dimensions, } from '
 import React, { useState, useEffect, useRef } from 'react'
 import Colors from '../../../utils/Colors';
 import { Container, SafeAreaView, Button, Text } from '../../components/FoodeaComponents'
-import MapView, { Callout, Circle, Marker, PROVIDER_GOOGLE } from 'react-native-maps';
+import MapView, { Callout, Circle, LatLng, Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import * as Location from 'expo-location';
 import MapViewDirections from 'react-native-maps-directions';
 import {GOOGLE_API_KEY} from '../../../../environment';
 
 
 const PickUpMap = ({ navigation }) => {
-    const GoToOrderDetails = () => {
-        navigation.push('OrderDetails');
+    const GoToDropOff = () => {
+        navigation.push('MapDirection');
     }
     const [pin, setPin] = React.useState({
         latitude: 14.7744064,
@@ -21,16 +21,15 @@ const PickUpMap = ({ navigation }) => {
     useEffect(() => {
         (async () => {
           
-          let { status } = await Location.requestForegroundPermissionsAsync();
+        let { status } = await Location.requestForegroundPermissionsAsync();
           if (status !== 'granted') {
             console.log("Permission to access location was denied");
             return;
-          }
-    
-          let location = await Location.getCurrentPositionAsync({});
+        }
+        let location = await Location.getCurrentPositionAsync({});
           console.log(location);
 
-          setPin({
+        setPin({
             latitude: location.coords.latitude,
             longitude: location.coords.longitude
           })
@@ -53,26 +52,35 @@ const PickUpMap = ({ navigation }) => {
         latitudeDelta: LATITUDE_DELTA,
         longitudeDelta: LONGITUDE_DELTA,
     }
-
+    const [showDirection, setshowDirection] = useState(false);
+    const map = useRef();
+    async function fitMapToPolyline() {
+        setshowDirection(true)
+        map.current.fitToCoordinates([Pickup_Location, my_location],{
+            edgePadding: {
+              top: 10,
+              right: 20,
+              bottom: 10,
+              left: 20,
+            },
+          });
+        }
 
 
 
   return (
         <Container style={styles.topContainer} top padding={3}>
-            <View style={{alignSelf:'center', alignItems:'center', borderRadius:5, backgroundColor:'#FAFAFA', width:'100%'}}>
+            <View style={{alignSelf:'center', alignItems:'center', borderRadius:5, backgroundColor:'#FAFAFA', width:'100%', paddingVertical:10}}>
                     <Text style={{fontSize:20, fontWeight: 'bold', paddingVertical: 5, marginTop: 5,}} color={Colors.primary}> PICK UP LOCATION </Text>
                 </View>
             <View style={styles.Map}>
                 <View style={styles.mapcontainer}>
                     <MapView style={styles.map}
+                        ref={map}
                         provider= {PROVIDER_GOOGLE}
-                        initialRegion= {Pickup_Location}>
-                            <Marker coordinate={my_location} >
-                                <Callout>
-                                    <Text> My Location </Text>
-                                </Callout>
-                            </Marker>
-
+                        initialRegion= {Pickup_Location}
+                        showsUserLocation={true}
+                        >
                             <Marker
                                 coordinate={Pickup_Location}
                                 pinColor= "gold"
@@ -81,6 +89,7 @@ const PickUpMap = ({ navigation }) => {
                                     <Text> Pick Up Location </Text>
                                 </Callout>
                             </Marker>
+                            { showDirection && (
                             <MapViewDirections
                                 origin={my_location}
                                 destination={Pickup_Location}
@@ -88,13 +97,17 @@ const PickUpMap = ({ navigation }) => {
                                 strokeColor= {Colors.primary}
                                 strokeWidth={3}
                             />
+                            )}
                     </MapView>
                 </View>
             </View>
+                <TouchableOpacity style={{position:'absolute', bottom: 100, alignSelf:'center', backgroundColor:'#FAFAFA'}} onPress={fitMapToPolyline}> 
+                    <Text style={{marginTop: 5}} color={Colors.black} center size={20} weight='medium'> SHOW ROUTE</Text>
+                </TouchableOpacity>
                 <View style = {styles.button}>
                     <Button 
-                        onPress={GoToOrderDetails}
-                        title={'View Order Details'}
+                        onPress={GoToDropOff}
+                        title={'View Drop Off Location'}
                     />
                 </View>
         </Container>

@@ -1,8 +1,11 @@
 import { View, StyleSheet, TouchableOpacity, Image, Switch, Dimensions, } from 'react-native'
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef} from 'react'
 import { TextInput } from 'react-native-paper';
 import { Container, SafeAreaView, Button, Text } from '../../components/FoodeaComponents'
-import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
+import MapView, { Callout, Circle, LatLng, Marker, PROVIDER_GOOGLE } from 'react-native-maps';
+import * as Location from 'expo-location';
+import MapViewDirections from 'react-native-maps-directions';
+import {GOOGLE_API_KEY} from '../../../../environment';
 import Colors from '../../../utils/Colors';
 
 const MapDirection = ({ navigation }) => {
@@ -10,34 +13,59 @@ const MapDirection = ({ navigation }) => {
         navigation.push('CaptureProcess');
     }
 
+    const [pin, setPin] = React.useState({
+        latitude: 14.7744064,
+        longitude: 121.0461308,
+    });
+    
+
+    useEffect(() => {
+        (async () => {
+          
+        let { status } = await Location.requestForegroundPermissionsAsync();
+          if (status !== 'granted') {
+            console.log("Permission to access location was denied");
+            return;
+        }
+        let location = await Location.getCurrentPositionAsync({});
+          console.log(location);
+
+        setPin({
+            latitude: location.coords.latitude,
+            longitude: location.coords.longitude
+          })
+        })();
+      }, []);
+
     const { width, height } = Dimensions.get("window");
     const ASPECT_RATIO = width / height;
     const LATITUDE_DELTA = 0.02;
     const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
-    const INITIAL_POSITION = {
-        latitude: 14.7719701,
-        longitude: 121.0543356,
-        latitudeDelta: LATITUDE_DELTA,
-        longitudeDelta: LONGITUDE_DELTA,
-    };
     const Dropoff_Location = {
-        latitude: 14.7724448,
-        longitude: 121.0526231,
+        latitude: 14.775072,
+        longitude: 121.056516,
         latitudeDelta: LATITUDE_DELTA,
         longitudeDelta: LONGITUDE_DELTA,
     };
-    const My_Location = {
-        latitude: 14.7732177,
-        longitude: 121.0538623,
+    const my_location = {
+        latitude: pin.latitude,
+        longitude: pin.longitude,
         latitudeDelta: LATITUDE_DELTA,
         longitudeDelta: LONGITUDE_DELTA,
-    };
-    const Pick_Up_Location ={
-        latitude: 14.6034767,
-        longitude: 120.9564552,
-        latitudeDelta: LATITUDE_DELTA,
-        longitudeDelta: LONGITUDE_DELTA,
-    };
+    }
+    const [showDirection, setshowDirection] = useState(false);
+    const map = useRef();
+    async function fitMapToPolyline() {
+        setshowDirection(true)
+        map.current.fitToCoordinates([Dropoff_Location, my_location],{
+            edgePadding: {
+              top: 10,
+              right: 10,
+              bottom: 10,
+              left: 10,
+            },
+          });
+        }
 
 
 
@@ -50,12 +78,30 @@ const MapDirection = ({ navigation }) => {
                         
                         <View style={styles.mapcontainer}>
                             <MapView style={styles.map}
-                            provider= {PROVIDER_GOOGLE}
-                            initialRegion= {My_Location}>
-                                <Marker coordinate={Dropoff_Location}/>
+                                ref={map}
+                                provider= {PROVIDER_GOOGLE}
+                                initialRegion= {Dropoff_Location}
+                                showsUserLocation={true}>
+                                    <Marker coordinate={Dropoff_Location} pinColor= "gold">
+                                        <Callout>
+                                            <Text> Pick Up Location </Text>
+                                        </Callout>
+                                    </Marker>
+                                { showDirection && (
+                                <MapViewDirections
+                                    origin={my_location}
+                                    destination={Dropoff_Location}
+                                    apikey={GOOGLE_API_KEY}
+                                    strokeColor= {Colors.primary}
+                                    strokeWidth={3}
+                                />
+                                )}
                             </MapView>
                         </View>
                     </View>
+                    <TouchableOpacity style={{position:'absolute', bottom: 100, alignSelf:'center', backgroundColor:'#FAFAFA'}} onPress={fitMapToPolyline}> 
+                        <Text style={{marginTop: 5}} color={Colors.black} center size={20} weight='medium'> SHOW ROUTE</Text>
+                    </TouchableOpacity>
                     <View style = {styles.button}>
                             <Button 
                             onPress={GoToCam}
@@ -77,7 +123,7 @@ const styles = StyleSheet.create({
     Map: {
         marginTop: 10,
         height: '85%',
-        width: Dimensions.get.width,
+        width: Dimensions.get('window').width,
         backgroundColor: '#fff',
         borderColor: '#F54748',
         borderWidth: 1,
@@ -93,7 +139,7 @@ const styles = StyleSheet.create({
         flex: 1,
       },
       map: {
-        width: Dimensions.get.width,
+        width: Dimensions.get('window').width,
         height: '100%',
       },
     });

@@ -142,7 +142,7 @@ const Orders = ({ navigation }) => {
                 <View style={{flexDirection: 'row', justifyContent: 'space-evenly', bottom:10, flex:1, paddingHorizontal:10}}>
                   <Button
                     onPress={() => {
-                      navigation.navigate("PickUpMap")
+                      navigation.navigate("OrderDetails")
                       setisModalOpen(false);
                     }}
                     title={'ACCEPT'}

@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Foodea Delivery",
-    "slug": "Foodea Delivery",
+    "slug": "navigation",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -37,9 +37,13 @@
       "package": "com.foodea.driver",
       "config": {
         "googleMaps": {
-          "apiKey": "AIzaSyCDGVzWYONTdVf_gqd68kXDFroA4eXr2eU"
+          "apiKey": "AIzaSyAAqvOIpCSuljCLCfPVjgnxKikBMwqO21Y"
         }
-      }
+      },
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.RECORD_AUDIO"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"

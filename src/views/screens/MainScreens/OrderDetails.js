@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image, FlatList, TouchableOpacity,} from 'react-native';
+import { StyleSheet, Text, View, Image, FlatList, TouchableOpacity, Dimensions} from 'react-native';
 import React, { useState } from 'react'
 import {Button,} from '../../components/FoodeaComponents'
 import {
@@ -12,9 +12,24 @@ import {
   } from "../../../constants";
 import { Header } from '../../components/FoodeaComponents';
 import SampleOrders from '../../../constants/SampleOrders';
+import MapView, { Callout, Marker, PROVIDER_GOOGLE } from 'react-native-maps';
+import Colors from '../../../utils/Colors';
 
 
 const OrderDetails = ({ navigation }) => {
+  const handleMaps = () => {
+    navigation.push('PickUpMap');
+}
+    const { width, height } = Dimensions.get("window");
+    const ASPECT_RATIO = width / height;
+    const LATITUDE_DELTA = 0.02;
+    const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
+    const Pickup_Location = {
+        latitude: 14.7744064,
+        longitude: 121.0461308,
+        latitudeDelta: LATITUDE_DELTA,
+        longitudeDelta: LONGITUDE_DELTA,
+    };
     
 function renderHeader() {
     return (
@@ -23,8 +38,9 @@ function renderHeader() {
             height: 60,
             marginHorizontal:10,
             alignItems: "center",
+            marginBottom: 20,
             }}
-                title={"ORDER DETAILS"}
+                title={"LOCATION AND DETAILS"}
                 leftComponent={
                 // Open Custom Drawer
                     <TouchableOpacity
@@ -63,8 +79,8 @@ function renderCustomer() {
                   flex: 1,
                   flexDirection: 'row',
                   alignItems: 'center',
-                  paddingHorizontal: 10,
-                  paddingVertical: 5,
+                  justifyContent: 'center',
+                  elevation: 1,
                 }}>
                   <Image
                     source={images.mcdo}
@@ -82,16 +98,46 @@ function renderCustomer() {
                       {item.name}
                     </Text>
                     {'\n'}
-                    {item.price}
+                    User contact: {item.contact}
                     {'\n'}
-                    {item.quantity} pc/s
-    
+                    Amount: {item.Amount}    
                   </Text>
                 </View>
             )}
           />
         );
       }
+
+function renderMap() {
+  return (
+    <View style={styles.mapcontainer}>
+      <MapView style={styles.map}
+        provider= {PROVIDER_GOOGLE}
+        initialRegion= {Pickup_Location}
+      >
+        <Marker
+          coordinate={Pickup_Location}
+          pinColor= "gold"
+        >
+          <Callout>
+            <Text> Pick Up Location </Text>
+          </Callout>
+        </Marker>
+      </MapView>
+        <TouchableOpacity style={{
+          position:'absolute',
+          bottom: 0,
+          alignSelf:'center',
+          backgroundColor:'#EA4D4E',
+          borderRadius: 5,
+          }}
+          onPress={handleMaps}
+          > 
+          <Text style={{...FONTS.h2}} color={Colors.black}>OPEN MAP</Text>
+        </TouchableOpacity>
+    </View>
+  )
+}
     
       return (
         <View style={{
@@ -103,27 +149,30 @@ function renderCustomer() {
           {/* Header */}
           {renderHeader()}
           {/* Customer */}
-            {renderCustomer()}
-          
-          <View>
-            <View>
-              <View style={styles.topContainer} padding={10}>
+          {renderCustomer()}
+          {/* Map */}
+          {renderMap()}
+              {/* <View padding={20}>
                 <View style={{ bottom: 0, width: '100%', justifyContent: 'center',}}>
-                    <View>
-                        <Button
-                            onPress={() => navigation.navigate("MapDirection")}
-                            title="View Drop Off Location" 
-                        />
-                    </View>
+                  <Button
+                    onPress={() => navigation.navigate("MapDirection")}
+                    title="View Drop Off Location" 
+                  />
                 </View>
-              </View>
+              </View> */}
             </View>
-          </View>
-        </View>
-
       );
     }
 const styles = StyleSheet.create({
+  mapcontainer: {
+    bottom: 10,
+    position: 'relative',
+    
+  },
+  map: {
+    width: Dimensions.get('window').width,
+    height: '70%',
+  },
     });
 
 export default OrderDetails

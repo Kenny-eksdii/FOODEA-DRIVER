@@ -1,4 +1,4 @@
-const domain = 'http://192.168.43.180:8000'
+const domain = 'https://foodea-website.herokuapp.com/api/v1/riders'
 
 const config = {
     api: domain + '/api',
