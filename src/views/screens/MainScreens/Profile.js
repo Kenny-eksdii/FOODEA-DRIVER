@@ -15,7 +15,7 @@ import { Button } from '../../components/FoodeaComponents';
 
 
 const Profile = ({ navigation }) => {
-const { logout} = useContext(AuthContext);
+const { logout, user } = useContext(AuthContext);
 
     function renderHeader() {
         return (
@@ -119,7 +119,7 @@ const { logout} = useContext(AuthContext);
                                 right: 0,
                             }}
                         />
-                        <Text style={{ ...FONTS.h3, color: COLORS.black, }}>John</Text>
+                        <Text style={{ ...FONTS.h3, color: COLORS.black, }}>{user.firstname}</Text>
                     </View>
 
                     {/* Middle Name */}
@@ -147,7 +147,7 @@ const { logout} = useContext(AuthContext);
                                 right: 0,
                             }}
                         />
-                        <Text style={{ ...FONTS.h3, color: COLORS.black, }}></Text>
+                        <Text style={{ ...FONTS.h3, color: COLORS.black, }}>{user.middlename}</Text>
                     </View>
 
                     {/* Last Name */}
@@ -175,7 +175,7 @@ const { logout} = useContext(AuthContext);
                                 right: 0,
                             }}
                         />
-                        <Text style={{ ...FONTS.h3, color: COLORS.black, }}>Dough</Text>
+                        <Text style={{ ...FONTS.h3, color: COLORS.black, }}>{user.lastname}</Text>
                     </View>
 
                     {/* Height */}
@@ -259,7 +259,7 @@ const { logout} = useContext(AuthContext);
                                 right: 0,
                             }}
                         />
-                        <Text style={{ ...FONTS.h3 }}>JohnDough@gmail.com</Text>
+                        <Text style={{ ...FONTS.h3 }}>{user.email}</Text>
                     </View>
 
                     {/* Phone Number */}
@@ -287,7 +287,7 @@ const { logout} = useContext(AuthContext);
                                 right: 0,
                             }}
                         />
-                        <Text style={{ ...FONTS.h3 }}>09123456789</Text>
+                        <Text style={{ ...FONTS.h3 }}>{user.mobile_number}</Text>
                     </View>
 
                     {/* Phone Number */}

@@ -1,11 +1,10 @@
 import axios from 'axios'
 import * as SecureStore from 'expo-secure-store'
 import { NativeModules } from 'react-native'
-import config from './config'
 
 const api = ({ token = null} = {}) => {
     const api = axios.create({
-        baseURL: config.api,
+        baseURL: 'https://foodea-website.herokuapp.com/api/v1',
     })
 
     if (token) {

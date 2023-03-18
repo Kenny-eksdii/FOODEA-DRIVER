@@ -9,15 +9,24 @@ import {
   dummyData,
   images,
 } from "../../../constants";
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
+import TransactionContext from '../../../api/context/transactions/TransactionContext';
 import { Header, TextButton, FormInput, IconButton, CheckBox, FormInputCheck } from '../../components/FoodeaComponents';
+
+
 
 const Orders = ({ navigation }) => {
 
 
   const [selectedCategoryId, setSelectedCategoryId] = React.useState(1);
   const [isModalOpen, setisModalOpen] = useState(false);
-  
+  const { getTransactions, transactions } = useContext(TransactionContext);
+
+    useEffect(() => {
+        getTransactions();
+    }, []);
+
+
 
   function renderHeader() {
     return (
@@ -59,6 +68,14 @@ const Orders = ({ navigation }) => {
   }
 
 
+    //     <FlatList
+    //     data={transactions}
+    //     keyExtractor={(item) => `${item.transaction_id}`}
+    //     showsVerticalScrollIndicator={false}
+    //     renderItem={({ item, index }) => (
+    //         <Text>{item.order_status}</Text>
+    //     )}
+    //   />
   function renderCustomer() {
     return (
       <FlatList

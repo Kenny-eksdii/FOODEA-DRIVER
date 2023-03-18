@@ -22,7 +22,7 @@ const LoginScreen = ({ navigation }) => {
     const { login } = useContext(AuthContext)
 
     const handleOnSubmit = (values) => {
-        login(values.email, values.password);
+        login(values.email, values.password, switchValue);
     }
     
   
