@@ -48,6 +48,10 @@ const height = require("../../assets/img/icons/height.png");
 const weight = require("../../assets/img/icons/weight.png");
 const at = require("../../assets/img/icons/at.png");
 const phone = require("../../assets/img/icons/phone.png");
+const age = require("../../assets/img/icons/age.png");
+const birthday = require("../../assets/img/icons/birthday.png");
+const gender = require("../../assets/img/icons/gender.png");
+const showpass = require("../../assets/img/icons/showPass.png");
 
 export default {
   coupon,
@@ -100,4 +104,8 @@ export default {
   weight,
   at,
   phone,
+  age,
+  birthday,
+  gender,
+  showpass,
 };

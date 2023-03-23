@@ -20,7 +20,6 @@ const PickUpMap = ({ navigation }) => {
 
     useEffect(() => {
         (async () => {
-          
         let { status } = await Location.requestForegroundPermissionsAsync();
           if (status !== 'granted') {
             console.log("Permission to access location was denied");
@@ -51,7 +50,7 @@ const PickUpMap = ({ navigation }) => {
         longitude: pin.longitude,
         latitudeDelta: LATITUDE_DELTA,
         longitudeDelta: LONGITUDE_DELTA,
-    }
+    } 
     const [showDirection, setshowDirection] = useState(false);
     const map = useRef();
     async function fitMapToPolyline() {
@@ -65,6 +64,10 @@ const PickUpMap = ({ navigation }) => {
             },
           });
         }
+        const [distance, setDistance] = useState();
+        const [time, setTime] = useState();
+
+
 
 
 
@@ -96,12 +99,30 @@ const PickUpMap = ({ navigation }) => {
                                 apikey={GOOGLE_API_KEY}
                                 strokeColor= {Colors.primary}
                                 strokeWidth={3}
+                                onStart={(params) => {
+                                    console.log(`Started routing between "${params.origin}" and "${params.destination}"`);
+                                }}
+                                onReady={result => {
+                                    setDistance(result.distance);
+                                    setTime(result.duration)
+                                    console.log(`Distance: ${result.distance} km`)
+                                    console.log(`Duration: ${result.duration} min.`)
+                                    // fetchTime(result.distance, result.duration)
+                                }}
+                                onError={(errorMessage) => {
+                                    console.log('GOT AN ERROR');
+                                }}
                             />
                             )}
                     </MapView>
                 </View>
             </View>
-                <TouchableOpacity style={{position:'absolute', bottom: 100, alignSelf:'center', backgroundColor:'#FAFAFA'}} onPress={fitMapToPolyline}> 
+            <View>
+            <Text style={{marginTop: 5, backgroundColor:'#FAFAFA', alignSelf:'center', position:'absolute', bottom: 90}} color={Colors.black} center size={20} weight='medium'>Distance: {distance} km</Text>
+            <Text style={{marginTop: 5, backgroundColor:'#FAFAFA', alignSelf:'center', position:'absolute', bottom: 70}} color={Colors.black} center size={20} weight='medium'>Duration: {Math.floor(time)}mins</Text>
+            </View>
+                <TouchableOpacity style={{backgroundColor:'#EA4D4E', borderRadius:5, position:'absolute', bottom: 100, alignSelf:'center',}}
+                onPress={fitMapToPolyline}> 
                     <Text style={{marginTop: 5}} color={Colors.black} center size={20} weight='medium'> SHOW ROUTE</Text>
                 </TouchableOpacity>
                 <View style = {styles.button}>

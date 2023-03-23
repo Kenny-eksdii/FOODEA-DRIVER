@@ -178,62 +178,6 @@ const { logout, user } = useContext(AuthContext);
                         <Text style={{ ...FONTS.h3, color: COLORS.black, }}>{user.lastname}</Text>
                     </View>
 
-                    {/* Height */}
-                    <View
-                        style={{
-                            flexDirection: "row",
-                            alignItems: "center",
-                            justifyContent: 'center',
-                            height: 50,
-                            width: 300,
-                            backgroundColor: COLORS.white,
-                            borderRadius: SIZES.radius,
-                            marginTop: SIZES.base,
-                            elevation: 5,
-                        }}
-                    >
-                        <Image
-                            source={icons.height}
-                            style={{
-                                height: 20,
-                                width: 20,
-                                tintColor: COLORS.black,
-                                position: 'absolute',
-                                left: 5,
-                                right: 0,
-                            }}
-                        />
-                        <Text style={{ ...FONTS.h3, color: COLORS.black, }}>167 cm</Text>
-                    </View>
-
-                    {/* Weight */}
-                    <View
-                        style={{
-                            flexDirection: "row",
-                            alignItems: "center",
-                            justifyContent: 'center',
-                            height: 50,
-                            width: 300,
-                            backgroundColor: COLORS.white,
-                            borderRadius: SIZES.radius,
-                            marginTop: SIZES.base,
-                            elevation: 5,
-                        }}
-                    >
-                        <Image
-                            source={icons.weight}
-                            style={{
-                                height: 20,
-                                width: 20,
-                                tintColor: COLORS.black,
-                                position: 'absolute',
-                                left: 5,
-                                right: 0,
-                            }}
-                        />
-                        <Text style={{ ...FONTS.h3, color: COLORS.black, }}>65 kg</Text>
-                    </View>
-
                     {/* Email */}
                     <View
                         style={{
@@ -287,10 +231,70 @@ const { logout, user } = useContext(AuthContext);
                                 right: 0,
                             }}
                         />
-                        <Text style={{ ...FONTS.h3 }}>{user.mobile_number}</Text>
+                        <Text style={{ ...FONTS.h3 }}>+{user.mobile_number}</Text>
                     </View>
 
-                    {/* Phone Number */}
+                    {/* age */}
+                    <View
+                        style={{
+                            flexDirection: "row",
+                            alignItems: "center",
+                            justifyContent: 'center',
+                            height: 50,
+                            width: 300,
+                            backgroundColor: COLORS.white,
+                            borderRadius: SIZES.radius,
+                            marginTop: SIZES.base,
+                            elevation: 5,
+                        }}
+                    >
+                        <Image
+                            source={icons.age}
+                            style={{
+                                height: 20,
+                                width: 20,
+                                tintColor: COLORS.black,
+                                position: 'absolute',
+                                left: 5,
+                                right: 0,
+                            }}
+                        />
+                        <Text style={{ ...FONTS.h3, color: COLORS.black, }}>{user.age} yrs old</Text>
+                    </View>
+
+                    
+
+                    {/* gender */}
+                    <View
+                        style={{
+                            flexDirection: "row",
+                            alignItems: "center",
+                            justifyContent: 'center',
+                            height: 50,
+                            width: 300,
+                            backgroundColor: COLORS.white,
+                            borderRadius: SIZES.radius,
+                            marginTop: SIZES.base,
+                            elevation: 5,
+                        }}
+                    >
+                        <Image
+                            source={icons.gender}
+                            style={{
+                                height: 20,
+                                width: 20,
+                                tintColor: COLORS.black,
+                                position: 'absolute',
+                                left: 5,
+                                right: 0,
+                            }}
+                        />
+                        <Text style={{ ...FONTS.h3, color: COLORS.black, }}>{user.gender}</Text>
+                    </View>
+
+                    
+
+                    {/* Birthday */}
                     <View
                         style={{
                             flexDirection: "row",
@@ -306,7 +310,7 @@ const { logout, user } = useContext(AuthContext);
                         }}
                     >
                         <Image
-                            source={icons.Lock}
+                            source={icons.birthday}
                             style={{
                                 height: 25,
                                 width: 25,
@@ -316,7 +320,7 @@ const { logout, user } = useContext(AuthContext);
                                 right: 0,
                             }}
                         />
-                        <Text style={{ ...FONTS.h3 }}>*********</Text>
+                        <Text style={{ ...FONTS.h3 }}>{user.birthdate}</Text>
                     </View>
                     <View style={{bottom: 0, width: '100%', justifyContent: 'center', paddingHorizontal: 100,}}> 
                     <Button

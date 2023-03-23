@@ -3,11 +3,11 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import LandingPageScreen from '../screens/AuthScreens/LandingPageScreen';
 import LoginScreen from '../screens/AuthScreens/LoginScreen';
 import SignUpScreen from '../screens/AuthScreens/SignUpScreen';
-import Forgotpassword from '../screens/AuthScreens/Forgotpassword';
-import Resetpassword from '../screens/AuthScreens/Resetpassword';
-import Otp from '../screens/AuthScreens/Otp';
-// import SuccessScreen from '../screens/AuthScreens/SuccessScreen';
-import SuccScreen from '../screens/AuthScreens/SuccScreen';
+// import Forgotpassword from '../screens/AuthScreens/Forgotpassword';
+// import Resetpassword from '../screens/AuthScreens/Resetpassword';
+// import Otp from '../screens/AuthScreens/Otp';
+// // import SuccessScreen from '../screens/AuthScreens/SuccessScreen';
+// import SuccScreen from '../screens/AuthScreens/SuccScreen';
 
 
 const Stack = createNativeStackNavigator();
@@ -33,7 +33,7 @@ const AuthStack = () => {
                 component={SignUpScreen}
             />
 
-            <Stack.Screen
+            {/* <Stack.Screen
                 options={{ headerShown: false }}
                 name="Forgotpassword"
                 component={Forgotpassword}
@@ -53,7 +53,7 @@ const AuthStack = () => {
             options={{ headerShown:false }} 
             name="SuccScreen"
             component={SuccScreen}
-            />
+            /> */}
 
         </Stack.Navigator>
     )

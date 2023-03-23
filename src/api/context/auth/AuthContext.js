@@ -74,16 +74,6 @@ export const AuthProvider = ({ children }) => {
     //         .finally(() => setLoading(false))
     // }
 
-
-
-
-
-
-
-
-
-
-
     // const login = (email, password) => {
 
     //     if(email == 'test@gmail.com' && password == 'test'){

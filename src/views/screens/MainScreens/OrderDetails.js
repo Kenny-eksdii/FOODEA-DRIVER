@@ -53,7 +53,7 @@ function renderHeader() {
                         borderColor: COLORS.gray2,
                         borderRadius: SIZES.radius,
                         }}
-                        onPress={() => navigation.navigate("PickUpMap")}
+                        onPress={() => navigation.navigate("Orders")}
                     >
                         <Image source={icons.backarrow}
                             style={{

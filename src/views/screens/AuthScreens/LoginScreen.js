@@ -1,4 +1,4 @@
-import { StyleSheet, TouchableOpacity, View, Alert, Linking, Switch} from 'react-native'
+import { StyleSheet, TouchableOpacity, View, Alert, Linking, Switch, Image} from 'react-native'
 import { useContext, useState} from 'react';
 import { TextInput, Container, SafeAreaView, Button, Text} from '../../components/FoodeaComponents'
 import { TextInput as TxtInput } from 'react-native-paper';
@@ -6,26 +6,23 @@ import Colors from '../../../utils/Colors';
 import AuthContext from '../../../api/context/auth/AuthContext';
 import * as yup from 'yup'
 import { Formik } from 'formik'
+// import {icons} from "../../../constants";
+// // import { hide } from 'expo-splash-screen';
 
 const mainURL = "https://foodea-website.herokuapp.com/rider_landing";
+const secondaryURL = "https://foodea-website.herokuapp.com/rider_forgotpass"
 
 
 const LoginScreen = ({ navigation }) => {
-    const [switchValue, setswitchValue] = useState(false);
-    const toggleSwitch = (value) => {
-        setswitchValue(value);
-      }
-    const handleForgotPassword = () => {
-        navigation.push('Forgotpassword');
-    }
-    
     const { login } = useContext(AuthContext)
-
+    const [isSecureEntry, setIsSecureEntry] = useState(true);
     const handleOnSubmit = (values) => {
         login(values.email, values.password, switchValue);
     }
-    
-  
+    const [switchValue, setswitchValue] = useState(false);
+    const toggleSwitch = (value) => {
+        setswitchValue(value);
+      } 
     const signInSchema = yup.object({
         email: yup.string().trim().email('Invalid Email').required('Email is required'),
         password: yup.string().trim().required('Password is required'),
@@ -77,12 +74,15 @@ const LoginScreen = ({ navigation }) => {
                                         onBlur={handleBlur('password')}
                                         error={touched.password && errors.password ? true : false}
                                         errorMsg={touched.password && errors.password ? errors.password : ''}
-                                        secureTextEntry
+                                        secureTextEntry={isSecureEntry}
                                         roundness={25}
                                         right={
+                                            // <TouchableOpacity onPress={() => {setIsSecureEntry((prev) => !prev);}}>
+                                            //     <Image source={icons.showpass} style={{borderRadius: 12}}>{isSecureEntry? '' : hide}</Image>
+                                            // </TouchableOpacity>
                                             <TxtInput.Icon
                                                 name="eye"
-                                                color={Colors.primary}
+                                                color={Colors.black}
                                                 // onPress={() => setHidePassword(!hidePassword)}
                                             />
                                         }
@@ -96,6 +96,11 @@ const LoginScreen = ({ navigation }) => {
                                                 thumbColor={switchValue ? "#f00d0e" : "#f99293"}
                                             />
                                             <Text style={{fontSize:15, fontWeight:'light', paddingVertical: 15,}}> Remember Me </Text>
+                                            {/* { switchValue == false?
+                                                setswitchValue(false)
+                                            :
+                                                login.is_remember_me(true);
+                                            }, */}
                                         </View>
                                         
 
@@ -110,7 +115,7 @@ const LoginScreen = ({ navigation }) => {
                                     <TouchableOpacity onPress={() => {openURL(mainURL)}}>
                                         <Text style={{marginTop: 10}} color={Colors.black} center size={16} weight='bold' >Don't have an account? <Text color={Colors.primary} weight='medium'>Sign Up</Text></Text>
                                     </TouchableOpacity>
-                                    <TouchableOpacity onPress={handleForgotPassword}>
+                                    <TouchableOpacity onPress={() => {openURL(secondaryURL)}}>
                                         <Text style={{marginTop: 20}} color={Colors.primary} center size={14} weight='bold'>Forgot Password?</Text>
                                     </TouchableOpacity>
 
