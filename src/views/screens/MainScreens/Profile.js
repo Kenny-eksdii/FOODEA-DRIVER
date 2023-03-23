@@ -322,7 +322,7 @@ const { logout, user } = useContext(AuthContext);
                         />
                         <Text style={{ ...FONTS.h3 }}>{user.birthdate}</Text>
                     </View>
-                    <View style={{bottom: 0, width: '100%', justifyContent: 'center', paddingHorizontal: 100,}}> 
+                    <View style={{bottom: 0, width:300, justifyContent: 'center',}}> 
                     <Button
                         onPress={logout}
                         title={'Log Out'}

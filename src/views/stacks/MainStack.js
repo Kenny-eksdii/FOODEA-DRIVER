@@ -5,11 +5,9 @@ import Orders from '../screens/MainScreens/Orders';
 import Profile from '../screens/MainScreens/Profile';
 import MapDirection from '../screens/MainScreens/MapDirection';
 import CaptureProcess from '../screens/MainScreens/CaptureProcess';
-import Proof from '../screens/MainScreens/Proof';
 import OrderDetails from '../screens/MainScreens/OrderDetails';
 import PickUpMap from '../screens/MainScreens/PickUpMap';
 import DeliveryRecord from '../screens/MainScreens/DeliveryRecord';
-
 import { TransactionProvider } from '../../api/context/transactions/TransactionContext';
 
 const Stack = createNativeStackNavigator();
@@ -42,11 +40,6 @@ const MainStack = () => {
                 options ={{ headerShown:false }} 
                 name = {"CaptureProcess"} 
                 component = {CaptureProcess}
-            />
-            <Stack.Screen 
-                options ={{ headerShown:false }} 
-                name = {"Proof"} 
-                component = {Proof}
             />
             <Stack.Screen 
                 options ={{ headerShown:false }} 

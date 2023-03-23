@@ -52,6 +52,9 @@ const age = require("../../assets/img/icons/age.png");
 const birthday = require("../../assets/img/icons/birthday.png");
 const gender = require("../../assets/img/icons/gender.png");
 const showpass = require("../../assets/img/icons/showPass.png");
+const camera = require("../../assets/img/icons/camera.png");
+const retake = require("../../assets/img/icons/retake.png");
+const save = require("../../assets/img/icons/save.png");
 
 export default {
   coupon,
@@ -108,4 +111,7 @@ export default {
   birthday,
   gender,
   showpass,
+  camera,
+  retake,
+  save,
 };

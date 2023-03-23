@@ -4,70 +4,127 @@ import { Textbutton, Button, Container, SafeAreaView, Text } from '../../compone
 import { Camera, CameraType } from 'expo-camera';
 import Colors from "../../../utils/Colors";
 import * as MediaLibrary from 'expo-media-library';
+import {icons} from "../../../constants";
 
 
 const CaptureProcess = ({ navigation }) => {
-    const BackToMap = () => {
-        navigation.push('MapDirection');
+    const handleRecord = () => {
+        navigation.push('DeliveryRecord');
     }
-    const GotoProof = () => {
-        navigation.push('Proof');
-    }
-    const [type, setType] = useState(CameraType.back);
     const [permission, requestPermission] = Camera.useCameraPermissions();
+    const [type, setType] = useState(Camera.Constants.Type.back);
     const [image, setImage]=useState(null);
-    useEffect (() => {
-        const opencamera = async () => {
-        await requestPermission();
-    };
-    opencamera();
-    },[])
+    const cameraRef = useRef(null);
+    
 
-    function toggleCameraType() {
-        setType(current => (current === CameraType.back ? CameraType.front : CameraType.back));
-      }
+    useEffect (() => {
+        (async () => {
+        MediaLibrary.requestPermissionsAsync();
+        const cameraStatus = await Camera.requestCameraPermissionsAsync();
+        requestPermission(cameraStatus.status === 'granted');
+        })();
+    }, [])
+    if (permission === false) {
+        return <Text> NO ACCESS TO CAMERA </Text>
+    }
+    
+    const saveImage = async () => {
+        if (image) {
+            try{
+                await MediaLibrary.createAssetAsync(image);
+                // alert('Picture Send')
+                setImage(null);
+            } catch(e) {
+                console.log(e)
+            }
+        }
+    }
+
+    const takePicture = async () => {
+        if (cameraRef) {
+            try {
+                const data = await cameraRef.current.takePictureAsync();
+                console.log(data);
+                setImage(data.uri);
+            } catch (e){
+                console.log(e);
+            }
+        }
+    }
 
 
 return (
         <View style={{backgroundColor: '#FAFAFA'}}>
             <View style={{height: Dimensions.get('window').height, width: Dimensions.get('window').width}}>
-                {/* <View style={{flexDirection: 'row', justifyContent:'space-between'}}>
-                    <Button style={{width:'120%'}}
-                    onPress={BackToMap}
-                    title={'Back'}
-                    />
-                </View> */}
                 <View style={styles.container}>
                     {
-                        permission && permission.granted && (
-                            <View>
-                                {!image ?
-                                <Camera style={styles.camera} type={type}>
-                                    <TouchableOpacity style={{backgroundColor: '#EA4D4E', position: 'absolute', alignSelf: 'center'}} onPress={toggleCameraType}>
-                                        <Text style={{marginTop: 5}} color={Colors.black} center size={20} weight='medium'>Flip Camera</Text>
+                    permission && permission.granted && (
+                        <View>
+                            {!image ?
+                                <Camera
+                                    style={styles.camera}
+                                    type={type}
+                                    ref={cameraRef}
+                                >
+                                    <TouchableOpacity style={{backgroundColor: '#EA4D4E', position: 'absolute', alignSelf: 'center'}}
+                                        onPress={() => {
+                                            setType(type === CameraType.back? CameraType.front : CameraType.back)
+                                        }}
+                                    >
+                                        <Text
+                                            style={{marginTop: 5}}
+                                            color={Colors.black} center size={20} weight='medium'
+                                        >
+                                            Flip Camera
+                                        </Text>
                                     </TouchableOpacity>
                                 </Camera>
                                 :
-                                <Image source={{uri: image}}/>
-                                }
-                            </View>
+                                <Image source={{uri: image}} style={styles.camera}/>
+                            }
+                                <View>
+                                    {image ?
+                                        <View styles ={{
+                                            flexdirection: 'row',
+                                            justifyContent: 'space-between',
+                                            paddingHorizontal: 10
+                                        }}>
+                                            <View style={{flexDirection:'row', position:'absolute', bottom: 10, width: '100%', justifyContent: 'space-between', paddingHorizontal: 70,}}>
+                                                <Button
+                                                    title={"Re-take"}
+                                                    onPress={() => setImage(null)}
+                                                />
+                                                <Button
+                                                    title={"Send"}
+                                                    onPress={() => {
+                                                        saveImage();
+                                                        handleRecord();
+                                                        
+                                                    }}
+                                                />
+                                            </View>
+                                        </View>
+                                        :
+                                        <View style={{ position:'absolute', bottom: 10, width: '100%', justifyContent: 'center', paddingHorizontal: 100,}}>
+                                        <Button
+                                            onPress={takePicture}
+                                            title={'Take Picture'}
+                                        />
+                                        </View>
+                                    }
+                                </View>
+                        </View>
                         )
                     }
 
                 </View>
-                <View style={{position:'absolute', bottom: 10, width: '100%', justifyContent: 'center', paddingHorizontal: 100,}}>
-                    <Button 
-                        onPress={GotoProof}
-                        title={'Take Picture'}
-                    />
-                </View>
-                
-            </View>
-            <View>
             </View>
         </View>
 )}
 const styles = StyleSheet.create({
+    container: {
+        flex:1,
+    },
     camera: {
         height: '100%',
         width: Dimensions.width,
