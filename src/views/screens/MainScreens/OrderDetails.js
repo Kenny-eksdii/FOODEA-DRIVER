@@ -103,6 +103,7 @@ function renderCustomer() {
                     Amount: {item.Amount}    
                   </Text>
                 </View>
+
             )}
           />
         );
@@ -150,6 +151,14 @@ function renderMap() {
           {renderHeader()}
           {/* Customer */}
           {renderCustomer()}
+          <View>
+          <View style={{flexDirection:'column'}}>
+                    <Button
+                        style={{top: -15, width:'50%', alignSelf:'center'}}
+                        title={'View Orders'}
+                      />
+                  </View>
+          </View>
           {/* Map */}
           {renderMap()}
               {/* <View padding={20}>

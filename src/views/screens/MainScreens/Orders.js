@@ -79,8 +79,10 @@ const Orders = ({ navigation }) => {
   function renderCustomer() {
     return (
       <FlatList
-        data={dummyData.Details}
-        keyExtractor={(item) => `${item.id}`}
+        // data={dummyData.Details}
+        // keyExtractor={(item) => `${item.id}`}
+        data={transactions}
+        keyExtractor={(item) => `${item.transaction_id}`}
         showsVerticalScrollIndicator={false}
         renderItem={({ item, index }) => (
           <TouchableOpacity
@@ -123,12 +125,12 @@ const Orders = ({ navigation }) => {
                 <Text style={{
                   ...FONTS.h2
                 }}>
-                  {item.name}
+                  {item.order_id}
                 </Text>
                 {'\n'}
-                {item.address}
+                {item.date}
                 {'\n'}
-                {item.distance} km away
+                {item.order_status}
 
               </Text>
             </View>

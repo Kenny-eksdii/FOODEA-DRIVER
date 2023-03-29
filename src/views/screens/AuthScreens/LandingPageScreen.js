@@ -31,7 +31,7 @@ function LandingPageScreen({navigation}){
             <Text color={Colors.black} size={21} center>Get Started at</Text>
             <Text color={Colors.primary} size={40} weight='bold' center>FOODEA</Text>
             <Text center size={15} weight="light" color={Colors.black} style={{marginBottom: 50}}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lacus tempor praesentr malesuada.
+            "Bringing convenience and flavor to your life, one meal at a time."
         </Text>
         </View>
         <View style = {styles.button}>

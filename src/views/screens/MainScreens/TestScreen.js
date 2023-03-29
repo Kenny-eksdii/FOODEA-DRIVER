@@ -48,7 +48,7 @@ return (
                     </View>
 
                     <View>
-                        <Text style={{marginTop: 5}} color={Colors.black} center size={20} weight='medium'>{DriverDetails.OrderNo}</Text>
+                        <Text style={{marginTop: 5}} color={Colors.black} center size={20} weight='medium'> 0 </Text>
                     </View>
                 </View>
 
@@ -58,7 +58,7 @@ return (
                     </View>
 
                     <View>
-                        <Text style={{marginTop: 5}} color={Colors.black} center size={20} weight='medium'>{DriverDetails.Earnings}</Text>
+                        <Text style={{marginTop: 5}} color={Colors.black} center size={20} weight='medium'> 0 </Text>
                     </View>
                 </View>
             </View>
@@ -67,8 +67,8 @@ return (
             <View style={styles.TransactionHistory}>       
                 <ScrollView>
                     <View style = {{flexDirection:'row', justifyContent: 'space-between', paddingVertical: 10, paddingHorizontal: 5,}}>
-                        <Text style={{marginTop: 5}} color={Colors.black} center size={20} weight='medium'>{HistoryOrders.User1}</Text>
-                        <Text style={{marginTop: 5}} color={Colors.black} center size={20} weight='medium'>{HistoryOrders.Price}</Text>
+                        <Text style={{marginTop: 5}} color={Colors.black} center size={20} weight='medium'> </Text>
+                        <Text style={{marginTop: 5}} color={Colors.black} center size={20} weight='medium'> </Text>
                     </View>
                 </ScrollView>    
             </View>
