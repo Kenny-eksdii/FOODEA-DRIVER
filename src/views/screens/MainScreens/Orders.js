@@ -16,13 +16,27 @@ import { Header } from '../../components/FoodeaComponents';
 const Orders = ({ navigation }) => {
 
 
-  const [selectedCategoryId, setSelectedCategoryId] = React.useState(1);
   const [isModalOpen, setisModalOpen] = useState(false);
-  const { getOrders, orders, setOrderId} = useContext(OrderContext);
+  const { 
+        getOrders, 
+        orders, 
+        setOrderId,
+        selectedCategoryId,
+        setSelectedCategoryId,
+        setOrder
+    } = useContext(OrderContext);
 
     useEffect(() => {
       getOrders();
     }, []);
+
+    const onOrderPress = (item) => {
+        const { order_key } = item;
+
+        setSelectedCategoryId(order_key);
+        setOrder(item.order_details[0]);
+        setisModalOpen(true);
+    }
 
 
 
@@ -96,10 +110,7 @@ const Orders = ({ navigation }) => {
                   ? "#F54748"
                   : COLORS.lightGray2,
             }}
-            onPress={() => {
-              setSelectedCategoryId(item.order_key);
-              setisModalOpen(true);
-            }}
+            onPress={() => onOrderPress(item)}
           >
             <View style={{
               flex: 1,

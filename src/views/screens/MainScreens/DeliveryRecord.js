@@ -15,6 +15,8 @@ import OrderContext from '../../../api/context/Orders/OrderContext';
 
 const DeliveryRecord = ({ navigation }) => {
 
+    const { totalPrice, order } = useContext(OrderContext);
+
     function renderHeader() {
         return (
             <Header
@@ -79,14 +81,14 @@ const DeliveryRecord = ({ navigation }) => {
                         <Text style={{
                             fontWeight: 'bold',
                         }}>
-                            {/* {item.product_details.product_name} */}test order
+                            {/* {item.product_details.product_name} */}{order.restaurant_details.business_name}
                         </Text>
                         <Text style={{
                             fontWeight: 'bold',
                             marginRight: 10,
                         }}>
                             {/* {item.product_details.price} */}
-                            99
+                            {totalPrice}
                         </Text>
                     </View>
 
@@ -253,7 +255,7 @@ const DeliveryRecord = ({ navigation }) => {
                     color: COLORS.primary,
                     ...FONTS.h1
                 }}>
-                    99
+                {totalPrice}
                 </Text>
             </View>
 

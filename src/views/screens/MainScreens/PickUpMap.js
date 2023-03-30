@@ -1,5 +1,6 @@
 import { View, StyleSheet, TouchableOpacity, Image, Switch, Dimensions, } from 'react-native'
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, useContext } from 'react'
+import OrderContext from '../../../api/context/Orders/OrderContext';
 import Colors from '../../../utils/Colors';
 import { Container, SafeAreaView, Button, Text } from '../../components/FoodeaComponents'
 import MapView, { Callout, Circle, LatLng, Marker, PROVIDER_GOOGLE } from 'react-native-maps';
@@ -17,6 +18,7 @@ const PickUpMap = ({ navigation }) => {
         longitude: 121.0461308,
     });
     
+    const { order } = useContext(OrderContext);
 
     useEffect(() => {
         (async () => {
@@ -40,8 +42,8 @@ const PickUpMap = ({ navigation }) => {
     const LATITUDE_DELTA = 0.02;
     const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
     const Pickup_Location = {
-        latitude: 14.7744064,
-        longitude: 121.0461308,
+        latitude: order?.restaurant_details?.latitude,
+        longitude: order?.restaurant_details?.longitude,
         latitudeDelta: LATITUDE_DELTA,
         longitudeDelta: LONGITUDE_DELTA,
     };

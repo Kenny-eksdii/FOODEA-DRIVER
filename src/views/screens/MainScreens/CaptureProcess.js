@@ -1,21 +1,20 @@
 import { TouchableOpacity, StyleSheet, View, PermissionsAndroid, Image, Dimensions,} from "react-native"
-import { useState, useEffect, useRef,} from "react"
+import { useState, useEffect, useRef, useContext} from "react"
 import { Textbutton, Button, Container, SafeAreaView, Text } from '../../components/FoodeaComponents'
 import { Camera, CameraType } from 'expo-camera';
 import Colors from "../../../utils/Colors";
 import * as MediaLibrary from 'expo-media-library';
 import { RNS3 } from 'react-native-aws3';
+import OrderContext from "../../../api/context/Orders/OrderContext";
 
 
 const CaptureProcess = ({ navigation }) => {
-    const handleRecord = () => {
-        navigation.push('DeliveryRecord');
-    }
     const [permission, requestPermission] = Camera.useCameraPermissions();
     const [type, setType] = useState(Camera.Constants.Type.back);
     const [image, setImage]=useState(null);
     const cameraRef = useRef(null);
-    
+
+    const { selectedCategoryId, order, updateOrderStatus } = useContext(OrderContext);
 
     useEffect (() => {
         (async () => {
@@ -28,37 +27,43 @@ const CaptureProcess = ({ navigation }) => {
         return <Text> NO ACCESS TO CAMERA </Text>
     }
     
-    const saveImage = async () => {
-            const file = {
-                uri: {image},
-                name: "image.fileName",
-                type: "image/jpeg"
-            }
-            const options ={
-                keyPrefix: "rider_proof/",
-                bucket: 'foodea-bucket',
-                region: 'us-east-2',
-                accessKey: 'AKIAX6FNIXHMUMJMVO3K',
-                secretKey: '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',
-                successActionStatus: 201,
-            }
-            RNS3.put (file, options)
-            .then ( (response) => {
-                console.log(response);
-                console.log(response.status);
-            })
-               
+    const handleRecord = () => {
+        saveImage();
+        navigation.push('DeliveryRecord');
+        // updateOrderStatus()
+    }
 
-            if (image) {
-                try{
-                    await MediaLibrary.createAssetAsync(image);
-                    // alert('Picture Send')
-                    setImage(null);
-                } catch(e) {
-                    console.log(e)
-                }
+    const saveImage = async () => {
+        const file = {
+            uri: {image},
+            name: "image.fileName",
+            type: "image/jpeg"
+        }
+        const options ={
+            keyPrefix: "rider_proof/",
+            bucket: 'foodea-bucket',
+            region: 'us-east-2',
+            accessKey: 'AKIAX6FNIXHMUMJMVO3K',
+            secretKey: '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',
+            successActionStatus: 201,
+        }
+        RNS3.put (file, options)
+        .then ( (response) => {
+            console.log(response);
+            console.log(response.status);
+        })
+            
+
+        if (image) {
+            try{
+                await MediaLibrary.createAssetAsync(image);
+                // alert('Picture Send')
+                setImage(null);
+            } catch(e) {
+                console.log(e)
             }
         }
+    }
 
     const takePicture = async () => {
         if (cameraRef) {
@@ -116,11 +121,7 @@ return (
                                                 />
                                                 <Button
                                                     title={"Send"}
-                                                    onPress={() => {
-                                                        saveImage();
-                                                        handleRecord();
-                                                        
-                                                    }}
+                                                    onPress={handleRecord}
                                                 />
                                             </View>
                                         </View>

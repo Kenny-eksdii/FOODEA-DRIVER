@@ -19,10 +19,11 @@ import OrderContext from '../../../api/context/Orders/OrderContext';
 
 const OrderDetails = ({ navigation }) => {
 
-  const { getOrderDetails, details, orders } = useContext(OrderContext);
+  const { getOrderDetails, details, restaurants } = useContext(OrderContext);
 
   useEffect(() => {
     getOrderDetails();
+    
   }, []);
 
   const handleMaps = () => {
@@ -79,7 +80,7 @@ function renderHeader() {
 function renderCustomer() {
     return (
         <FlatList
-            data={details}
+            data={restaurants}
             keyExtractor={(item) => `${item.order_id}`}
             showsVerticalScrollIndicator={false}
             renderItem={({ item }) => (
