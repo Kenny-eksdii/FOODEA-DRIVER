@@ -166,11 +166,12 @@ const Orders = ({ navigation }) => {
                 ...FONTS.h2,
                 marginHorizontal: 85,
                 paddingVertical: 20,
-                color: '#FAFAFA'
+                color: '#FAFAFA',
+                alignSelf: 'center'
                 }}>ACCEPT THIS ORDER?
               </Text>
                 <View style={{flexDirection: 'row', justifyContent: 'space-evenly', bottom:10, flex:1, paddingHorizontal:10,}}>
-                  <Button
+                  <Button style={{alignSelf: 'center'}}
                     onPress={() => {
                       navigation.navigate("OrderDetails");
                       console.log(selectedCategoryId)
@@ -179,7 +180,7 @@ const Orders = ({ navigation }) => {
                     }}
                     title={'ACCEPT'}
                   />
-                  <Button
+                  <Button style={{alignSelf: 'center'}}
                     onPress={() => setisModalOpen(false)}
                     title={'CANCEL'}
                   />
@@ -210,7 +211,8 @@ const styles = StyleSheet.create({
     position:'absolute',
     bottom:10,
     backgroundColor: '#000',
-    width: '100%'
+    width: '100%',
+    height: '15%'
   },
 });
 

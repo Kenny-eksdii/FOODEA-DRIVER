@@ -34,24 +34,24 @@ const CaptureProcess = ({ navigation }) => {
     }
 
     const saveImage = async () => {
-        const file = {
-            uri: {image},
-            name: "image.fileName",
-            type: "image/jpeg"
-        }
-        const options ={
-            keyPrefix: "rider_proof/",
-            bucket: 'foodea-bucket',
-            region: 'us-east-2',
-            accessKey: 'AKIAX6FNIXHMUMJMVO3K',
-            secretKey: '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',
-            successActionStatus: 201,
-        }
-        RNS3.put (file, options)
-        .then ( (response) => {
-            console.log(response);
-            console.log(response.status);
-        })
+        // const file = {
+        //     uri: {image},
+        //     name: "image.fileName",
+        //     type: "image/jpeg"
+        // }
+        // const options ={
+        //     keyPrefix: "rider_proof/",
+        //     bucket: 'foodea-bucket',
+        //     region: 'us-east-2',
+        //     accessKey: 'AKIAX6FNIXHMUMJMVO3K',
+        //     secretKey: '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',
+        //     successActionStatus: 201,
+        // }
+        // RNS3.put (file, options)
+        // .then ( (response) => {
+        //     console.log(response);
+        //     console.log(response.status);
+        // })
             
 
         if (image) {

@@ -119,14 +119,20 @@ const PickUpMap = ({ navigation }) => {
                     </MapView>
                 </View>
             </View>
-            <View>
-                <Text style={{marginTop: 5, backgroundColor:'#FAFAFA', alignSelf:'center', position:'absolute', bottom: 90}} color={Colors.black} center size={20} weight='medium'>Distance: {distance} km</Text>
-                <Text style={{marginTop: 5, backgroundColor:'#FAFAFA', alignSelf:'center', position:'absolute', bottom: 70}} color={Colors.black} center size={20} weight='medium'>Duration: {Math.floor(time)}mins</Text>
+            <View style={{flexDirection:'column', justifyContent:'space-between',}}>
+                <View>
+                <Text style={{marginTop: 5, backgroundColor:'#FAFAFA', alignSelf:'center', position:'absolute', bottom:60,}} color={Colors.black} center size={20} weight='medium'>Distance: {distance} km</Text>
+                </View>
+                <View>
+                <Text style={{marginTop: 5, backgroundColor:'#FAFAFA', alignSelf:'center', position:'absolute', bottom: 30,}} color={Colors.black} center size={20} weight='medium'>Duration: {Math.floor(time)}mins</Text>
+                </View>
+                <View>
+                    <TouchableOpacity style={{backgroundColor:'#EA4D4E', borderRadius:5, position:'absolute', bottom:0, alignSelf:'center',}}
+                        onPress={fitMapToPolyline}> 
+                            <Text style={{marginTop: 5}} color={Colors.black} center size={20} weight='medium'> SHOW ROUTE</Text>
+                    </TouchableOpacity>
+                </View>
             </View>
-                <TouchableOpacity style={{backgroundColor:'#EA4D4E', borderRadius:5, position:'absolute', bottom: 100, alignSelf:'center',}}
-                    onPress={fitMapToPolyline}> 
-                        <Text style={{marginTop: 5}} color={Colors.black} center size={20} weight='medium'> SHOW ROUTE</Text>
-                </TouchableOpacity>
                 
                 <View style = {styles.button}>
                     <Button 

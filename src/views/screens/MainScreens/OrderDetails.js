@@ -143,7 +143,7 @@ function renderMap() {
           }}
           onPress={handleMaps}
           > 
-          <Text style={{...FONTS.h2}} color={Colors.black}>OPEN MAP</Text>
+          <Text style={{...FONTS.h2,}} color={Colors.black}>OPEN MAP</Text>
         </TouchableOpacity>
     </View>
   )
@@ -163,7 +163,7 @@ function renderMap() {
           <View>
             <View style={{flexDirection:'column'}}>
                     <Button
-                        style={{top: -15, width:'50%', alignSelf:'center'}}
+                        style={{top: -15, alignSelf:'center'}}
                         title={'View Orders'}
                         onPress={() => navigation.navigate("UserOrderDetails")}
                       />

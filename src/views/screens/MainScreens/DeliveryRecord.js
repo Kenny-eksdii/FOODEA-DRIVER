@@ -61,7 +61,7 @@ const DeliveryRecord = ({ navigation }) => {
                             color: COLORS.gray,
                             fontWeight: 'bold',
                         }}>
-                            ORDER
+                            RESTAURANT
                         </Text>
                         <Text style={{
                             color: COLORS.gray,
@@ -91,149 +91,11 @@ const DeliveryRecord = ({ navigation }) => {
                             {totalPrice}
                         </Text>
                     </View>
-
-                    {/* <View style={{
-                        marginLeft: SIZES.base,
-                        flexDirection: 'row',
-                        justifyContent: 'space-between',
-                    }}>
-                        <Text style={{
-                            fontWeight: 'bold',
-                        }}>
-                            ₱ 160. 00
-                        </Text>
-                        <Text style={{
-                            fontWeight: 'bold',
-                            marginRight: 10,
-                        }}>
-                            3
-                        </Text>
-                    </View>
-
-                    <View style={{
-                        marginLeft: SIZES.base,
-                        flexDirection: 'row',
-                        justifyContent: 'space-between',
-                    }}>
-                        <Text style={{
-                            fontWeight: 'bold',
-                        }}>
-                            {item.product_details.price}
-                        </Text>
-                        <Text style={{
-                            fontWeight: 'bold',
-                            marginRight: 10,
-                        }}>
-                            3
-                        </Text>
-                    </View> */}
                 </View>
-
-
-                {/* TOTAL STATISTICS FOR DAY, WEEK, MONTH */}
-                {/* {renderTotalStats()} */}
             </View>
         )
     }
 
-    // function renderTotalStats() {
-    //     return (
-    //         <View style={{
-    //             flex: 1,
-    //             marginTop: SIZES.radius,
-    //         }}>
-    //             <Text style={{
-    //                 ...FONTS.h3
-    //             }}>
-    //                 TOTAL STATISTICS FOR
-    //             </Text>
-
-    //             {/* Table */}
-    //             <View style={{
-    //                 height: 100,
-    //                 width: 370,
-    //                 backgroundColor: COLORS.white,
-    //                 borderRadius: SIZES.radius,
-    //                 elevation: 5,
-    //             }}>
-    //                 <View style={{
-    //                     marginLeft: SIZES.base,
-    //                     marginTop: SIZES.base,
-    //                     flexDirection: 'row',
-    //                     justifyContent: 'space-between',
-    //                 }}>
-    //                     <Text style={{
-    //                         color: COLORS.gray,
-    //                         fontWeight: 'bold',
-    //                     }}>
-    //                         EARNINGS
-    //                     </Text>
-    //                     <Text style={{
-    //                         color: COLORS.gray,
-    //                         fontWeight: 'bold',
-    //                         marginRight: 10,
-    //                     }}>
-    //                         ORDERS
-    //                     </Text>
-    //                 </View>
-
-    //                 <View style={{
-    //                     marginLeft: SIZES.base,
-    //                     flexDirection: 'row',
-    //                     justifyContent: 'space-between',
-    //                 }}>
-    //                     <Text style={{
-    //                         fontWeight: 'bold',
-    //                     }}>
-    //                         ₱ 160. 00
-    //                     </Text>
-    //                     <Text style={{
-    //                         fontWeight: 'bold',
-    //                         marginRight: 10,
-    //                     }}>
-    //                         3
-    //                     </Text>
-    //                 </View>
-
-    //                 <View style={{
-    //                     marginLeft: SIZES.base,
-    //                     flexDirection: 'row',
-    //                     justifyContent: 'space-between',
-    //                 }}>
-    //                     <Text style={{
-    //                         fontWeight: 'bold',
-    //                     }}>
-    //                         ₱ 160. 00
-    //                     </Text>
-    //                     <Text style={{
-    //                         fontWeight: 'bold',
-    //                         marginRight: 10,
-    //                     }}>
-    //                         3
-    //                     </Text>
-    //                 </View>
-
-    //                 <View style={{
-    //                     marginLeft: SIZES.base,
-    //                     flexDirection: 'row',
-    //                     justifyContent: 'space-between',
-    //                 }}>
-    //                     <Text style={{
-    //                         fontWeight: 'bold',
-    //                     }}>
-    //                         ₱ 160. 00
-    //                     </Text>
-    //                     <Text style={{
-    //                         fontWeight: 'bold',
-    //                         marginRight: 10,
-    //                     }}>
-    //                         3
-    //                     </Text>
-    //                 </View>
-    //             </View>
-    //         </View>
-    //     )
-    // }
     return (
         <View style={{
             flex: 1,
