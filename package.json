@@ -33,6 +33,7 @@
     "geolib": "^3.3.3",
     "react": "18.0.0",
     "react-native": "0.69.6",
+    "react-native-aws3": "^0.0.9",
     "react-native-gesture-handler": "~2.5.0",
     "react-native-google-places-autocomplete": "^2.5.1",
     "react-native-image-slider-banner": "^1.0.3",

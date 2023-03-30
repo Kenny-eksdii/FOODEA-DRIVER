@@ -30,7 +30,7 @@ export const TransactionProvider = ({ children }) => {
         <TransactionContext.Provider
             value={{
                 getTransactions,
-                transactions
+                transactions,
             }}
         >
             {children}

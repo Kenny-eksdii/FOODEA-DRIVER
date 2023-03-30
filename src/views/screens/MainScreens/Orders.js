@@ -5,13 +5,11 @@ import {
   FONTS,
   SIZES,
   icons,
-  constants,
-  dummyData,
   images,
 } from "../../../constants";
 import React, { useState, useContext, useEffect } from 'react';
-import TransactionContext from '../../../api/context/transactions/TransactionContext';
-import { Header, TextButton, FormInput, IconButton, CheckBox, FormInputCheck } from '../../components/FoodeaComponents';
+import OrderContext from '../../../api/context/Orders/OrderContext';
+import { Header } from '../../components/FoodeaComponents';
 
 
 
@@ -20,10 +18,10 @@ const Orders = ({ navigation }) => {
 
   const [selectedCategoryId, setSelectedCategoryId] = React.useState(1);
   const [isModalOpen, setisModalOpen] = useState(false);
-  const { getTransactions, transactions } = useContext(TransactionContext);
+  const { getOrders, orders, setOrderId} = useContext(OrderContext);
 
     useEffect(() => {
-        getTransactions();
+      getOrders();
     }, []);
 
 
@@ -69,7 +67,7 @@ const Orders = ({ navigation }) => {
 
 
     //     <FlatList
-    //     data={transactions}
+    //     data={orders?status[eq]=Pending}
     //     keyExtractor={(item) => `${item.transaction_id}`}
     //     showsVerticalScrollIndicator={false}
     //     renderItem={({ item, index }) => (
@@ -79,10 +77,8 @@ const Orders = ({ navigation }) => {
   function renderCustomer() {
     return (
       <FlatList
-        // data={dummyData.Details}
-        // keyExtractor={(item) => `${item.id}`}
-        data={transactions}
-        keyExtractor={(item) => `${item.transaction_id}`}
+        data={orders}
+        keyExtractor={(item) => `${item.order_key}`}
         showsVerticalScrollIndicator={false}
         renderItem={({ item, index }) => (
           <TouchableOpacity
@@ -96,12 +92,12 @@ const Orders = ({ navigation }) => {
               paddingHorizontal: 8,
               borderRadius: SIZES.radius,
               backgroundColor:
-                selectedCategoryId == item.id
+                selectedCategoryId == item.order_key
                   ? "#F54748"
                   : COLORS.lightGray2,
             }}
             onPress={() => {
-              setSelectedCategoryId(item.id);
+              setSelectedCategoryId(item.order_key);
               setisModalOpen(true);
             }}
           >
@@ -111,26 +107,29 @@ const Orders = ({ navigation }) => {
               alignItems: 'center',
             }}>
               <Image
-                source={images.profilepic}
+                source={{uri: item.order_details[0].restaurant_details.documents.logo}}
                 style={{ marginTop: 5, height: 80, width: 80 }}
               />
               <Text
                 style={{
                   marginLeft: SIZES.padding,
                   color:
-                    selectedCategoryId == item.id ? COLORS.white : COLORS.gray,
+                    selectedCategoryId == item.order_key ? COLORS.white : COLORS.black,
                   ...FONTS.h3,
                 }}
               >
                 <Text style={{
                   ...FONTS.h2
                 }}>
-                  {item.order_id}
+                {item.order_details[0].restaurant_details.business_name}
                 </Text>
                 {'\n'}
-                {item.date}
+                {item.order_details[0].restaurant_details.address}
                 {'\n'}
-                {item.order_status}
+                user Contact: {item.order_details[0].user_details.contact_number}
+                {'\n'}
+                Amount : {item.order_totalPrice}
+
 
               </Text>
             </View>
@@ -156,12 +155,15 @@ const Orders = ({ navigation }) => {
                 ...FONTS.h2,
                 marginHorizontal: 85,
                 paddingVertical: 20,
+                color: '#FAFAFA'
                 }}>ACCEPT THIS ORDER?
               </Text>
-                <View style={{flexDirection: 'row', justifyContent: 'space-evenly', bottom:10, flex:1, paddingHorizontal:10}}>
+                <View style={{flexDirection: 'row', justifyContent: 'space-evenly', bottom:10, flex:1, paddingHorizontal:10,}}>
                   <Button
                     onPress={() => {
-                      navigation.navigate("OrderDetails")
+                      navigation.navigate("OrderDetails");
+                      console.log(selectedCategoryId)
+                      setOrderId(selectedCategoryId)
                       setisModalOpen(false);
                     }}
                     title={'ACCEPT'}
@@ -196,6 +198,8 @@ const styles = StyleSheet.create({
   topContainer: {
     position:'absolute',
     bottom:10,
+    backgroundColor: '#000',
+    width: '100%'
   },
 });
 

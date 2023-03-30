@@ -74,7 +74,7 @@ const PickUpMap = ({ navigation }) => {
   return (
         <Container style={styles.topContainer} top padding={3}>
             <View style={{alignSelf:'center', alignItems:'center', borderRadius:5, backgroundColor:'#FAFAFA', width:'100%', paddingVertical:10}}>
-                    <Text style={{fontSize:20, fontWeight: 'bold', paddingVertical: 5, marginTop: 5,}} color={Colors.primary}> PICK UP LOCATION </Text>
+                    <Text style={{fontSize:20, fontWeight: 'bold', paddingVertical: 5, marginTop: 5,}} color={Colors.primary}> RESTAURANT LOCATION </Text>
                 </View>
             <View style={styles.Map}>
                 <View style={styles.mapcontainer}>
@@ -89,7 +89,7 @@ const PickUpMap = ({ navigation }) => {
                                 pinColor= "gold"
                             >
                                 <Callout>
-                                    <Text> Pick Up Location </Text>
+                                    <Text> RESTAURANT LOCATION </Text>
                                 </Callout>
                             </Marker>
                             { showDirection && (
@@ -118,13 +118,14 @@ const PickUpMap = ({ navigation }) => {
                 </View>
             </View>
             <View>
-            <Text style={{marginTop: 5, backgroundColor:'#FAFAFA', alignSelf:'center', position:'absolute', bottom: 90}} color={Colors.black} center size={20} weight='medium'>Distance: {distance} km</Text>
-            <Text style={{marginTop: 5, backgroundColor:'#FAFAFA', alignSelf:'center', position:'absolute', bottom: 70}} color={Colors.black} center size={20} weight='medium'>Duration: {Math.floor(time)}mins</Text>
+                <Text style={{marginTop: 5, backgroundColor:'#FAFAFA', alignSelf:'center', position:'absolute', bottom: 90}} color={Colors.black} center size={20} weight='medium'>Distance: {distance} km</Text>
+                <Text style={{marginTop: 5, backgroundColor:'#FAFAFA', alignSelf:'center', position:'absolute', bottom: 70}} color={Colors.black} center size={20} weight='medium'>Duration: {Math.floor(time)}mins</Text>
             </View>
                 <TouchableOpacity style={{backgroundColor:'#EA4D4E', borderRadius:5, position:'absolute', bottom: 100, alignSelf:'center',}}
-                onPress={fitMapToPolyline}> 
-                    <Text style={{marginTop: 5}} color={Colors.black} center size={20} weight='medium'> SHOW ROUTE</Text>
+                    onPress={fitMapToPolyline}> 
+                        <Text style={{marginTop: 5}} color={Colors.black} center size={20} weight='medium'> SHOW ROUTE</Text>
                 </TouchableOpacity>
+                
                 <View style = {styles.button}>
                     <Button 
                         onPress={GoToDropOff}

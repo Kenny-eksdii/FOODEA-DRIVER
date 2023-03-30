@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { StyleSheet, Text, View, TextInput, Image, FlatList, TouchableOpacity } from 'react-native';
 import { Button } from '../../components/FoodeaComponents';
 import {
@@ -11,6 +11,7 @@ import {
     images,
 } from "../../../constants";
 import { Header, TextButton, FormInput, IconButton, CheckBox, FormInputCheck } from '../../components/FoodeaComponents';
+import OrderContext from '../../../api/context/Orders/OrderContext';
 
 const DeliveryRecord = ({ navigation }) => {
 
@@ -23,32 +24,6 @@ const DeliveryRecord = ({ navigation }) => {
                     alignItems: "center",
                 }}
                 title={"Delivery Records"}
-                // leftComponent={
-                //     // Open Custom Drawer
-                //     <TouchableOpacity
-                //         style={{
-                //             width: 40,
-                //             height: 40,
-                //             alignItems: "center",
-                //             justifyContent: "center",
-                //             borderWidth: 1,
-                //             borderColor: COLORS.gray2,
-                //             borderRadius: SIZES.radius,
-                //         }}
-                //         onPress={() => navigation.goBack()}
-                //     >
-                //         <Image source={icons.backarrow}
-                //             style={{
-                //                 borderRadius: SIZES.radius,
-                //                 color: COLORS.gray2
-                //             }} />
-                //     </TouchableOpacity>
-                // }
-                // rightComponent={
-                //     <View style={{
-                //         width: 40,
-                //     }}></View>
-                // }
             />
         );
     }
@@ -84,18 +59,38 @@ const DeliveryRecord = ({ navigation }) => {
                             color: COLORS.gray,
                             fontWeight: 'bold',
                         }}>
-                            EARNINGS
+                            ORDER
                         </Text>
                         <Text style={{
                             color: COLORS.gray,
                             fontWeight: 'bold',
                             marginRight: 10,
                         }}>
-                            ORDERS
+                            TOTAL
                         </Text>
                     </View>
 
                     <View style={{
+                        marginLeft: SIZES.base,
+                        flexDirection: 'row',
+                        justifyContent: 'space-between',
+
+                    }}>
+                        <Text style={{
+                            fontWeight: 'bold',
+                        }}>
+                            {/* {item.product_details.product_name} */}test order
+                        </Text>
+                        <Text style={{
+                            fontWeight: 'bold',
+                            marginRight: 10,
+                        }}>
+                            {/* {item.product_details.price} */}
+                            99
+                        </Text>
+                    </View>
+
+                    {/* <View style={{
                         marginLeft: SIZES.base,
                         flexDirection: 'row',
                         justifyContent: 'space-between',
@@ -121,7 +116,7 @@ const DeliveryRecord = ({ navigation }) => {
                         <Text style={{
                             fontWeight: 'bold',
                         }}>
-                            ₱ 160. 00
+                            {item.product_details.price}
                         </Text>
                         <Text style={{
                             fontWeight: 'bold',
@@ -129,132 +124,114 @@ const DeliveryRecord = ({ navigation }) => {
                         }}>
                             3
                         </Text>
-                    </View>
-
-                    <View style={{
-                        marginLeft: SIZES.base,
-                        flexDirection: 'row',
-                        justifyContent: 'space-between',
-                    }}>
-                        <Text style={{
-                            fontWeight: 'bold',
-                        }}>
-                            ₱ 160. 00
-                        </Text>
-                        <Text style={{
-                            fontWeight: 'bold',
-                            marginRight: 10,
-                        }}>
-                            3
-                        </Text>
-                    </View>
+                    </View> */}
                 </View>
 
 
                 {/* TOTAL STATISTICS FOR DAY, WEEK, MONTH */}
-                {renderTotalStats()}
+                {/* {renderTotalStats()} */}
             </View>
         )
     }
 
-    function renderTotalStats() {
-        return (
-            <View style={{
-                flex: 1,
-                marginTop: SIZES.radius,
-            }}>
-                <Text style={{
-                    ...FONTS.h3
-                }}>
-                    TOTAL STATISTICS FOR
-                </Text>
+    // function renderTotalStats() {
+    //     return (
+    //         <View style={{
+    //             flex: 1,
+    //             marginTop: SIZES.radius,
+    //         }}>
+    //             <Text style={{
+    //                 ...FONTS.h3
+    //             }}>
+    //                 TOTAL STATISTICS FOR
+    //             </Text>
 
-                {/* Table */}
-                <View style={{
-                    height: 100,
-                    width: 370,
-                    backgroundColor: COLORS.white,
-                    borderRadius: SIZES.radius,
-                    elevation: 5,
-                }}>
-                    <View style={{
-                        marginLeft: SIZES.base,
-                        marginTop: SIZES.base,
-                        flexDirection: 'row',
-                        justifyContent: 'space-between',
-                    }}>
-                        <Text style={{
-                            color: COLORS.gray,
-                            fontWeight: 'bold',
-                        }}>
-                            EARNINGS
-                        </Text>
-                        <Text style={{
-                            color: COLORS.gray,
-                            fontWeight: 'bold',
-                            marginRight: 10,
-                        }}>
-                            ORDERS
-                        </Text>
-                    </View>
+    //             {/* Table */}
+    //             <View style={{
+    //                 height: 100,
+    //                 width: 370,
+    //                 backgroundColor: COLORS.white,
+    //                 borderRadius: SIZES.radius,
+    //                 elevation: 5,
+    //             }}>
+    //                 <View style={{
+    //                     marginLeft: SIZES.base,
+    //                     marginTop: SIZES.base,
+    //                     flexDirection: 'row',
+    //                     justifyContent: 'space-between',
+    //                 }}>
+    //                     <Text style={{
+    //                         color: COLORS.gray,
+    //                         fontWeight: 'bold',
+    //                     }}>
+    //                         EARNINGS
+    //                     </Text>
+    //                     <Text style={{
+    //                         color: COLORS.gray,
+    //                         fontWeight: 'bold',
+    //                         marginRight: 10,
+    //                     }}>
+    //                         ORDERS
+    //                     </Text>
+    //                 </View>
 
-                    <View style={{
-                        marginLeft: SIZES.base,
-                        flexDirection: 'row',
-                        justifyContent: 'space-between',
-                    }}>
-                        <Text style={{
-                            fontWeight: 'bold',
-                        }}>
-                            ₱ 160. 00
-                        </Text>
-                        <Text style={{
-                            fontWeight: 'bold',
-                            marginRight: 10,
-                        }}>
-                            3
-                        </Text>
-                    </View>
+    //                 <View style={{
+    //                     marginLeft: SIZES.base,
+    //                     flexDirection: 'row',
+    //                     justifyContent: 'space-between',
+    //                 }}>
+    //                     <Text style={{
+    //                         fontWeight: 'bold',
+    //                     }}>
+    //                         ₱ 160. 00
+    //                     </Text>
+    //                     <Text style={{
+    //                         fontWeight: 'bold',
+    //                         marginRight: 10,
+    //                     }}>
+    //                         3
+    //                     </Text>
+    //                 </View>
 
-                    <View style={{
-                        marginLeft: SIZES.base,
-                        flexDirection: 'row',
-                        justifyContent: 'space-between',
-                    }}>
-                        <Text style={{
-                            fontWeight: 'bold',
-                        }}>
-                            ₱ 160. 00
-                        </Text>
-                        <Text style={{
-                            fontWeight: 'bold',
-                            marginRight: 10,
-                        }}>
-                            3
-                        </Text>
-                    </View>
+    //                 <View style={{
+    //                     marginLeft: SIZES.base,
+    //                     flexDirection: 'row',
+    //                     justifyContent: 'space-between',
+    //                 }}>
+    //                     <Text style={{
+    //                         fontWeight: 'bold',
+    //                     }}>
+    //                         ₱ 160. 00
+    //                     </Text>
+    //                     <Text style={{
+    //                         fontWeight: 'bold',
+    //                         marginRight: 10,
+    //                     }}>
+    //                         3
+    //                     </Text>
+    //                 </View>
 
-                    <View style={{
-                        marginLeft: SIZES.base,
-                        flexDirection: 'row',
-                        justifyContent: 'space-between',
-                    }}>
-                        <Text style={{
-                            fontWeight: 'bold',
-                        }}>
-                            ₱ 160. 00
-                        </Text>
-                        <Text style={{
-                            fontWeight: 'bold',
-                            marginRight: 10,
-                        }}>
-                            3
-                        </Text>
-                    </View>
-                </View>
-            </View>
-        )
-    }
+    //                 <View style={{
+    //                     marginLeft: SIZES.base,
+    //                     flexDirection: 'row',
+    //                     justifyContent: 'space-between',
+    //                 }}>
+    //                     <Text style={{
+    //                         fontWeight: 'bold',
+    //                     }}>
+    //                         ₱ 160. 00
+    //                     </Text>
+    //                     <Text style={{
+    //                         fontWeight: 'bold',
+    //                         marginRight: 10,
+    //                     }}>
+    //                         3
+    //                     </Text>
+    //                 </View>
+    //             </View>
+    //         </View>
+    //     )
+    // }
     return (
         <View style={{
             flex: 1,
@@ -276,7 +253,7 @@ const DeliveryRecord = ({ navigation }) => {
                     color: COLORS.primary,
                     ...FONTS.h1
                 }}>
-                    ₱ 160. 00
+                    99
                 </Text>
             </View>
 

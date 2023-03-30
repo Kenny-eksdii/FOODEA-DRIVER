@@ -4,7 +4,7 @@ import { Textbutton, Button, Container, SafeAreaView, Text } from '../../compone
 import { Camera, CameraType } from 'expo-camera';
 import Colors from "../../../utils/Colors";
 import * as MediaLibrary from 'expo-media-library';
-import {icons} from "../../../constants";
+import { RNS3 } from 'react-native-aws3';
 
 
 const CaptureProcess = ({ navigation }) => {
@@ -29,16 +29,36 @@ const CaptureProcess = ({ navigation }) => {
     }
     
     const saveImage = async () => {
-        if (image) {
-            try{
-                await MediaLibrary.createAssetAsync(image);
-                // alert('Picture Send')
-                setImage(null);
-            } catch(e) {
-                console.log(e)
+            const file = {
+                uri: {image},
+                name: "image.fileName",
+                type: "image/jpeg"
+            }
+            const options ={
+                keyPrefix: "rider_proof/",
+                bucket: 'foodea-bucket',
+                region: 'us-east-2',
+                accessKey: 'AKIAX6FNIXHMUMJMVO3K',
+                secretKey: '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',
+                successActionStatus: 201,
+            }
+            RNS3.put (file, options)
+            .then ( (response) => {
+                console.log(response);
+                console.log(response.status);
+            })
+               
+
+            if (image) {
+                try{
+                    await MediaLibrary.createAssetAsync(image);
+                    // alert('Picture Send')
+                    setImage(null);
+                } catch(e) {
+                    console.log(e)
+                }
             }
         }
-    }
 
     const takePicture = async () => {
         if (cameraRef) {

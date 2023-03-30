@@ -1,10 +1,13 @@
-import { View, StyleSheet, TouchableOpacity, Image, Switch, ScrollView, Dimensions} from 'react-native'
-import React, { useState } from 'react'
+import { View, StyleSheet, TouchableOpacity, Image, Switch, ScrollView, Dimensions, FlatList} from 'react-native'
+import React, { useState, useContext, useEffect } from 'react'
 import { Container, SafeAreaView, Button, Text } from '../../components/FoodeaComponents'
-import images from '../../../utils/image'
+import images from '../../../utils/image';
+import {
+    FONTS,
+    SIZES,
+  } from "../../../constants";
 import Colors from '../../../utils/Colors';
-import DriverDetails from '../../../utils/DriverDetails';
-import HistoryOrders from '../../../utils/HistoryOrders';
+import TransactionContext from '../../../api/context/transactions/TransactionContext'
 
 
 const TestScreen = ({ navigation }) => {
@@ -19,6 +22,12 @@ const TestScreen = ({ navigation }) => {
         navigation.push ('Profile');
     }
     const window = Dimensions.get('screen');
+
+    const { transactions, getTransactions} = useContext(TransactionContext);
+
+    useEffect(() => {
+        getTransactions();
+    }, []);
 
 
 return (
@@ -65,12 +74,40 @@ return (
 
                 <Text style={{fontSize:20, fontWeight:'bold', paddingHorizontal: 10, paddingVertical: 10, marginTop: 15, }}>TRANSACTION HISTORY</Text>
             <View style={styles.TransactionHistory}>       
-                <ScrollView>
-                    <View style = {{flexDirection:'row', justifyContent: 'space-between', paddingVertical: 10, paddingHorizontal: 5,}}>
-                        <Text style={{marginTop: 5}} color={Colors.black} center size={20} weight='medium'> </Text>
-                        <Text style={{marginTop: 5}} color={Colors.black} center size={20} weight='medium'> </Text>
-                    </View>
-                </ScrollView>    
+                <FlatList
+                    data={transactions}
+                    keyExtractor={(item) => `${item.transaction_id}`}
+                    showsVerticalScrollIndicator={false}
+                    renderItem={({ item }) => (
+                        <View style={{
+                        flex: 1,
+                        flexDirection: 'row',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        elevation: 1,
+                        }}>
+                        {/* <Image
+                            source={{uri: item.merchant_id}}
+                            style={{ marginTop: 5, height: 80, width: 80 }}
+                        /> */}
+                        <Text
+                            style={{
+                            marginLeft: SIZES.padding,
+                            ...FONTS.h3,
+                            }}
+                        >
+                            <Text style={{
+                            ...FONTS.h2
+                            }}>
+                            {item.merchant_id}
+                            </Text>
+                            {'\n'}
+                            Date: {item.date}  
+                        </Text>
+                        </View>
+
+                    )}
+                />   
             </View>
             
         </View>
@@ -112,10 +149,8 @@ const styles = StyleSheet.create({
 
     },
     TransactionHistory: {
-        flexDirection: "row",
         height: '50%',
         paddingHorizontal: 15,
-        justifyContent: "space-between",
         elevation: 1,
         bottom: 1,
     },
