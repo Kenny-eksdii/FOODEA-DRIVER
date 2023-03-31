@@ -55,6 +55,9 @@ const showpass = require("../../assets/img/icons/showPass.png");
 const camera = require("../../assets/img/icons/camera.png");
 const retake = require("../../assets/img/icons/retake.png");
 const save = require("../../assets/img/icons/save.png");
+const rider_logo = require("../../assets/img/icons/ride_logo.png");
+const sample_logo = require("../../assets/img/icons/Sample.png");
+const icon = require("../../assets/img/icons/icon.png");
 
 export default {
   coupon,
@@ -114,4 +117,7 @@ export default {
   camera,
   retake,
   save,
+  rider_logo,
+  sample_logo,
+  icon,
 };
