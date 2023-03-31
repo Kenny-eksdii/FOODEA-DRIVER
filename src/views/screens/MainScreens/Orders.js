@@ -23,7 +23,8 @@ const Orders = ({ navigation }) => {
         setOrderId,
         selectedCategoryId,
         setSelectedCategoryId,
-        setOrder
+        setOrder,
+        setNewOrderId
     } = useContext(OrderContext);
 
     useEffect(() => {
@@ -35,6 +36,8 @@ const Orders = ({ navigation }) => {
 
         setSelectedCategoryId(order_key);
         setOrder(item.order_details[0]);
+        setNewOrderId(item.order_details[0].order_id)
+        console.log(item.order_details[0].order_id)
         setisModalOpen(true);
     }
 

@@ -30,7 +30,7 @@ const CaptureProcess = ({ navigation }) => {
     const handleRecord = () => {
         saveImage();
         navigation.push('DeliveryRecord');
-        // updateOrderStatus()
+        updateOrderStatus()
     }
 
     const saveImage = async () => {

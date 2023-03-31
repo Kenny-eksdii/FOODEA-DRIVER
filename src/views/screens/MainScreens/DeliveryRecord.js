@@ -15,7 +15,7 @@ import OrderContext from '../../../api/context/Orders/OrderContext';
 
 const DeliveryRecord = ({ navigation }) => {
 
-    const { totalPrice, order } = useContext(OrderContext);
+    const { totalPrice, order, getOrders } = useContext(OrderContext);
 
     function renderHeader() {
         return (
@@ -125,7 +125,12 @@ const DeliveryRecord = ({ navigation }) => {
             {renderTodayStats()}
             <View>
                     <Button 
-                        onPress={() => navigation.navigate("Orders")}
+                        onPress={() =>
+                            {
+                                getOrders();
+                                navigation.navigate("Orders");
+                            }
+                        }
                         title={'BACK TO MAIN MENU'}
                     />
             </View>

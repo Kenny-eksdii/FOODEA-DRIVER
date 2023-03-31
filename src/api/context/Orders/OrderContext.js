@@ -13,6 +13,7 @@ export const OrderProvider = ({ children }) => {
     const [selectedCategoryId, setSelectedCategoryId] = useState(1);
     const [order, setOrder] = useState({});
     const [totalPrice, setTotalPrice] = useState(0);
+    const [newOrderID, setNewOrderId] = useState(0);
 
 
     const getOrders = async () => {
@@ -34,7 +35,8 @@ export const OrderProvider = ({ children }) => {
 
     const updateOrderStatus = async () => {
 
-        const { 
+        const {
+            order_id,
             customer_id,
             product_id,
             restaurant_id,
@@ -47,8 +49,10 @@ export const OrderProvider = ({ children }) => {
 
 
         let form_data = {
+            order_id: newOrderID,
             customer_id,
             product_id,
+            merchant_id: restaurant_id,
             order_key: selectedCategoryId,
             restaurant_id,
             quantity,
@@ -60,14 +64,25 @@ export const OrderProvider = ({ children }) => {
         } ;
 
         await api()
-        .put('orders?status[eq]=Pending', form_data)
+        .patch(`orders/${order_id}`, form_data)
             .then((response) => {
                 /* COde here if succsful */
+                console.log(`orders/${order_id}`);
             })
             .catch((error) => {
                 if (error.message === 'Network Error') {
                     alert('No Internet Access')
                 } else {
+                    console.log(`orders/${order_id}`);
+                    console.log(order_id,
+                        customer_id,
+                        product_id,
+                        restaurant_id,
+                        quantity,
+                        total,
+                        payment_type,
+                        latitude,
+                        longitude)
                     console.log(error)
                     const errData = error.message
                     alert(errData)
@@ -84,6 +99,8 @@ export const OrderProvider = ({ children }) => {
                 let unique_restaurants = [];
 
                 setTotalPrice(0);
+                setDetails([]);
+                setRestaurants([]);
 
                 for (let i = 0; i < data.length; i++) {
                     let restau_name = data[i].restaurant_details.business_name;
@@ -124,7 +141,8 @@ export const OrderProvider = ({ children }) => {
                 setOrder,
                 restaurants,
                 updateOrderStatus,
-                totalPrice
+                totalPrice,
+                setNewOrderId,
             }}
         >
             {children}
