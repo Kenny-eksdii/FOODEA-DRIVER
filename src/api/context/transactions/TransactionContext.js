@@ -13,7 +13,7 @@ export const TransactionProvider = ({ children }) => {
             .get('transactions')
             .then((response) => {
                 setTransactions(response.data);
-                console.log(response.data);
+                // console.log(response.data);
             })
             .catch((error) => {
                 if (error.message === 'Network Error') {

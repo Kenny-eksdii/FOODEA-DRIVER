@@ -1,5 +1,5 @@
 
-import { View, Text, Image, TouchableOpacity, ScrollView, } from 'react-native';
+import { View, Text, Image, TouchableOpacity, FlatList, ScrollView, } from 'react-native';
 import {
     images,
     constants,
@@ -9,13 +9,14 @@ import {
     FONTS,
 } from "../../../constants";
 import { Header, TextButton, FormInput, IconButton, CheckBox, FormInputCheck } from '../../components/FoodeaComponents';
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import AuthContext from '../../../api/context/auth/AuthContext'
 import { Button } from '../../components/FoodeaComponents';
 
 
 const Profile = ({ navigation }) => {
 const { logout, user } = useContext(AuthContext);
+// const [imageUri, setImageUri] = useState('');
 
     function renderHeader() {
         return (
@@ -66,7 +67,8 @@ const { logout, user } = useContext(AuthContext);
                 marginBottom: SIZES.padding,
             }}>
                 <Image
-                    source={images.profilepic}
+                    source={{ uri: user.rider_documents.rider_photo}}
+                    // source={images.profilepic}
                     resizeMode="contain"
                     style={{
                         width: 200,
@@ -74,6 +76,7 @@ const { logout, user } = useContext(AuthContext);
                     }}
                 />
             </View>
+
         )
     }
 
@@ -203,7 +206,7 @@ const { logout, user } = useContext(AuthContext);
                                 right: 0,
                             }}
                         />
-                        <Text style={{ ...FONTS.h3 }}>{user.email}</Text>
+                        <Text style={{ ...FONTS.h4 }}>{user.email}</Text>
                     </View>
 
                     {/* Phone Number */}

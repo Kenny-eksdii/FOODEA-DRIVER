@@ -13,10 +13,11 @@ export const AuthProvider = ({ children }) => {
     const login = async (email, password, is_remember_me = false) => {
         // setLoading(true)
         await api()
-            .get('riders')
+            .get(`riders`)
             .then((response) => {
                 const userData = response.data;
                 const userFound = userData.find(user => user.email === email);
+                console.log(response.data);
 
                 if(userFound){
                     bcrypt.compare(password, userFound.password, (err, result) => {
