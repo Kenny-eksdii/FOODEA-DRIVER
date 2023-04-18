@@ -1,5 +1,5 @@
 import { View, StyleSheet, TouchableOpacity, Image, Switch, Dimensions, } from 'react-native'
-import React, { useState, useEffect, useRef} from 'react'
+import React, { useState, useEffect, useRef, useContext} from 'react'
 import { TextInput } from 'react-native-paper';
 import { Container, SafeAreaView, Button, Text } from '../../components/FoodeaComponents'
 import MapView, { Callout, Circle, LatLng, Marker, PROVIDER_GOOGLE } from 'react-native-maps';
@@ -7,6 +7,7 @@ import * as Location from 'expo-location';
 import MapViewDirections from 'react-native-maps-directions';
 import {GOOGLE_API_KEY} from '../../../../environment';
 import Colors from '../../../utils/Colors';
+import OrderContext from '../../../api/context/Orders/OrderContext';
 
 const MapDirection = ({ navigation }) => {
     const GoToCam = () => {
@@ -14,10 +15,11 @@ const MapDirection = ({ navigation }) => {
     }
 
     const [pin, setPin] = React.useState({
-        latitude: 14.7744064,
-        longitude: 121.0461308,
+        latitude: 14.7587072,
+        longitude: 121.0318848,
     });
     
+    const { order } = useContext(OrderContext);
 
     useEffect(() => {
         (async () => {
@@ -37,13 +39,16 @@ const MapDirection = ({ navigation }) => {
         })();
       }, []);
 
+// USER LOCATION
+
     const { width, height } = Dimensions.get("window");
     const ASPECT_RATIO = width / height;
     const LATITUDE_DELTA = 0.02;
     const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
+
     const Dropoff_Location = {
-        latitude: 14.775072,
-        longitude: 121.056516,
+        latitude: order?.latitude,
+        longitude: order?.longitude,
         latitudeDelta: LATITUDE_DELTA,
         longitudeDelta: LONGITUDE_DELTA,
     };
@@ -55,6 +60,7 @@ const MapDirection = ({ navigation }) => {
     }
     const [showDirection, setshowDirection] = useState(false);
     const map = useRef();
+
     async function fitMapToPolyline() {
         setshowDirection(true)
         map.current.fitToCoordinates([Dropoff_Location, my_location],{

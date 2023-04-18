@@ -102,6 +102,8 @@ export const OrderProvider = ({ children }) => {
                 setDetails([]);
                 setRestaurants([]);
 
+                console.log(`orders?order_key[eq]=${orderId}`)
+                
                 for (let i = 0; i < data.length; i++) {
                     let restau_name = data[i].restaurant_details.business_name;
                     if(!unique_restaurants_temp.includes(restau_name)){

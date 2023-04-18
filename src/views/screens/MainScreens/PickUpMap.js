@@ -14,8 +14,8 @@ const PickUpMap = ({ navigation }) => {
         navigation.push('MapDirection');
     }
     const [pin, setPin] = React.useState({
-        latitude: 14.7744064,
-        longitude: 121.0461308,
+        latitude: 14.7587072,
+        longitude: 121.0318848,
     });
     
     const { order } = useContext(OrderContext);
@@ -36,6 +36,8 @@ const PickUpMap = ({ navigation }) => {
           })
         })();
       }, []);
+
+// RESTAURANT LOCATION
 
     const { width, height } = Dimensions.get("window");
     const ASPECT_RATIO = width / height;

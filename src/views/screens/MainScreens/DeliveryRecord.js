@@ -117,7 +117,8 @@ const DeliveryRecord = ({ navigation }) => {
                     color: COLORS.primary,
                     ...FONTS.h1
                 }}>
-                {totalPrice}
+                {/* {totalPrice} */}
+                {order.total}
                 </Text>
             </View>
 
