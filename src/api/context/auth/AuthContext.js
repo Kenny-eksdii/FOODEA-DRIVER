@@ -8,6 +8,9 @@ const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(false);
     const [logged_in, setLogged_in] = useState(false);
+    const [userID, setUserID] = useState(false);
+    const [lat, setLat] = useState();
+    const [long, setLong] = useState();
 
 
     const login = async (email, password, is_remember_me = false) => {
@@ -17,7 +20,8 @@ export const AuthProvider = ({ children }) => {
             .then((response) => {
                 const userData = response.data;
                 const userFound = userData.find(user => user.email === email);
-                console.log(response.data);
+                setUserID (userData[0].rider_id);
+                console.log(userData[0].rider_id);
 
                 if(userFound){
                     bcrypt.compare(password, userFound.password, (err, result) => {
@@ -54,37 +58,34 @@ export const AuthProvider = ({ children }) => {
                 }
             })
             // .finally(() => setLoading(false))
+
+            await api()
+            .patch(`riders/${userID}`,
+                {
+                latitude:lat,
+                longitude:long,
+                })
+                .then((response) => {
+                    console.log(lat);
+                    console.log(long);
+                })
+                .catch((error) => {
+                    if (error.message === 'Network Error') {
+                        alert('No Internet Access')
+                    } else {
+                        // console.log(error)
+                        // const errData = error.message
+                        // alert(errData)
+                    }
+                })
     }
+
+    
+
 
     const getUserInfo = async () => {
         SecureStore.setItemAsync('user', );
     }
-
-    // const logout = async () => {
-    //     await api({ token: user.token })
-    //         .post('/token/logout', {})
-    //         .then((response) => {
-    //             SecureStore.deleteItemAsync('user')
-    //             SecureStore.deleteItemAsync('logged_in')
-    //             setUser(null)
-    //             setLogged_in('false')
-    //         })
-    //         .catch((err) => {
-    //             console.log(err)
-    //         })
-    //         .finally(() => setLoading(false))
-    // }
-
-    // const login = (email, password) => {
-
-    //     if(email == 'test@gmail.com' && password == 'test'){
-    //         let sampleUser = {id: '001', name: 'Jane Doe'};
-    //         setUser(sampleUser);
-    //         setLogged_in(true);
-    //         SecureStore.setItemAsync('user', JSON.stringify(sampleUser))
-    //         SecureStore.setItemAsync('logged_in', 'true')
-    //     }
-    // }
 
     const logout = () => {
         setUser(false);
@@ -101,7 +102,13 @@ export const AuthProvider = ({ children }) => {
                 user,
                 setUser,
                 logged_in,
-                setLogged_in
+                setLogged_in,
+                userID,
+                setLat,
+                lat,
+                setLong,
+                long,
+
             }}
         >
             {children}

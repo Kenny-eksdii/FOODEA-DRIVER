@@ -1,10 +1,15 @@
 import React, { useState, createContext } from 'react';
 import api from '../../context/auth/api'
+import { useContext } from 'react';
+import AuthContext from '../auth/AuthContext';
+import axios from 'axios';
 
 const OrderContext = createContext();
 
+
 export const OrderProvider = ({ children }) => {
 
+    const {userID} = useContext(AuthContext);
     const [orders, setOrders] = useState([]);
     const [OrderDetails, setOrderDetails] = useState([]);
     const [orderId, setOrderId] = useState()
@@ -14,11 +19,14 @@ export const OrderProvider = ({ children }) => {
     const [order, setOrder] = useState({});
     const [totalPrice, setTotalPrice] = useState(0);
     const [newOrderID, setNewOrderId] = useState(0);
-
+    // const currentDate = new Date().toLocaleDateString(undefined, { day: '2-digit', month: '2-digit', year: 'numeric' });
+    const currentDate = new Date();
+    const isoDate = currentDate.toISOString().slice(0, 10);
 
     const getOrders = async () => {
         await api()
-            .get('orders?status[eq]=Pending')
+            // .get('orders?status[eq]=Pending')
+            .get(`orders?status[eq]=Pending&date[eq]=${isoDate}&rider_id=${userID}` )
             .then((response) => {
                 setOrders(response.data);
             })
@@ -63,26 +71,61 @@ export const OrderProvider = ({ children }) => {
             longitude
         } ;
 
+        // patchTable();
+        // const patchTable = async () => {
+            
+        // }
+        for( let i = 0 ; i < details.length ; i++) {
+             const response = await axios.patch(`https://foodea-website.herokuapp.com/api/v1/orders/${details[i].order_id}`, {
+                status: "Paid",
+             })
+            console.log(response.data);
+        }
+        //console.log("asdad"+orders.length);
+
+        // await api()
+        // .patch(`orders/${order_id}`, form_data)
+        //     .then((response) => {
+        //         /* COde here if succsful */
+        //         console.log(`orders/${order_id}`);
+        //     })
+        //     .catch((error) => {
+        //         if (error.message === 'Network Error') {
+        //             alert('No Internet Access')
+        //         } else {
+        //             console.log(`orders/${order_id}`);
+        //             console.log(order_id,
+        //                 customer_id,
+        //                 product_id,
+        //                 restaurant_id,
+        //                 quantity,
+        //                 total,
+        //                 payment_type,
+        //                 latitude,
+        //                 longitude)
+        //             console.log(error)
+        //             const errData = error.message
+        //             alert(errData)
+        //         }
+        //     })
+
         await api()
-        .patch(`orders/${order_id}`, form_data)
+        .post(`transactions`,
+                {order_key: orderId,
+                merchant_id: restaurant_id,
+                customer_id: customer_id,
+                rider_id: userID,
+                product_id: product_id,
+                order_status: "Delivered"},)
+
             .then((response) => {
                 /* COde here if succsful */
-                console.log(`orders/${order_id}`);
+                console.log(response.data);
             })
             .catch((error) => {
                 if (error.message === 'Network Error') {
                     alert('No Internet Access')
                 } else {
-                    console.log(`orders/${order_id}`);
-                    console.log(order_id,
-                        customer_id,
-                        product_id,
-                        restaurant_id,
-                        quantity,
-                        total,
-                        payment_type,
-                        latitude,
-                        longitude)
                     console.log(error)
                     const errData = error.message
                     alert(errData)

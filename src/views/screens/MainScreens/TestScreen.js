@@ -8,7 +8,9 @@ import {
     SIZES,
   } from "../../../constants";
 import Colors from '../../../utils/Colors';
-import TransactionContext from '../../../api/context/transactions/TransactionContext'
+import TransactionContext from '../../../api/context/transactions/TransactionContext';
+import * as Location from 'expo-location';
+import AuthContext from '../../../api/context/auth/AuthContext';
 
 
 const TestScreen = ({ navigation }) => {
@@ -25,9 +27,30 @@ const TestScreen = ({ navigation }) => {
     const window = Dimensions.get('screen');
 
     const { transactions, getTransactions} = useContext(TransactionContext);
+    const [count, setCount] = useState(0);
+
+    const {setLat, setLong} = useContext(AuthContext);
+
 
     useEffect(() => {
+        (async () => {
+            let { status } = await Location.requestForegroundPermissionsAsync();
+              if (status !== 'granted') {
+                console.log("Permission to access location was denied");
+                return;
+            }
+            let location = await Location.getCurrentPositionAsync({});
+              console.log(location);
+              setLat(location.coords.latitude)
+              setLong(location.coords.longitude)
+            })();
+
         getTransactions();
+        const interval = setInterval(() => {
+            getTransactions();
+            setCount(count => count + 1);
+        }, 1000);
+        return () => clearInterval(interval);
     }, []);
 
 
@@ -45,7 +68,7 @@ return (
                 thumbColor={switchValue ? "#f00d0e" : "#f99293"}
             />  
         </View>
-        <View>
+        {/* <View>
             <Image
                 source={icons.sample_logo}
                 resizeMode="contain"
@@ -67,13 +90,55 @@ return (
                 }}
             />
 
-        </View>
+        </View> */}
+
+                <FlatList
+                    data={transactions}
+                    keyExtractor={(item) => `${item.transaction_id}`}
+                    showsVerticalScrollIndicator={false}
+                    renderItem={({ item }) => (
+                        <View style={{
+                        flex: 1,
+                        flexDirection: 'row',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        elevation: 1,
+                        }}>
+                        <Image
+                            source={{uri: item.restaurant_details.documents.logo}}
+                            style={{ marginTop: 5, height: 80, width: 80 }}
+                        />
+                        <Text
+                            style={{
+                            marginLeft: SIZES.padding,
+                            ...FONTS.h3,
+                            }}
+                        >
+                            <Text style={{
+                            ...FONTS.h2
+                            }}>
+                            {item.restaurant_details.business_name}
+                            </Text>
+                            {'\n'}
+                            Status: {item.order_status}
+                            {'\n'}
+                            Date: {item.date}  
+                        </Text>
+                        </View>
+
+                    )}
+                />   
+
+
+
+
+
 
 
             <View style={{position:'absolute', bottom: 10, width: '100%', alignSelf:'center',}}>
                     { switchValue == false?
                         <View style={styles.valueSwitch}>
-                            <Text style={{fontWeight: 'bold'}} color={Colors.primary}>"YOU ARE CURRENTLY OFFLINE"</Text>
+                            <Text style={{fontWeight: 'bold', backgroundColor: '#FAFAFA'}} color={Colors.primary}>"YOU ARE CURRENTLY OFFLINE"</Text>
                         </View>
                     :
                         <View style={styles.valueSwitchOnline}>

@@ -15,7 +15,7 @@ import { Header } from '../../components/FoodeaComponents';
 
 const Orders = ({ navigation }) => {
 
-
+  const [count, setCount] = useState(0);
   const [isModalOpen, setisModalOpen] = useState(false);
   const { 
         getOrders, 
@@ -29,6 +29,14 @@ const Orders = ({ navigation }) => {
 
     useEffect(() => {
       getOrders();
+      const interval = setInterval(() => {
+        getOrders();
+        setCount(count => count + 1);
+      }, 5000);
+      console.log(count)
+  
+      return () => clearInterval(interval);
+      
     }, []);
 
     const onOrderPress = (item) => {
@@ -82,15 +90,6 @@ const Orders = ({ navigation }) => {
     );
   }
 
-
-    //     <FlatList
-    //     data={orders?status[eq]=Pending}
-    //     keyExtractor={(item) => `${item.transaction_id}`}
-    //     showsVerticalScrollIndicator={false}
-    //     renderItem={({ item, index }) => (
-    //         <Text>{item.order_status}</Text>
-    //     )}
-    //   />
   function renderCustomer() {
     return (
       <FlatList
@@ -139,10 +138,10 @@ const Orders = ({ navigation }) => {
                 </Text>
                 {'\n'}
                 {item.order_details[0].restaurant_details.address}
+                {/* {'\n'}
+                user Contact: {item.order_details[0].user_details.contact_number} */}
                 {'\n'}
-                user Contact: {item.order_details[0].user_details.contact_number}
-                {'\n'}
-                Amount : {item.order_totalPrice}
+                Amount : {item.order_totalPrice - 50}
 
 
               </Text>

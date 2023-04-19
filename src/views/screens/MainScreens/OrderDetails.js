@@ -125,14 +125,14 @@ function renderMap() {
         provider= {PROVIDER_GOOGLE}
         initialRegion= {Pickup_Location}
       >
-        <Marker
+        {/* <Marker
           coordinate={Pickup_Location}
           pinColor= "gold"
         >
           <Callout>
             <Text> Pick Up Location </Text>
           </Callout>
-        </Marker>
+        </Marker> */}
       </MapView>
         <TouchableOpacity style={{
           position:'absolute',

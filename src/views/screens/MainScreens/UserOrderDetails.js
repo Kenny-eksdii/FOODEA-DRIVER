@@ -66,13 +66,14 @@ function renderCustomer() {
             data={details}
             keyExtractor={(item) => `${item.order_id}`}
             showsVerticalScrollIndicator={false}
+            style={{ backgroundColor: '#FAFAFA', borderWidth: 1, borderColor: '#000'}}
             renderItem={({ item }) => (
                 <View style={{
                   flex: 1,
                   flexDirection: 'row',
                   alignItems: 'center',
-                  justifyContent: 'center',
-                  elevation: 1,
+                  justifyContent: 'flex-start',
+                  alignSelf: 'baseline',
                 }}>
                   <Image
                     source={{uri: item.product_details.product_image}}
@@ -92,7 +93,7 @@ function renderCustomer() {
                     {'\n'}
                     Price: {item.product_details.price}
                     {'\n'}
-                    Calories: {item.product_details.calories}    
+                    quantity: {item.quantity}    
                   </Text>
                 </View>
 

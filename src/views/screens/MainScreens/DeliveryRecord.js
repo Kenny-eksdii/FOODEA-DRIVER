@@ -15,7 +15,9 @@ import OrderContext from '../../../api/context/Orders/OrderContext';
 
 const DeliveryRecord = ({ navigation }) => {
 
-    const { totalPrice, order, getOrders } = useContext(OrderContext);
+    const { getOrders, 
+            orders,
+        } = useContext(OrderContext);
 
     function renderHeader() {
         return (
@@ -25,76 +27,75 @@ const DeliveryRecord = ({ navigation }) => {
                     marginHorizontal: SIZES.padding,
                     alignItems: "center",
                 }}
-                title={"Delivery Records"}
+                title={"Delivery Status"}
             />
         );
     }
 
-    function renderTodayStats() {
-        return (
-            <View style={{
-                flex: 1,
-                marginLeft: SIZES.radius,
-                marginTop: SIZES.padding,
-            }}>
-                <Text style={{
-                    ...FONTS.h3
-                }}>
-                    TODAY'S STATISTICS
-                </Text>
+    // function renderTodayStats() {
+    //     return (
+    //         <View style={{
+    //             flex: 1,
+    //             marginLeft: SIZES.radius,
+    //             marginTop: SIZES.padding,
+    //         }}>
+    //             <Text style={{
+    //                 ...FONTS.h3
+    //             }}>
+    //                 TODAY'S STATISTICS
+    //             </Text>
 
-                {/* Table */}
-                <View style={{
-                    height: 100,
-                    width: 370,
-                    backgroundColor: COLORS.white,
-                    borderRadius: SIZES.radius,
-                    elevation: 5,
-                }}>
-                    <View style={{
-                        marginLeft: SIZES.base,
-                        marginTop: SIZES.base,
-                        flexDirection: 'row',
-                        justifyContent: 'space-between',
-                    }}>
-                        <Text style={{
-                            color: COLORS.gray,
-                            fontWeight: 'bold',
-                        }}>
-                            RESTAURANT
-                        </Text>
-                        <Text style={{
-                            color: COLORS.gray,
-                            fontWeight: 'bold',
-                            marginRight: 10,
-                        }}>
-                            TOTAL
-                        </Text>
-                    </View>
+    //             {/* Table */}
+    //             <View style={{
+    //                 height: 100,
+    //                 width: 370,
+    //                 backgroundColor: COLORS.white,
+    //                 borderRadius: SIZES.radius,
+    //                 elevation: 5,
+    //             }}>
+    //                 <View style={{
+    //                     marginLeft: SIZES.base,
+    //                     marginTop: SIZES.base,
+    //                     flexDirection: 'row',
+    //                     justifyContent: 'space-between',
+    //                 }}>
+    //                     <Text style={{
+    //                         color: COLORS.gray,
+    //                         fontWeight: 'bold',
+    //                     }}>
+    //                         RESTAURANT
+    //                     </Text>
+    //                     <Text style={{
+    //                         color: COLORS.gray,
+    //                         fontWeight: 'bold',
+    //                         marginRight: 10,
+    //                     }}>
+    //                         TOTAL
+    //                     </Text>
+    //                 </View>
 
-                    <View style={{
-                        marginLeft: SIZES.base,
-                        flexDirection: 'row',
-                        justifyContent: 'space-between',
+    //                 <View style={{
+    //                     marginLeft: SIZES.base,
+    //                     flexDirection: 'row',
+    //                     justifyContent: 'space-between',
 
-                    }}>
-                        <Text style={{
-                            fontWeight: 'bold',
-                        }}>
-                            {/* {item.product_details.product_name} */}{order.restaurant_details.business_name}
-                        </Text>
-                        <Text style={{
-                            fontWeight: 'bold',
-                            marginRight: 10,
-                        }}>
-                            {/* {item.product_details.price} */}
-                            {totalPrice}
-                        </Text>
-                    </View>
-                </View>
-            </View>
-        )
-    }
+    //                 }}>
+    //                     <Text style={{
+    //                         fontWeight: 'bold',
+    //                     }}>
+    //                         {/* {orders.order_details[0].restaurant_details.business_name} */}
+    //                     </Text>
+    //                     <Text style={{
+    //                         fontWeight: 'bold',
+    //                         marginRight: 10,
+    //                     }}>
+    //                         {orders.order_totalPrice - 50}
+    //                     </Text>
+    //                 </View>
+    //             </View>
+    //         </View>
+    //     )
+    // }
 
     return (
         <View style={{
@@ -111,24 +112,47 @@ const DeliveryRecord = ({ navigation }) => {
                 <Text style={{
                     ...FONTS.h1
                 }}>
-                    YOUR EARNING IS
+                Succesfully Delivered
                 </Text>
-                <Text style={{
+                {/* <Text style={{
                     color: COLORS.primary,
                     ...FONTS.h1
                 }}>
-                {/* {totalPrice} */}
-                {order.total}
-                </Text>
+                {orders.order_totalPrice}
+                </Text> */}
+                <View>
+                    <Image
+                        source={icons.sample_logo}
+                        // resizeMode="contain"
+                        style={{
+                            // backgroundColor:'#000',
+                            height: 400,
+                            alignSelf:'center',
+                            width: 400,
+                        }}
+                    />
+                    <Image
+                        source={icons.rider_logo}
+                        // resizeMode="contain"
+                        style={{
+                            position:'absolute',
+                            bottom: -100,
+                            height: 300,
+                            width: 400,
+                        }}
+                    />
+
+                </View>
             </View>
 
             {/* TODAY STATS */}
-            {renderTodayStats()}
+            {/* {renderTodayStats()} */}
             <View>
                     <Button 
                         onPress={() =>
                             {
                                 getOrders();
+                                // updateOrderStatus();
                                 navigation.navigate("Orders");
                             }
                         }

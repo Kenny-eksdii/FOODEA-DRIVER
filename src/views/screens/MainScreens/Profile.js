@@ -16,7 +16,9 @@ import { Button } from '../../components/FoodeaComponents';
 
 const Profile = ({ navigation }) => {
 const { logout, user } = useContext(AuthContext);
-// const [imageUri, setImageUri] = useState('');
+// const currentDate = new Date();
+// const isoDate = currentDate.toISOString().slice(0, 10);
+
 
     function renderHeader() {
         return (
@@ -69,12 +71,17 @@ const { logout, user } = useContext(AuthContext);
                 <Image
                     source={{ uri: user.rider_documents.rider_photo}}
                     // source={images.profilepic}
-                    resizeMode="contain"
+                    // resizeMode="contain"
                     style={{
-                        width: 200,
+                        width: 100,
+                        height: 100,
+                        borderRadius: 10,
+                        alignItems: 'center',
+                        justifyContent: 'center',
 
                     }}
                 />
+                {/* <Text>{user.latitude}</Text> */}
             </View>
 
         )
