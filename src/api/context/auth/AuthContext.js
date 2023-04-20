@@ -20,7 +20,7 @@ export const AuthProvider = ({ children }) => {
             .then((response) => {
                 const userData = response.data;
                 const userFound = userData.find(user => user.email === email);
-                setUserID (userData[0].rider_id);
+                setUserID(userData[0].rider_id);
                 console.log(userData[0].rider_id);
 
                 if(userFound){
@@ -60,7 +60,7 @@ export const AuthProvider = ({ children }) => {
             // .finally(() => setLoading(false))
 
             await api()
-            .patch(`riders/${userID}`,
+            .patch(`riders/${user.rider_id}`,
                 {
                 latitude:lat,
                 longitude:long,

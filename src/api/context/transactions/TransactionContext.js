@@ -1,17 +1,13 @@
 import React, { useState, createContext } from 'react';
 import api from '../../context/auth/api'
-import { useContext } from 'react';
-import AuthContext from '../auth/AuthContext';
 
 const TransactionContext = createContext();
 
 export const TransactionProvider = ({ children }) => {
 
     const [transactions, setTransactions] = useState([]);
-    const {userID} = useContext(AuthContext);
 
-
-    const getTransactions = async () => {
+    const getTransactions = async (userID) => {
         await api()
             .get(`transactions?rider_id[eq]=${userID}`)
             .then((response) => {

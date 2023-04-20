@@ -27,9 +27,10 @@ const TestScreen = ({ navigation }) => {
     const window = Dimensions.get('screen');
 
     const { transactions, getTransactions} = useContext(TransactionContext);
+    
     const [count, setCount] = useState(0);
 
-    const {setLat, setLong} = useContext(AuthContext);
+    const {setLat, setLong, user} = useContext(AuthContext);
 
 
     useEffect(() => {
@@ -45,9 +46,9 @@ const TestScreen = ({ navigation }) => {
               setLong(location.coords.longitude)
             })();
 
-        getTransactions();
+        getTransactions(user.rider_id);
         const interval = setInterval(() => {
-            getTransactions();
+            getTransactions(user.rider_id);
             setCount(count => count + 1);
         }, 1000);
         return () => clearInterval(interval);
