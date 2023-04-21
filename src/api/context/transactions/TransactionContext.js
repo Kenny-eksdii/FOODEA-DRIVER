@@ -7,7 +7,6 @@ export const TransactionProvider = ({ children }) => {
 
     const [transactions, setTransactions] = useState([]);
 
-
     const getTransactions = async () => {
         await api()
             .get(`transactions?rider_id[eq]=`)
