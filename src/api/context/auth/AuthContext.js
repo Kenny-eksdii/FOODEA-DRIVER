@@ -20,8 +20,9 @@ export const AuthProvider = ({ children }) => {
             .then((response) => {
                 const userData = response.data;
                 const userFound = userData.find(user => user.email === email);
-                setUserID (userData[0].rider_id);
-                console.log(userData[0].rider_id);
+                console.log(user.rider_id)
+                setUserID(userData[0].rider_id);
+                // console.log(userData[0].rider_id);
 
                 if(userFound){
                     bcrypt.compare(password, userFound.password, (err, result) => {
@@ -62,8 +63,8 @@ export const AuthProvider = ({ children }) => {
             await api()
             .patch(`riders/${userID}`,
                 {
-                latitude:lat,
-                longitude:long,
+                    latitude:lat,
+                    longitude:long,
                 })
                 .then((response) => {
                     console.log(lat);
@@ -97,13 +98,13 @@ export const AuthProvider = ({ children }) => {
     return (
         <AuthContext.Provider
             value={{
+                userID,
                 login,
                 logout,
                 user,
                 setUser,
                 logged_in,
                 setLogged_in,
-                userID,
                 setLat,
                 lat,
                 setLong,

@@ -29,7 +29,7 @@ const TestScreen = ({ navigation }) => {
     const { transactions, getTransactions} = useContext(TransactionContext);
     const [count, setCount] = useState(0);
 
-    const {setLat, setLong} = useContext(AuthContext);
+    const {setLat, lat, long, setLong, user} = useContext(AuthContext);
 
 
     useEffect(() => {
@@ -49,7 +49,7 @@ const TestScreen = ({ navigation }) => {
         const interval = setInterval(() => {
             getTransactions();
             setCount(count => count + 1);
-        }, 1000);
+        }, 5000);
         return () => clearInterval(interval);
     }, []);
 
@@ -58,7 +58,9 @@ return (
     <Container style={styles.topContainer} center padding={10}>
         <View style={styles.Status}>
             <TouchableOpacity onPress={handleProfile}>
-                <Image source={images.user} style={styles.userprofile} onPress = {handleProfile} />
+                <Image source={{ uri: user.rider_documents.rider_photo }} style={styles.userprofile} onPress = {handleProfile} />
+                {/* <Text>{lat}</Text>
+                <Text>{long}</Text> */}
             </TouchableOpacity>
                     
             <Switch 
@@ -91,18 +93,20 @@ return (
             />
 
         </View> */}
-
+            <View style= {{ height: '85%', backgroundColor: '#FFF', borderRadius: 10, borderColor:'#000', backgroundColor:1, borderWidth: 2,}}>
                 <FlatList
                     data={transactions}
                     keyExtractor={(item) => `${item.transaction_id}`}
                     showsVerticalScrollIndicator={false}
+                    style ={{ marginBottom: 10,  }}
                     renderItem={({ item }) => (
                         <View style={{
                         flex: 1,
                         flexDirection: 'row',
                         alignItems: 'center',
-                        justifyContent: 'center',
-                        elevation: 1,
+                        justifyContent: 'flex-start',
+                        paddingHorizontal: 10,
+                        marginBottom: 5,
                         }}>
                         <Image
                             source={{uri: item.restaurant_details.documents.logo}}
@@ -127,18 +131,13 @@ return (
                         </View>
 
                     )}
-                />   
+                />  
+            </View> 
 
-
-
-
-
-
-
-            <View style={{position:'absolute', bottom: 10, width: '100%', alignSelf:'center',}}>
+            <View style={{ position : 'absolute', bottom: 10, width: '100%', alignSelf:'center',}}>
                     { switchValue == false?
                         <View style={styles.valueSwitch}>
-                            <Text style={{fontWeight: 'bold', backgroundColor: '#FAFAFA'}} color={Colors.primary}>"YOU ARE CURRENTLY OFFLINE"</Text>
+                            <Text style={{ backgroundColor: '#FAFAFA'}} color={Colors.primary} size={16} weight='bold'>"YOU ARE CURRENTLY OFFLINE"</Text>
                         </View>
                     :
                         <View style={styles.valueSwitchOnline}>
@@ -182,6 +181,9 @@ const styles = StyleSheet.create({
         height: 35,
         width: 35,
         marginLeft: 10,
+        borderWidth: 1,
+        borderColor: '#000',
+        borderRadius: 20,
     },
     StatusContainer: {
         backgroundColor: '#000',

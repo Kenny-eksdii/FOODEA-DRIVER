@@ -24,7 +24,8 @@ const Orders = ({ navigation }) => {
         selectedCategoryId,
         setSelectedCategoryId,
         setOrder,
-        setNewOrderId
+        setNewOrderId,
+        acceptedStatus,
     } = useContext(OrderContext);
 
     useEffect(() => {
@@ -179,6 +180,7 @@ const Orders = ({ navigation }) => {
                       console.log(selectedCategoryId)
                       setOrderId(selectedCategoryId)
                       setisModalOpen(false);
+                      acceptedStatus();
                     }}
                     title={'ACCEPT'}
                   />

@@ -74,6 +74,7 @@ function renderCustomer() {
                   alignItems: 'center',
                   justifyContent: 'flex-start',
                   alignSelf: 'baseline',
+                  // paddingHorizontal: 10,
                 }}>
                   <Image
                     source={{uri: item.product_details.product_image}}

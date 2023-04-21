@@ -26,7 +26,7 @@ export const OrderProvider = ({ children }) => {
     const getOrders = async () => {
         await api()
             // .get('orders?status[eq]=Pending')
-            .get(`orders?status[eq]=Pending&date[eq]=${isoDate}&rider_id=${userID}` )
+            .get(`orders?status[eq]=Ready for pick up&date[eq]=${isoDate}&rider_id=${userID}` )
             .then((response) => {
                 setOrders(response.data);
             })
@@ -40,6 +40,53 @@ export const OrderProvider = ({ children }) => {
                 }
             })
     }
+    const acceptedStatus = async () => {
+
+        const {
+            order_id,
+            customer_id,
+            product_id,
+            restaurant_id,
+            quantity,
+            total,
+            payment_type,
+            latitude,
+            longitude
+        } = order;
+
+
+        let form_data = {
+            order_id: newOrderID,
+            customer_id,
+            product_id,
+            merchant_id: restaurant_id,
+            order_key: selectedCategoryId,
+            restaurant_id,
+            quantity,
+            total,
+            status: "Delivering",
+            payment_type,
+            latitude,
+            longitude
+        } ;
+
+
+        for( let i = 0 ; i < details.length ; i++) {
+            const response = await axios.patch(`https://foodea-website.herokuapp.com/api/v1/orders/${details[i].order_id}`, {
+               status: "delivering",
+            })
+           console.log(response.data);
+       }
+    }
+
+    // const cancelledStatus = async () => {
+    //     for( let i = 0 ; i < details.length ; i++) {
+    //         const response = await axios.patch(`https://foodea-website.herokuapp.com/api/v1/orders/${details[i].order_id}`, {
+    //            status: "Preparing",
+    //         })
+    //        console.log(response.data);
+    //    }
+    // }
 
     const updateOrderStatus = async () => {
 
@@ -65,7 +112,7 @@ export const OrderProvider = ({ children }) => {
             restaurant_id,
             quantity,
             total,
-            status: "Paid",
+            status: "Delivered",
             payment_type,
             latitude,
             longitude
@@ -77,7 +124,7 @@ export const OrderProvider = ({ children }) => {
         // }
         for( let i = 0 ; i < details.length ; i++) {
              const response = await axios.patch(`https://foodea-website.herokuapp.com/api/v1/orders/${details[i].order_id}`, {
-                status: "Paid",
+                status: "Delivered",
              })
             console.log(response.data);
         }
@@ -114,7 +161,7 @@ export const OrderProvider = ({ children }) => {
                 {order_key: orderId,
                 merchant_id: restaurant_id,
                 customer_id: customer_id,
-                rider_id: userID,
+                rider_id: 14,
                 product_id: product_id,
                 order_status: "Delivered"},)
 
@@ -173,6 +220,7 @@ export const OrderProvider = ({ children }) => {
     return (
         <OrderContext.Provider
             value={{
+                acceptedStatus,
                 setOrderId,
                 getOrders,
                 orders,

@@ -75,7 +75,7 @@ const { logout, user } = useContext(AuthContext);
                     style={{
                         width: 100,
                         height: 100,
-                        borderRadius: 10,
+                        borderRadius: 50,
                         alignItems: 'center',
                         justifyContent: 'center',
 
@@ -129,11 +129,11 @@ const { logout, user } = useContext(AuthContext);
                                 right: 0,
                             }}
                         />
-                        <Text style={{ ...FONTS.h3, color: COLORS.black, }}>{user.firstname}</Text>
+                        <Text style={{ ...FONTS.h3, color: COLORS.black, }}>{user.firstname} {user.middlename} {user.lastname}</Text>
                     </View>
 
                     {/* Middle Name */}
-                    <View
+                    {/* <View
                         style={{
                             flexDirection: "row",
                             alignItems: "center",
@@ -158,35 +158,10 @@ const { logout, user } = useContext(AuthContext);
                             }}
                         />
                         <Text style={{ ...FONTS.h3, color: COLORS.black, }}>{user.middlename}</Text>
-                    </View>
+                    </View> */}
 
                     {/* Last Name */}
-                    <View
-                        style={{
-                            flexDirection: "row",
-                            alignItems: "center",
-                            justifyContent: 'center',
-                            height: 50,
-                            width: 300,
-                            backgroundColor: COLORS.white,
-                            borderRadius: SIZES.radius,
-                            marginTop: SIZES.base,
-                            elevation: 5,
-                        }}
-                    >
-                        <Image
-                            source={icons.Name}
-                            style={{
-                                height: 20,
-                                width: 20,
-                                tintColor: COLORS.black,
-                                position: 'absolute',
-                                left: 5,
-                                right: 0,
-                            }}
-                        />
-                        <Text style={{ ...FONTS.h3, color: COLORS.black, }}>{user.lastname}</Text>
-                    </View>
+                    {/*  */}
 
                     {/* Email */}
                     <View
@@ -241,7 +216,35 @@ const { logout, user } = useContext(AuthContext);
                                 right: 0,
                             }}
                         />
-                        <Text style={{ ...FONTS.h3 }}>+{user.mobile_number}</Text>
+                        <Text style={{ ...FONTS.h3 }}>0{user.mobile_number}</Text>
+                    </View>
+
+                    {/* Birthday */}
+                    <View
+                        style={{
+                            flexDirection: "row",
+                            alignItems: "center",
+                            justifyContent: 'center',
+                            height: 50,
+                            width: 300,
+                            backgroundColor: COLORS.white,
+                            borderRadius: SIZES.radius,
+                            marginTop: SIZES.base,
+                            elevation: 5,
+                        }}
+                    >
+                        <Image
+                            source={icons.birthday}
+                            style={{
+                                height: 25,
+                                width: 25,
+                                tintColor: COLORS.black,
+                                position: 'absolute',
+                                left: 5,
+                                right: 0,
+                            }}
+                        />
+                        <Text style={{ ...FONTS.h3 }}>{user.birthdate}</Text>
                     </View>
 
                     {/* age */}
@@ -272,8 +275,6 @@ const { logout, user } = useContext(AuthContext);
                         <Text style={{ ...FONTS.h3, color: COLORS.black, }}>{user.age} yrs old</Text>
                     </View>
 
-                    
-
                     {/* gender */}
                     <View
                         style={{
@@ -302,9 +303,7 @@ const { logout, user } = useContext(AuthContext);
                         <Text style={{ ...FONTS.h3, color: COLORS.black, }}>{user.gender}</Text>
                     </View>
 
-                    
-
-                    {/* Birthday */}
+                    {/* ADDRESS
                     <View
                         style={{
                             flexDirection: "row",
@@ -316,31 +315,33 @@ const { logout, user } = useContext(AuthContext);
                             borderRadius: SIZES.radius,
                             marginTop: SIZES.base,
                             elevation: 5,
-                            marginBottom: 10,
                         }}
                     >
                         <Image
-                            source={icons.birthday}
+                            source={icons.Name}
                             style={{
-                                height: 25,
-                                width: 25,
+                                height: 20,
+                                width: 20,
                                 tintColor: COLORS.black,
                                 position: 'absolute',
                                 left: 5,
                                 right: 0,
                             }}
                         />
-                        <Text style={{ ...FONTS.h3 }}>{user.birthdate}</Text>
-                    </View>
-                    <View style={{bottom: 0, width:300, justifyContent: 'center',}}> 
+                        <Text style={{ ...FONTS.h3, color: COLORS.black, }}>{user.address}</Text>
+                    </View> */}
+
+                    
+                    
+                    
+                </View>
+            </ScrollView>
+            <View style={{ bottom: 10, width:300, justifyContent: 'center', alignSelf: 'center'}}> 
                     <Button
                         onPress={logout}
                         title={'Log Out'}
                     />
                     </View>
-                    
-                </View>
-            </ScrollView>
 
         </View>
     )

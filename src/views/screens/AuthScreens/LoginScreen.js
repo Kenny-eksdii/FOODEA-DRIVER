@@ -109,14 +109,14 @@ const LoginScreen = ({ navigation }) => {
                                     <View style = {styles.button}>
                                     <Button 
                                         onPress={handleSubmit}
-                                        title={'Sign In'}
+                                        title={'Log in'}
                                     />
                                     </View>
-                                    <TouchableOpacity onPress={() => {openURL(mainURL)}}>
-                                        <Text style={{marginTop: 10}} color={Colors.black} center size={16} weight='bold' >Don't have an account? <Text color={Colors.primary} weight='medium'>Sign Up</Text></Text>
-                                    </TouchableOpacity>
+                                    {/* <TouchableOpacity onPress={() => {openURL(mainURL)}}>
+                                        <Text style={{marginTop: 10}} color={Colors.black} center size={16} weight='bold' >Don't have an account? <Text color={Colors.primary} weight='medium'>Register</Text></Text>
+                                    </TouchableOpacity> */}
                                     <TouchableOpacity onPress={() => {openURL(secondaryURL)}}>
-                                        <Text style={{marginTop: 20}} color={Colors.primary} center size={14} weight='bold'>Forgot Password?</Text>
+                                        <Text color={Colors.primary} center size={16} weight='bold'>Forgot Password?</Text>
                                     </TouchableOpacity>
 
                                     
@@ -139,11 +139,13 @@ const styles = StyleSheet.create({
     button: {
         position:'relative',
         marginTop: 20,
-        roundness:30,
-        paddingTop: 2,
-        paddingBottom: 2,
-        backgroundColor: '#FAFAFA',
-        borderRadius: 15,
-        marginBottom: 50
+        // roundness:30,
+        // paddingTop: 2,
+        // paddingBottom: 2,
+        backgroundColor: '#000',
+        borderRadius: 20,
+        marginBottom: 50,
+        borderColor: '#000',
+        borderWidth: 2,
       },
 })

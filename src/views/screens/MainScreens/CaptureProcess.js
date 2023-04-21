@@ -15,6 +15,7 @@ const CaptureProcess = ({ navigation }) => {
     const cameraRef = useRef(null);
 
     const { selectedCategoryId, order, updateOrderStatus } = useContext(OrderContext);
+    // const { }
 
     useEffect (() => {
         (async () => {
@@ -30,7 +31,7 @@ const CaptureProcess = ({ navigation }) => {
     const handleRecord = () => {
         saveImage();
         navigation.push('DeliveryRecord');
-        updateOrderStatus()
+        updateOrderStatus();
     }
 
     const saveImage = async () => {
