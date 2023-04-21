@@ -46,9 +46,9 @@ const TestScreen = ({ navigation }) => {
               setLong(location.coords.longitude)
             })();
 
-        getTransactions(user.rider_id);
+        getTransactions();
         const interval = setInterval(() => {
-            getTransactions(user.rider_id);
+            getTransactions();
             setCount(count => count + 1);
         }, 5000);
         return () => clearInterval(interval);
@@ -60,8 +60,8 @@ return (
         <View style={styles.Status}>
             <TouchableOpacity onPress={handleProfile}>
                 <Image source={{ uri: user.rider_documents.rider_photo }} style={styles.userprofile} onPress = {handleProfile} />
-                {/* <Text>{lat}</Text>
-                <Text>{long}</Text> */}
+                    {/* <Text>{lat}</Text>
+                    <Text>{long}</Text> */}
             </TouchableOpacity>
                     
             <Switch 
@@ -94,6 +94,11 @@ return (
             />
 
         </View> */}
+        <View>
+            <View>
+                <Text style={{ alignSelf: 'center'}}size={16} weight='bold'> TRANSACTION HISTORY</Text>
+            </View>
+        </View>
             <View style= {{ height: '85%', backgroundColor: '#FFF', borderRadius: 10, borderColor:'#000', backgroundColor:1, borderWidth: 2,}}>
                 <FlatList
                     data={transactions}
@@ -138,7 +143,7 @@ return (
             <View style={{ position : 'absolute', bottom: 10, width: '100%', alignSelf:'center',}}>
                     { switchValue == false?
                         <View style={styles.valueSwitch}>
-                            <Text style={{ backgroundColor: '#FAFAFA'}} color={Colors.primary} size={16} weight='bold'>"YOU ARE CURRENTLY OFFLINE"</Text>
+                            <Text style={{ backgroundColor: '#FFF', borderRadius: 10,}} color={Colors.primary} size={16} weight='bold'>"YOU ARE CURRENTLY OFFLINE"</Text>
                         </View>
                     :
                         <View style={styles.valueSwitchOnline}>

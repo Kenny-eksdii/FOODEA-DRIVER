@@ -63,7 +63,7 @@ const MapDirection = ({ navigation }) => {
 
     async function fitMapToPolyline() {
         setshowDirection(true)
-        map.current.fitToCoordinates([Dropoff_Location, my_location],{
+        map.current.fitToCoordinates([my_location, Dropoff_Location],{
             edgePadding: {
               top: 30,
               right: 50,

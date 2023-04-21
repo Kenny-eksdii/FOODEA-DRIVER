@@ -19,7 +19,7 @@ import OrderContext from '../../../api/context/Orders/OrderContext';
 
 const OrderDetails = ({ navigation }) => {
 
-  const { getOrderDetails, details, restaurants } = useContext(OrderContext);
+  const { getOrderDetails, details, restaurants, order } = useContext(OrderContext);
 
   useEffect(() => {
     getOrderDetails();
@@ -34,8 +34,8 @@ const OrderDetails = ({ navigation }) => {
     const LATITUDE_DELTA = 0.02;
     const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
     const Pickup_Location = {
-        latitude: 14.7744064,
-        longitude: 121.0461308,
+        latitude: order?.restaurant_details?.latitude,
+        longitude: order?.restaurant_details?.longitude,
         latitudeDelta: LATITUDE_DELTA,
         longitudeDelta: LONGITUDE_DELTA,
     };
@@ -125,14 +125,14 @@ function renderMap() {
         provider= {PROVIDER_GOOGLE}
         initialRegion= {Pickup_Location}
       >
-        {/* <Marker
+        <Marker
           coordinate={Pickup_Location}
           pinColor= "gold"
         >
-          <Callout>
+          {/* <Callout>
             <Text> Pick Up Location </Text>
-          </Callout>
-        </Marker> */}
+          </Callout> */}
+        </Marker>
       </MapView>
         <TouchableOpacity style={{
           position:'absolute',

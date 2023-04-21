@@ -78,6 +78,8 @@ const { logout, user } = useContext(AuthContext);
                         borderRadius: 50,
                         alignItems: 'center',
                         justifyContent: 'center',
+                        borderWidth: 1,
+                        borderColor: '#000',
 
                     }}
                 />

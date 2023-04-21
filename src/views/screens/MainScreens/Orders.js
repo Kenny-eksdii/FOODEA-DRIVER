@@ -195,16 +195,6 @@ const Orders = ({ navigation }) => {
       {renderHeader()}
       {/* Customer */}
       {renderCustomer()}
-      {/* <TouchableOpacity onPress={() => navigation.navigate("DeliveryRecord")}>
-        <View>
-          <Text style = {{
-            ...FONTS.h2
-          }}>
-            Delivery Record
-          </Text>
-        </View>
-      </TouchableOpacity> */}
-
     </View>
   );
 }
