@@ -180,7 +180,7 @@ const Orders = ({ navigation }) => {
                       console.log(selectedCategoryId)
                       setOrderId(selectedCategoryId)
                       setisModalOpen(false);
-                      acceptedStatus();
+                      // acceptedStatus();
                     }}
                     title={'ACCEPT'}
                   />
@@ -204,7 +204,7 @@ const styles = StyleSheet.create({
   topContainer: {
     position:'absolute',
     bottom:10,
-    backgroundColor: '#000',
+    backgroundColor: '#EA4D4E',
     width: '100%',
     height: '15%'
   },
