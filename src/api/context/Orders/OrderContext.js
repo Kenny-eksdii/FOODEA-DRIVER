@@ -40,15 +40,16 @@ export const OrderProvider = ({ children }) => {
                 }
             })
     }
-    const acceptedStatus = async () => {
+    
+    // const acceptedStatus = async () => {
 
-        for( let a = 0 ; a < details.length ; a++) {
-            const response = await axios.patch(`https://foodea-website.herokuapp.com/api/v1/orders/${details[a].order_id}`, {
-               status: "Delivering",
-            })
-           console.log(response.data);
-       }
-    }
+    //     for( let a = 0 ; a < details.length ; a++) {
+    //         const response = await axios.patch(`https://foodea-website.herokuapp.com/api/v1/orders/${details[a].order_id}`, {
+    //            status: "Delivering",
+    //         })
+    //        console.log(response.data);
+    //    }
+    // }
 
     const updateOrderStatus = async () => {
 
