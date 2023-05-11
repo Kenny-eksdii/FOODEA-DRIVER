@@ -57,7 +57,10 @@ const TestScreen = ({ navigation }) => {
 
 return (
     <Container style={styles.topContainer} center padding={10}>
+
         <View style={styles.Status}>
+
+            {/* profile */}
             <TouchableOpacity onPress={handleProfile}>
                 <Image source={{ uri: user.rider_documents.rider_photo }} style={styles.userprofile} onPress = {handleProfile} />
                     {/* <Text>{lat}</Text>
@@ -71,35 +74,15 @@ return (
                 thumbColor={switchValue ? "#f00d0e" : "#f99293"}
             />  
         </View>
-        {/* <View>
-            <Image
-                source={icons.sample_logo}
-                resizeMode="contain"
-                style={{
-                    // backgroundColor:'#000',
-                    height: '80%',
-                    alignSelf:'center',
-                    width: '100%',
-                }}
-            />
-            <Image
-                source={icons.rider_logo}
-                resizeMode="contain"
-                style={{
-                    position:'absolute',
-                    bottom: 10,
-                    height: '60%',
-                    width: '100%',
-                }}
-            />
 
-        </View> */}
         <View>
             <View>
                 <Text style={{ alignSelf: 'center'}}size={16} weight='bold'> TRANSACTION HISTORY</Text>
             </View>
         </View>
             <View style= {{ height: '85%', backgroundColor: '#FFF', borderRadius: 10, borderColor:'#000', backgroundColor:1, borderWidth: 2,}}>
+                
+                {/* TRANSACTION HISTORY */}
                 <FlatList
                     data={transactions}
                     keyExtractor={(item) => `${item.transaction_id}`}
@@ -140,6 +123,7 @@ return (
                 />  
             </View> 
 
+            {/* EARNING Button */}
             <View style={{ position : 'absolute', bottom: 10, width: '100%', alignSelf:'center',}}>
                     { switchValue == false?
                         <View style={styles.valueSwitch}>

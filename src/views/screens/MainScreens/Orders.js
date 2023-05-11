@@ -25,7 +25,6 @@ const Orders = ({ navigation }) => {
         setSelectedCategoryId,
         setOrder,
         setNewOrderId,
-        acceptedStatus,
     } = useContext(OrderContext);
 
     useEffect(() => {

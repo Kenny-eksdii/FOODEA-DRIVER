@@ -22,7 +22,7 @@ const UserOrderDetails = ({ navigation }) => {
       getOrders();
     }, []);
 
-    
+
 function renderHeader() {
     return (
         <Header

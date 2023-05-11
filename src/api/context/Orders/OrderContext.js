@@ -183,7 +183,6 @@ export const OrderProvider = ({ children }) => {
     return (
         <OrderContext.Provider
             value={{
-                acceptedStatus,
                 setOrderId,
                 getOrders,
                 orders,
